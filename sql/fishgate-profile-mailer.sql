@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2013 at 11:51 AM
+-- Generation Time: Jun 12, 2013 at 03:31 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -49,7 +49,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `salt` text NOT NULL,
   `hash` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user`, `salt`, `hash`) VALUES
+(1, 'admin', '0537f', 'f778a8ace7b7f14984d79aeb630c9c5a');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
