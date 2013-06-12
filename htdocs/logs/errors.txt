@@ -1,0 +1,2 @@
+12-06-2013, 13:52 - DEV: SQLSTATE[HY000] [1044] Access denied for user ''@'localhost' to database 'fishgate-profile-mailer'
+12-06-2013, 13:52 - USR: SQLSTATE[HY000] [1044] Access denied for user ''@'localhost' to database 'fishgate-profile-mailer'

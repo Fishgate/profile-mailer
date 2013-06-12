@@ -22,7 +22,5 @@ require_once('./config.php');
         $user = new User();
         
         ?>
-       
-        
     </body>
 </html>

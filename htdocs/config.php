@@ -23,7 +23,7 @@ define('DB_LOGS_TBL',   'emaillogs');
  * getting exceptions thrown at them, set to true/false
  * 
  */
-define('DEBUG', true);
+define('DEV', false);
 
 /**
  * General pathing constants
@@ -33,6 +33,7 @@ $root = pathinfo($_SERVER['SCRIPT_FILENAME']);
 define('BASE_FOLDER',   basename($root['dirname']));
 define('SITE_ROOT',     realpath(dirname(__FILE__)));
 define('SITE_URL',      'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
+define('ERROR_LOG',     SITE_ROOT.'/logs/errors.txt');
 
 /**
  * Setup autoloader to initiate classes
