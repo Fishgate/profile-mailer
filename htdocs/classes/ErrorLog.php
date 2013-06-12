@@ -1,8 +1,9 @@
 <?php
 /**
- * Description of ErrorLog
+ * Writes cought exceptions into a error.txt log file. Also outputs pretty 
+ * errors for end user depending on project state (DEV = true/false) in config.php
  *
- * @author Owner
+ * @author kyle@fishgate.co.za
  */
 
 class ErrorLog {

@@ -20,6 +20,9 @@ require_once('./config.php');
         <?php
             
         $user = new User();
+        //$user->createUser('admin', 'gyqqkx540');
+        
+        $user->validateUser('admin', 'gyqqkx540');
         
         ?>
     </body>

@@ -20,10 +20,11 @@ define('DB_LOGS_TBL',   'emaillogs');
 
 /**
  * Set the project state here for error handling, saves the end user from 
- * getting exceptions thrown at them, set to true/false
+ * getting exceptions thrown at them, set to true/false. Also handles some other things
  * 
  */
-define('DEV', false);
+define('DEV', true);
+define('DEV_EMAIL', 'kyle@fishgate.co.za, tyrone@fishgate.co.za');
 
 /**
  * General pathing constants
