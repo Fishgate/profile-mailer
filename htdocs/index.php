@@ -1,4 +1,8 @@
-<?php require_once('setup.php'); ?>
+<?php 
+
+require_once('./config.php');
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +19,12 @@
         </form>
         <?php
             
+        $user = new User();
+        $user->validate('kyle');
+        
+        
         ?>
+       
+        
     </body>
 </html>
