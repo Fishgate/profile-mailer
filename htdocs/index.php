@@ -20,8 +20,6 @@ require_once('./config.php');
         <?php
             
         $user = new User();
-        $user->validate('kyle');
-        
         
         ?>
        

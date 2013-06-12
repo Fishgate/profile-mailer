@@ -19,6 +19,13 @@ define('DB_USER_TBL',   'users');
 define('DB_LOGS_TBL',   'emaillogs');
 
 /**
+ * Set the project state here for error handling, saves the end user from 
+ * getting exceptions thrown at them, set to true/false
+ * 
+ */
+define('DEBUG', true);
+
+/**
  * General pathing constants
  *
  */

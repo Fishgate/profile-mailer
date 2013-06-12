@@ -13,20 +13,20 @@ class User {
     
     public function __construct() {
         $this->db = new Connection();
-        $this->db = $this->db->dbConnect();
+        $this->db = $this->db->dbConnect();        
+        if($this->db) $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
     
     public function validate($user) {
         try {
-            //$st = $this->db->prepare('SELECT * FROM '.DB_USER_TBL.' WHERdsE user=?');
-            $st = $this->db->prepare('ehehehe');
+            $st = $this->db->prepare('SELECT * FROM '.DB_USER_TBL.' WHERE user=fdfd');
             $st->bindParam(1, $user);
             $st->execute();
             $result = $st->fetch();
 
             print_r($result);
         } catch(PDOException $ex) {
-            echo $ex->getMessage();
+            die( $ex->getMessage() );
         }
     }
     
