@@ -1,15 +1,8 @@
-<?php 
-
-require_once('./config.php');
-
-?>
+<?php require_once('./config.php'); ?>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Fishgate Profile Mailer</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+    <?php require_once('./head.php'); ?>
     <body>
         <h2>Login</h2>
         <form id="loginform">
@@ -20,7 +13,6 @@ require_once('./config.php');
         <?php
             
         $user = new User();
-        //$user->createUser('admin', 'gyqqkx540');
         
         $user->validateUser('admin', 'gyqqkx540');
         
