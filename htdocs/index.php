@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once('./head.php'); ?>
+    
     <body>
         <h2>Login</h2>
         <form id="loginform">
