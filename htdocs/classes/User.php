@@ -75,8 +75,8 @@ class User {
         if(!isset($sessionBool) || empty($sessionBool)){
             header('location: index.php');
         }else{
-            if($sessionBool){
-                print_r($_SESSION);
+            if(!$sessionBool){
+                header('location: index.php');
             }
         }   
     }

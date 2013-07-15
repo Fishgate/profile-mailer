@@ -110,32 +110,31 @@ function validate_file(target, array){
 function validate(target, default_val){
     jQuery(target).focus(function(){
         jQuery(target).removeAttr("style");
-    })
+    });
     
     jQuery(target).change(function(){
         jQuery(target).removeAttr("style");
-    })
+    });
 
     if(
-        jQuery(target).val() != '' && 
-        jQuery(target).val() != default_val
+        jQuery(target).val() !== '' && 
+        jQuery(target).val() !== default_val
     ){
         return true;
     }else{        
         jQuery(target).css('background', error);
         return false;
     }
-}
+}   
 
-function valideate_empty_tinymce(target){
-    var error = '<div class="bubble-left"></div><div class="bubble-inner">This field is required.</div><div class="bubble-right"></div>';
 
-    if(tinyMCE.get(target).getContent() != ''){
+function valideate_tinymce(target){    
+    if(tinymce.get(target).getContent() !== ''){
         return true;
-    }else{
-        jQuery(target + '_error').html(error);
+    }else{        
         return false;
     }
+
 }
 
 function validate_length(string, condition){
