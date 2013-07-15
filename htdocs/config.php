@@ -1,6 +1,8 @@
+<?php session_start(); ?>
+
 <?php
 /**
- * Holds constants used in the configuration of the application.
+ * Holds constants/variables used in the configuration of the application.
  *
  * @author Kyle
  */

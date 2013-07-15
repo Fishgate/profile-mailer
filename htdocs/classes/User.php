@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles user creation, login, and verification
+ * Handles user creation, login, verification and authentication
  *
  * @author kyle@fishgate.co.za
  */
@@ -57,7 +57,9 @@ class User {
                 $result = $st->fetch(PDO::FETCH_ASSOC);
                 
                 if( md5($password.$result['salt']) == ($result['hash']) ){
-                    echo 'User valid, continue login';
+                    $_SESSION['user_auth'] = true;
+                    echo trim('success');
+                    
                 } else {
                     echo 'Password is incorrect';
                 }                            
@@ -67,6 +69,16 @@ class User {
         } catch(PDOException $ex) {
             $this->logs->output($ex->getMessage(), 'Error validating user from database.');
         }
+    }
+    
+    public function authUser($sessionBool){
+        if(!isset($sessionBool) || empty($sessionBool)){
+            header('location: index.php');
+        }else{
+            if($sessionBool){
+                print_r($_SESSION);
+            }
+        }   
     }
     
 }
