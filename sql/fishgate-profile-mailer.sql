@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2013 at 03:31 PM
+-- Generation Time: Jul 16, 2013 at 10:44 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -29,6 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `emaillogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` text NOT NULL,
+  `name` text NOT NULL,
+  `message` text NOT NULL,
   `year` int(4) NOT NULL,
   `month` int(2) NOT NULL,
   `day` int(2) NOT NULL,

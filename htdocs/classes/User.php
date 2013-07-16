@@ -10,15 +10,15 @@ require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class User {
     
-    private $db;
+    private $con;
     private $logs;
     
     public function __construct() {
         $this->logs = new ErrorLog();
         
-        $this->db = new Connection();
-        $this->db = $this->db->dbConnect();        
-        if($this->db) $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->con = new Connection();
+        $this->con = $this->con->dbConnect();        
+        if($this->con) $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
     private function generateSalt(){
@@ -34,7 +34,7 @@ class User {
         $passwordHash = $this->passwordHash($password, $loginSalt);
         
         try {
-            $userCreate = $this->db->prepare('INSERT INTO '.DB_USER_TBL.' (user, salt, hash) VALUES (?, ?, ?);');
+            $userCreate = $this->con->prepare('INSERT INTO '.DB_USER_TBL.' (user, salt, hash) VALUES (?, ?, ?);');
             $userCreate->bindParam(1, $username);
             $userCreate->bindParam(2, $loginSalt);
             $userCreate->bindParam(3, $passwordHash);
@@ -49,7 +49,7 @@ class User {
     
     public function validateUser($username, $password) {
         try {
-            $st = $this->db->prepare('SELECT * FROM '.DB_USER_TBL.' WHERE user=?;');
+            $st = $this->con->prepare('SELECT * FROM '.DB_USER_TBL.' WHERE user=?;');
             $st->bindParam(1, $username);
             $st->execute();
             

@@ -23,7 +23,7 @@ $user->authUser($_SESSION['user_auth']);
         </ul>
         
         <h2>Quick send</h2>
-        <form>
+        <form id="quicksendform">
             Name:<br /> <input id="name" name="name" type="text" />
             <br />
             Email:<br /> <input id="email" name="email" type="text" />

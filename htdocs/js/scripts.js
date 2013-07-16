@@ -56,14 +56,19 @@ $(function(){
             $('#send').attr('disabled','disabled');
             
             $.ajax({
-               url: 'login.auth.php',
-               type: 'GET',
-               data: $('#sendform').serialize(),
+               url: 'mail.send.php',
+               type: 'POST',
+               data: { 
+                   //jquery serialize doesnt get the value form tinymc, so just make our own json object
+                   name: $('#name').val(), 
+                   email: $('#email').val(), 
+                   message: tinymce.get('tinymce').getContent() 
+               }, 
                success: function(result){
                    var res = result.trim();
-                   
+              
                    if(res === 'success'){
-                       window.location = 'dashboard.php';
+                       console.log(res);
                    }else{
                        $("#loader").addClass('invisible');
                        $('#send').removeAttr('disabled');
@@ -75,13 +80,12 @@ $(function(){
                     $("#loader").addClass('invisible');
                     $('#send').removeAttr('disabled');
                     
-                    alert('Error authenticating password.');
+                    alert('Error sending email.');
                }
             });
         }else{            
-            alert('Please fill in your Username and Password.');
+            alert('Please fill in all the required fields correctly before trying to send an email.');
         }
-        
     });
     
 }); // end of document ready
