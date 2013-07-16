@@ -1,2 +1,2 @@
 - add support for multiple "quick send"
-- add log capturing of mails
+- add displaying of email logs on the dashboard (full logs can come later)

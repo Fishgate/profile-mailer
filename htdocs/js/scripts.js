@@ -59,7 +59,8 @@ $(function(){
                url: 'mail.send.php',
                type: 'POST',
                data: { 
-                   //jquery serialize doesnt get the value form tinymc, so just make our own json object
+                   //jquery serialize doesnt get the value from tinymc, it just takes the original textarea
+                   //value, so just make our own json object of exactly what we need
                    name: $('#name').val(), 
                    email: $('#email').val(), 
                    message: tinymce.get('tinymce').getContent(),
@@ -67,15 +68,12 @@ $(function(){
                }, 
                success: function(result){
                    var res = result.trim();
-              
-                   console.log(res);
-              
-                   /*if(res === 'success'){
+                   
+                   if(res === 'success'){
                        console.log(res);
                    }else{
-                       //alert(res);
-                       console.log(res);
-                   }*/
+                       alert(res);
+                   }
                    
                    $("#loader").addClass('invisible');
                    $('#send').removeAttr('disabled');
