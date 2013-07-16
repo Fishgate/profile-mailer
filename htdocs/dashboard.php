@@ -24,6 +24,24 @@ $user->authUser($_SESSION['user_auth']);
         
         <h2>Quick send</h2>
         <form id="quicksendform">
+            Template:<br /> 
+            <select id="template">
+                <?php
+            
+                $mail_templates = new Mailer();
+                $mail_templates = $mail_templates->getTemplates();
+                
+                foreach($mail_templates as $file){
+                    $filename = $file->getFileName();
+                    
+                    if($filename != '.' && $filename != '..'){
+                        echo "<option value=\"$filename\">$filename</option>";
+                    }
+                }
+                
+                ?>
+            </select>
+            <br />
             Name:<br /> <input id="name" name="name" type="text" />
             <br />
             Email:<br /> <input id="email" name="email" type="text" />

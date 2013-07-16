@@ -51,7 +51,7 @@ $(function(){
         var valid_email = validate_email('#email', null);
         var valid_tinymce = valideate_tinymce('tinymce');
         
-        if(valid_name && valid_email && valid_tinymce){
+        if(valid_name && valid_email && valid_tinymce){           
             $('#loader').removeClass('invisible');
             $('#send').attr('disabled','disabled');
             
@@ -62,19 +62,23 @@ $(function(){
                    //jquery serialize doesnt get the value form tinymc, so just make our own json object
                    name: $('#name').val(), 
                    email: $('#email').val(), 
-                   message: tinymce.get('tinymce').getContent() 
+                   message: tinymce.get('tinymce').getContent(),
+                   template: $('#template :selected').val()
                }, 
                success: function(result){
                    var res = result.trim();
               
-                   if(res === 'success'){
+                   console.log(res);
+              
+                   /*if(res === 'success'){
                        console.log(res);
                    }else{
-                       $("#loader").addClass('invisible');
-                       $('#send').removeAttr('disabled');
-                       
-                       alert(res);
-                   }
+                       //alert(res);
+                       console.log(res);
+                   }*/
+                   
+                   $("#loader").addClass('invisible');
+                   $('#send').removeAttr('disabled');
                },
                error: function(){
                     $("#loader").addClass('invisible');

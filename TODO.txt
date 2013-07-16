@@ -1,0 +1,2 @@
+- add support for multiple "quick send"
+- add log capturing of mails

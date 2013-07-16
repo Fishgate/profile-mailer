@@ -3,7 +3,6 @@
 <?php
 
 $mail = new Mailer();
-
 $mail->quickSend();
 
 ?>
