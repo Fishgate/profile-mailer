@@ -5,12 +5,17 @@
     <?php require_once('./head.php'); ?>
     
     <body>
-        <h1>Login</h1>
-        <form id="loginform">
-            Username: <input id="username" type="text" name="username" />
-            Password: <input id="password" type="password" name="password" />
-            <input id="login" type="button" value="Login" />
-            <img id="loader" class="invisible" alt="loader" src="http://placehold.it/40x40" /><!-- replace this with some kind of loading gif -->
+        <h1 class="centered">
+            <img src="img/logo.png" alt="Fishgate Logo" />
+        </h1>
+        <p class="centered">Profile Mailer System</p>
+        <form id="loginform" class="clearfix">
+            <input placeholder="Username" id="username" type="text" name="username" />
+            <br />
+            <input placeholder="Password" id="password" type="password" name="password" />
+            <br />
+            <input class="right" id="login" type="button" value="Login" />
+            <img id="loader" class="" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
         </form>
         
     </body>

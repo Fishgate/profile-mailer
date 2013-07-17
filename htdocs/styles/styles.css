@@ -1,7 +1,186 @@
+/*------------------------------------------------------------------
+ AUTHOR: TYRONE STAFFORD @ Fishgate 2013
+-------------------------------------------------------------------*/
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    background: #171F21;
+    color: #597781;
+    font-size: 14px;
+}
+/*==============================================
+                  MINI RESETS
+===============================================*/
+h1{
+    font-weight: normal;
+    font-size: 20px;
+    text-transform: uppercase;
+    background: #9fc20e;
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+}
+h2{
+    font-weight: normal;
+    font-size: 18px;
+    color: #5ddefd;
+}
+
+h3{
+    font-weight: normal;
+    font-size: 18px;
+    color: #ff6204;
+}
+
+/*==============================================
+                  LOGIN FORM
+===============================================*/
+#loginform{
+    width: 186px;
+    margin: 0 auto;
+}
+.centered{
+    text-align: center;
+}
+input, select{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    
+    color: #597781;
+    padding: 5px;
+    margin: 0 0 10px 0;
+}
+input[type=button]{
+    background: #FC0;
+    border: 0;
+    color: #000;
+}
+#loader{
+    position: relative;
+    left: 200px;
+}
+
+
+/*==============================================
+                 DASHBOARD NAV
+===============================================*/
+nav{
+    position: fixed;
+    z-index: 100;
+    background: #fff;
+    
+    height: 100%;
+}
+.decoration{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    
+    width: 20px;
+    height: 20px;
+    background: #9fc20e;
+    
+    position: absolute;
+    z-index: 99;
+    top: 53px;
+    right: 60px;
+}
+#wrapper{
+    height: 100%;
+    padding: 50px 50px 50px 160px;
+}
+#dash-nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#dash-nav li{
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    color: #ccc;
+}
+
+#dash-nav li{
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+    border-right: 3px solid #fff;
+    color: #ccc;
+}
+#dash-nav li:hover{
+    border-right: 3px solid #fe2aa3;
+    color: #fff;
+    
+    background: #597781;
+}
+
+/*==============================================
+                  QUICKSEND
+===============================================*/
+#quicksendform{
+    margin: 0 0 0 30px;
+}
+.quicksend_msg{
+    margin: 0 0 0 30px;
+}
+.contents{
+    width: 100%;
+}
+
+
+/*==============================================
+                  RECENT EMAILS
+===============================================*/
+.recents{
+    width: 530px;
+    margin: 134px 0 0 60px;
+    padding: 0 20px 20px 20px;
+    background: #eee;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+.recent_heads{
+    color: #597781;
+    background: #101518;
+}
+.recents table{
+    background: #ccc;
+    color: #101518;
+}
+
+/*==============================================
+                  HELPERS
+===============================================*/
 .hidden{
     display: none;
 }
 
 .invisible{
     visibility: hidden;
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
 }

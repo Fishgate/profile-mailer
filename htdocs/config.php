@@ -14,7 +14,7 @@
  */
 //localhost
 define('DB_HOST',       'localhost');
-define('DB_NAME',       'fishgate-profile-mailer');
+define('DB_NAME',       'fg_mailer');
 define('DB_USERNAME',   'root');
 define('DB_PASSWORD',   '');
 define('DB_USER_TBL',   'users');

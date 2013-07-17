@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2013 at 10:44 AM
+-- Generation Time: Jul 17, 2013 at 11:20 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -31,13 +31,23 @@ CREATE TABLE IF NOT EXISTS `emaillogs` (
   `email` text NOT NULL,
   `name` text NOT NULL,
   `message` text NOT NULL,
-  `year` int(4) NOT NULL,
-  `month` int(2) NOT NULL,
-  `day` int(2) NOT NULL,
+  `date` text NOT NULL,
   `unix` int(11) NOT NULL,
+  `template` text NOT NULL,
   `opened` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `emaillogs`
+--
+
+INSERT INTO `emaillogs` (`id`, `email`, `name`, `message`, `date`, `unix`, `template`, `opened`) VALUES
+(1, '123@123.123', '123', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373978462, 'profilemailer.html', 0),
+(2, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373978651, 'profilemailer.html', 0),
+(3, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373979121, 'profilemailer.html', 0),
+(4, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373979558, 'profilemailer.html', 0),
+(5, 'kyle@fishgate.co.za', 'kyle', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '17-07-2013', 1374051450, 'profilemailer.html', 0);
 
 -- --------------------------------------------------------
 
