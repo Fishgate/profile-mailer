@@ -9,6 +9,7 @@
 class ErrorLog {
     
     private $logFile;
+    private $phpmailer;
         
     public function __construct(){
         $this->logFile = SITE_ROOT.'/logs/errors.txt';         

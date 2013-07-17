@@ -12,6 +12,7 @@ class Mailer {
     
     private $con;
     private $logs;
+    private $log_results = array();
     private $phpmailer;
     private $template_dir;
     private $date;
@@ -79,7 +80,6 @@ class Mailer {
         $this->phpmailer->AddReplyTo('info@fishgate.co.za', 'Fishgate');
         $this->phpmailer->IsHTML(true);
         
-        //$this->phpmailer->AddAddress('tyrone@fishgate.co.za', 'Tyrone'); //name is optional, will probably come into play when dealing with mailing lists
         $this->phpmailer->AddAddress($_POST['email']);
         
         $this->phpmailer->Subject = 'Here is the subject';
@@ -95,6 +95,21 @@ class Mailer {
     }
     
     public function outputLogs(){
-        
+        try {
+            $this->logs = $this->con->prepare('SELECT * FROM '.DB_LOGS_TBL.' ORDER BY unix DESC;');
+            $this->logs->execute();
+            
+            if($this->logs->rowCount() > 0) {
+                while($result = $this->logs->fetch(PDO::FETCH_ASSOC)){
+                    array_push($this->log_results, $result);
+                }
+                
+                return $this->log_results;
+            }else{
+                return false;
+            }
+        } catch(PDOException $ex) {
+            $this->logs->output($ex->getMessage(), 'Error displaying email logs.');
+        }
     }
 }

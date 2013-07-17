@@ -5,6 +5,8 @@
 $user = new User();
 $user->authUser($_SESSION['user_auth']);
 
+$mail = new Mailer();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +30,15 @@ $user->authUser($_SESSION['user_auth']);
             <select id="template">
                 <?php
             
-                $mail_templates = new Mailer();
-                $mail_templates = $mail_templates->getTemplates();
+                $mail_templates = $mail->getTemplates();
                 
                 foreach($mail_templates as $file){
                     $filename = $file->getFileName();
                     
                     if($filename != '.' && $filename != '..'){
-                        echo "<option value=\"$filename\">$filename</option>";
+                        ?>
+                        <option value="<?php echo $filename; ?>"><?php echo $filename; ?></option>";
+                        <?php
                     }
                 }
                 
@@ -53,6 +56,8 @@ $user->authUser($_SESSION['user_auth']);
         </form>
         
         <h2>Recent Emails</h2>
+        
+        
         <table border="1">
             <tr>
                 <td>To</td>
@@ -60,18 +65,28 @@ $user->authUser($_SESSION['user_auth']);
                 <td>Date</td>
                 <td>Opened</td>
             </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>john@doe.com</td>
-                <td>17-07-2013</td>
-                <td>&#x2713;</td>
-            </tr>
-            <tr>
-                <td>Jane Doe</td>
-                <td>jane@doe.com</td>
-                <td>18-07-2013</td>
-                <td>&#x2717</td>                
-            </tr>
+            <?php
+        
+            if($email_logs = $mail->outputLogs()){
+                foreach($email_logs as $log){
+                    ?>
+                    <tr>
+                        <td><?php echo $log['name']; ?></td>
+                        <td><?php echo $log['email']; ?></td>
+                        <td><?php echo $log['date']; ?></td>
+                        <td><?php echo $log['opened']; ?></td>
+                    </tr>
+                    <?php
+                }
+            }else{
+                ?>
+                <tr>
+                    <td colspan="4">No recent logs.</td>
+                </tr>
+                <?php
+            }
+            
+            ?>
         </table>
         
     </body>
