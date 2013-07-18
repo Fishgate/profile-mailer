@@ -13,3 +13,10 @@
 16-07-2013, 14:58 - SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
 16-07-2013, 15:02 - SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dINSERT INTO emaillogs (email, name, message, date, unix, template, opened) VALU' at line 1
 16-07-2013, 15:02 - SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dINSERT INTO emaillogs (email, name, message, date, unix, template, opened) VALU' at line 1
+18-07-2013, 10:50 - Could not instantiate mail function.
+18-07-2013, 10:51 - Could not instantiate mail function.
+18-07-2013, 10:52 - Could not instantiate mail function.
+18-07-2013, 10:53 - Could not instantiate mail function.
+18-07-2013, 10:54 - Could not instantiate mail function.
+18-07-2013, 10:54 - Could not instantiate mail function.
+18-07-2013, 10:58 - Could not instantiate mail function.

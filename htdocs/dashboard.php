@@ -18,7 +18,7 @@ $mail = new Mailer();
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
-                <h1>menu</h1>
+                <div id="menutitle">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <li>Import list</li>
@@ -33,7 +33,7 @@ $mail = new Mailer();
             <!--==================================== CONTENTS ===========-->
             <div class="contents">
                 <!--========================= QUICK SEND =========-->
-                <div class="left">
+                <div id="quicksend" class="left">
                 <form id="quicksendform" class="clearfix">
                         <h2>Quick send</h2>
                         Template:<br /> 
@@ -62,12 +62,13 @@ $mail = new Mailer();
                         Message:<br /> <textarea name="message" id="tinymce">We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</textarea>
                         <br />
                         <input class="right" type="button" id="send" value="Send" />
-                        <img id="loader" class="invisible" alt="loader" src="http://placehold.it/40x40" /><!-- replace this with some kind of loading gif -->
+                        <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
                     </form>
                     </div>
                 
-                <div class="left recents">
-                <h3>Recent Emails</h3>
+                <div class="left recents_holder">
+                    <h3>Recent Emails</h3>
+                <div class="recents">
                     <table border="1" width="100%" cellpadding="5">
                         <tr>
                             <td class="recent_heads">To</td>
@@ -98,6 +99,7 @@ $mail = new Mailer();
 
                         ?>
                     </table>
+                </div>
                 </div>
             </div>
             
