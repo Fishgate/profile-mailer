@@ -18,6 +18,7 @@ class Mailer {
     private $date;
     private $unix;
     private $opened;
+    private $tokenId;
     
     public function __construct() {
         require_once('class.phpmailer.php');
@@ -35,14 +36,21 @@ class Mailer {
         return new DirectoryIterator($this->template_dir);
     }
     
+    private function generateTokenId(){
+        return md5(rand(0, 999));
+    }
+    
     private function prepareTemplate() {
+        $this->tokenId = $this->generateTokenId();
+        
         $template_file = fopen($this->template_dir . $_POST['template'], 'r');
         $template_string = fread($template_file, filesize($this->template_dir . $_POST['template']));
         $template_string = trim($template_string);
         fclose($template_file);
         
         $template_string = str_replace('[[name]]', strtoupper($_POST['name']), $template_string);
-        $template_string = str_replace('[[message]]', strtoupper($_POST['message']), $template_string);
+        $template_string = str_replace('[[message]]', $_POST['message'], $template_string);
+        $template_string = str_replace('[[id]]', $this->tokenId, $template_string);
         
         return $template_string;
     }
@@ -53,7 +61,7 @@ class Mailer {
             $this->unix = time();
             $this->opened = false;
             
-            $logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, name, message, date, unix, template, opened) VALUES (?, ?, ?, ?, ?, ?, ?);');
+            $logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, name, message, date, unix, template, opened, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
             
             $logEmail->bindParam(1, $email);
             $logEmail->bindParam(2, $name);
@@ -62,6 +70,7 @@ class Mailer {
             $logEmail->bindParam(5, $this->unix);
             $logEmail->bindParam(6, $template);
             $logEmail->bindParam(7, $this->opened);
+            $logEmail->bindParam(8, $this->tokenId);
             
             if($logEmail->execute()) {
                 return true;
