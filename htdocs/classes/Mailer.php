@@ -96,7 +96,7 @@ class Mailer {
     
     public function outputLogs(){
         try {
-            $this->logs = $this->con->prepare('SELECT * FROM '.DB_LOGS_TBL.' ORDER BY unix DESC;');
+            $this->logs = $this->con->prepare('SELECT * FROM '.DB_LOGS_TBL.' ORDER BY unix DESC LIMIT 10;');
             $this->logs->execute();
             
             if($this->logs->rowCount() > 0) {

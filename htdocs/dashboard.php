@@ -74,7 +74,7 @@ $mail = new Mailer();
                             <td class="recent_heads">To</td>
                             <td class="recent_heads">Email</td>
                             <td class="recent_heads">Date</td>
-                            <td class="recent_heads">Opened</td>
+                            <!--<td class="recent_heads">Opened</td>-->
                         </tr>
                         <?php
 
@@ -85,14 +85,22 @@ $mail = new Mailer();
                                     <td><?php echo $log['name']; ?></td>
                                     <td><?php echo $log['email']; ?></td>
                                     <td><?php echo $log['date']; ?></td>
-                                    <td>&#x2713;</td><!--/// <?php// echo $log['opened']; ?> \\\-->
+                                    
+                                        <?php 
+                                        /*if($log['opened']){
+                                            echo '&#x2713;';
+                                        }else{
+                                            echo '&#x2717;';
+                                        }*/
+                                        ?>
+                                    
                                 </tr>
                                 <?php
                             }
                         }else{
                             ?>
                             <tr>
-                                <td colspan="4">No recent logs.</td>
+                                <td colspan="3">No recent logs.</td>
                             </tr>
                             <?php
                         }

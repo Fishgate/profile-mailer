@@ -20,3 +20,4 @@
 18-07-2013, 10:54 - Could not instantiate mail function.
 18-07-2013, 10:54 - Could not instantiate mail function.
 18-07-2013, 10:58 - Could not instantiate mail function.
+18-07-2013, 10:50 - SQLSTATE[HY000] [1049] Unknown database 'fg_mailer'
