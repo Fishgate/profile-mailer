@@ -73,10 +73,10 @@ class User {
     
     public function authUser($sessionBool){
         if(!isset($sessionBool) || empty($sessionBool)){
-            header('location: index.php');
+            die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
         }else{
             if(!$sessionBool){
-                header('location: index.php');
+                die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
             }
         }   
     }
