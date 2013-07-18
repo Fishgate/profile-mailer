@@ -70,7 +70,7 @@ $(function(){
                    var res = result.trim();
                    
                    if(res === 'success'){
-                       console.log(res);
+                       alert('Quick send has been successfully sent!');
                    }else{
                        alert(res);
                    }

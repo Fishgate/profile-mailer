@@ -45,7 +45,6 @@ class ErrorLog {
     public function output($error, $msg){
         $this->writeLog($error);
         
-        
         if(!DEV){
             $this->emailLogs($error);
             die($msg);
