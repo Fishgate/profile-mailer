@@ -21,3 +21,11 @@
 18-07-2013, 10:54 - Could not instantiate mail function.
 18-07-2013, 10:58 - Could not instantiate mail function.
 18-07-2013, 10:50 - SQLSTATE[HY000] [1049] Unknown database 'fg_mailer'
+19-07-2013, 10:12 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+19-07-2013, 10:12 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+19-07-2013, 10:12 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+23-07-2013, 12:14 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+23-07-2013, 12:23 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+23-07-2013, 12:24 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+23-07-2013, 12:24 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+23-07-2013, 12:57 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
