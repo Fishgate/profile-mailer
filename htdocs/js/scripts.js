@@ -9,7 +9,7 @@ $(function(){
     }
 
     // login form authentication
-    $('#login').click(function(){        
+    $('#login').click(function(){
         var valid_name = validate('#username', null);
         var valid_password = validate('#password', null);
         
@@ -83,7 +83,7 @@ $(function(){
                     $('#send').removeAttr('disabled');
                     
                     alert('Error sending email.');
-               }
+                }
             });
         }else{            
             alert('Please fill in all the required fields correctly before trying to send an email.');
