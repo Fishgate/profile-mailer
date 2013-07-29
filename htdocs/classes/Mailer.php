@@ -20,6 +20,12 @@ class Mailer {
     private $opened;
     private $tokenId;
     
+    /**
+     * Includes the PHPmailer class, initiates a new instance of the Error log class, 
+     * creates a new PDO database connection and sets its error mode attribute to exception,
+     * and defines the HTML email template directory form a constant in config.php
+     * 
+     */
     public function __construct() {
         require_once('class.phpmailer.php');
         
@@ -32,14 +38,32 @@ class Mailer {
         $this->template_dir = TEMPLATE_DIR;
     }
     
+    /**
+     * Returns an array of all items in the template directory
+     * 
+     * @return \DirectoryIterator
+     */
     public function getTemplates() {
         return new DirectoryIterator($this->template_dir);
     }
     
+    
+    /**
+     * Returns an randomly generated md5 string
+     * 
+     * @return String
+     */
     private function generateTokenId(){
         return md5(rand(0, 999));
     }
     
+    /**
+     * Parses the HTML email template for shortcode identifiers and replaces them with 
+     * variable data. Then returns the prepared template as a string to be used as the
+     * "body" of the PHPmailer class.
+     * 
+     * @return type String
+     */
     private function prepareTemplate() {
         $this->tokenId = $this->generateTokenId();
         
@@ -55,6 +79,16 @@ class Mailer {
         return $template_string;
     }
     
+    /**
+     * Creates a database log of the email being sent. Returns TRUE on success, returns
+     * error exception on fail.
+     * 
+     * @param String $email
+     * @param String $name
+     * @param String $message
+     * @param String $template
+     * @return boolean
+     */
     private function logEmail($email, $name, $message, $template) {
         try {
             $this->date = date('d-m-Y');
@@ -81,6 +115,13 @@ class Mailer {
         }
     }
     
+    /**
+     * Initiates a new instance of the PHPmailer class, prepares the neccesary headers and
+     * sends the HTML email to a single recipient. On success returns TRUE and logs email, 
+     * returns error exception on fail.
+     * 
+     * @return boolean
+     */
     public function quickSend() {
         $this->phpmailer = new PHPMailer();
      
@@ -99,10 +140,15 @@ class Mailer {
             $this->logs->output($this->phpmailer->ErrorInfo, 'Message could not be sent');
         }else{
             $this->logEmail($_POST['email'], $_POST['name'], $_POST['message'], $_POST['template']);
-            echo trim('success');
+            return true;
         }
     }
     
+    /**
+     * Returns and assoc array of the latest 10 email log entries in the database table
+     * 
+     * @return boolean
+     */
     public function outputLogs(){
         try {
             $this->logs = $this->con->prepare('SELECT * FROM '.DB_LOGS_TBL.' ORDER BY unix DESC LIMIT 10;');

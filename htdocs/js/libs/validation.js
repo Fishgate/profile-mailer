@@ -69,9 +69,11 @@ function validate_checkboxes(target){
     }
 }
 
-function validate_file(target, array){
-    var error = '<div class="bubble-left"></div><div class="bubble-inner">Supported file types: JPEG, GIF, PNG</div><div class="bubble-right"></div>';
+function validate_file (target, array) {
     
+}
+
+/*function validate_file(target, array){
     jQuery(target).focus(function(){
         jQuery(target + '_error').html('');
     })
@@ -106,6 +108,7 @@ function validate_file(target, array){
         return true;
     }
 }
+*/
 
 function validate(target, default_val){
     jQuery(target).focus(function(){

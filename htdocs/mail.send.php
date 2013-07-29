@@ -3,6 +3,8 @@
 <?php
 
 $mail = new Mailer();
-$mail->quickSend();
+if($mail->quickSend()){
+    echo 'success';
+}
 
 ?>

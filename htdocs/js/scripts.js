@@ -60,7 +60,7 @@ $(function(){
                type: 'POST',
                data: { 
                    //jquery serialize doesnt get the value from tinymc, it just takes the original textarea
-                   //value, so just make our own json object of exactly what we need
+                   //value, so just make our own json object of exactly what we need to submit to the php script
                    name: $('#name').val(), 
                    email: $('#email').val(), 
                    message: tinymce.get('tinymce').getContent(),

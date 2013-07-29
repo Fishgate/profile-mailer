@@ -5,8 +5,6 @@
 $user = new User();
 $user->authUser($_SESSION['user_auth']);
 
-$mail = new Mailer();
-
 ?>
 
 <!DOCTYPE html>
@@ -29,89 +27,17 @@ $mail = new Mailer();
         
         <div id="wrapper" class="clearfix">
             
-            
             <!--==================================== CONTENTS ===========-->
             <div class="contents">
-                <!--========================= QUICK SEND =========-->
-                <div id="quicksend" class="left">
-                <form id="quicksendform" class="clearfix">
-                        <h2>Quick send</h2>
-                        Template:<br /> 
-                        <select id="template">
-                            <?php
-
-                            $mail_templates = $mail->getTemplates();
-
-                            foreach($mail_templates as $file){
-                                $filename = $file->getFileName();
-
-                                if($filename != '.' && $filename != '..'){
-                                    ?>
-                                    <option value="<?php echo $filename; ?>"><?php echo $filename; ?></option>";
-                                    <?php
-                                }
-                            }
-
-                            ?>
-                        </select>
-                        <br />
-                        <input placeholder="Name" id="name" name="name" type="text" />
-                        <br />
-                        <input placeholder="Email" id="email" name="email" type="text" />
-                        <br />
-                        Message:<br /> <textarea name="message" id="tinymce">We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</textarea>
-                        <br />
-                        <input class="right" type="button" id="send" value="Send" />
-                        <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
+                <div id="importlist" class="left">
+                    <form id="importlistform" enctype="multipart/form-data">
+                        <h2>Import List</h2>
+                        <input type="file" />
+                        <input type="button" value="Upload" />
                     </form>
-                    </div>
-                
-                <div class="left recents_holder">
-                    <h3>Recent Emails</h3>
-                <div class="recents">
-                    <table border="1" width="100%" cellpadding="5">
-                        <tr>
-                            <td class="recent_heads">To</td>
-                            <td class="recent_heads">Email</td>
-                            <td class="recent_heads">Date</td>
-                            <td class="recent_heads">Opened</td>
-                        </tr>
-                        <?php
-
-                        if($email_logs = $mail->outputLogs()){
-                            foreach($email_logs as $log){
-                                ?>
-                                <tr>
-                                    <td><?php echo $log['name']; ?></td>
-                                    <td><?php echo $log['email']; ?></td>
-                                    <td><?php echo $log['date']; ?></td>
-                                    <td align="center">
-                                        <?php 
-                                        if($log['opened']){
-                                            echo '<span style="color: green;">&#x2713;</span>';
-                                        }else{
-                                            echo '<span style="color: red;">&#x2717;</span>';
-                                        }
-                                        ?>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                        }else{
-                            ?>
-                            <tr>
-                                <td colspan="4">No recent logs.</td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                    </table>
-                </div>
                 </div>
             </div>
             
-            
-            
-        </div>
+        </div>    
     </body>
 </html>

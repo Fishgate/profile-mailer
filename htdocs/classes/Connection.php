@@ -11,10 +11,19 @@ class Connection {
     
     private $logs;
     
+    /**
+     * Initiate an instance of Error log class
+     * 
+     */
     public function __construct() {
         $this->logs = new ErrorLog;
     }
     
+    /**
+     * Initiates a PDO database connection
+     * 
+     * @return \PDO
+     */
     public function dbConnect() {
         try {
             return new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);

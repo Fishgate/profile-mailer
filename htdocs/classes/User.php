@@ -13,6 +13,11 @@ class User {
     private $con;
     private $logs;
     
+    /**
+     * Initiates a new instance of the Error log class, creates a new PDO database connection 
+     * and sets its error mode attribute to exception.
+     * 
+     */
     public function __construct() {
         $this->logs = new ErrorLog();
         
@@ -21,15 +26,34 @@ class User {
         if($this->con) $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
+    /**
+     * Returns a random 5 character long md5 string to be used as login salt.
+     * 
+     * @return String
+     */
     private function generateSalt(){
         return substr(md5(rand(0, 999)), 0, 5);
     }
     
+    /**
+     * Returns a complete md5 hash of the to be stored as the password of a user.
+     * 
+     * @param String $password User password.
+     * @param String $salt Generated login salt.
+     * @return String
+     */
     private function passwordHash($password, $salt){
         return md5($password.$salt);
     }
     
-    public function createUser($username, $password){
+    /**
+     * Creates a new user and adds the details to the users database table. The
+     * details can then be used to log into the application.
+     * 
+     * @param String $username New username.
+     * @param String $password New Password.
+     */
+    private function createUser($username, $password){
         $loginSalt = $this->generateSalt();
         $passwordHash = $this->passwordHash($password, $loginSalt);
         
@@ -47,6 +71,13 @@ class User {
         }
     }
     
+    /**
+     * Authenticates login attempts by checking if the user exists in the user database table. Starts
+     * a session if the current user is valid which will allow them access to the rest of the application.
+     * 
+     * @param String $username
+     * @param String $password
+     */
     public function validateUser($username, $password) {
         try {
             $st = $this->con->prepare('SELECT * FROM '.DB_USER_TBL.' WHERE user=?;');
@@ -71,6 +102,12 @@ class User {
         }
     }
     
+    /**
+     * Checks the authentication session to determine if a user is currently logged in or not
+     * in restricted areas of the application.
+     * 
+     * @param boolean $sessionBool
+     */
     public function authUser($sessionBool){
         if(!isset($sessionBool) || empty($sessionBool)){
             die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');

@@ -34,7 +34,7 @@ $mail = new Mailer();
             <div class="contents">
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
-                <form id="quicksendform" class="clearfix">
+                    <form id="quicksendform" class="clearfix">
                         <h2>Quick send</h2>
                         Template:<br /> 
                         <select id="template">
@@ -64,7 +64,7 @@ $mail = new Mailer();
                         <input class="right" type="button" id="send" value="Send" />
                         <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
                     </form>
-                    </div>
+                </div>
                 
                 <div class="left recents_holder">
                     <h3>Recent Emails</h3>
