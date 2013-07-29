@@ -21,7 +21,7 @@ $mail = new Mailer();
                 <div id="menutitle">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
-                    <li>Import list</li>
+                    <li id="selected">Import list</li>
                     <li>Manage lists</li>
                     <li>View full logs</li>
                 </ul>
@@ -85,12 +85,12 @@ $mail = new Mailer();
                                     <td><?php echo $log['name']; ?></td>
                                     <td><?php echo $log['email']; ?></td>
                                     <td><?php echo $log['date']; ?></td>
-                                    <td>
+                                    <td align="center">
                                         <?php 
                                         if($log['opened']){
-                                            echo '&#x2713;';
+                                            echo '<span style="color: green;">&#x2713;</span>';
                                         }else{
-                                            echo '&#x2717;';
+                                            echo '<span style="color: red;">&#x2717;</span>';
                                         }
                                         ?>
                                     </td>

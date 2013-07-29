@@ -42,7 +42,13 @@ h3{
     margin: 0 0 30px 0;
     
 }
-
+a{
+    text-decoration: none;
+    color: #ccc;
+}
+a:hover{
+    color: #fff;
+}
 /*==============================================
                   LOGIN FORM
 ===============================================*/
@@ -101,9 +107,7 @@ input[type=button]{
 input[type=button]:hover{
     background: #fee171;
 }
-#loader{
-    
-}
+
 
 
 /*==============================================
@@ -117,6 +121,7 @@ nav{
     width: 180px;
     height: 100%;
 }
+
 #menutitle{
     font-weight: normal;
     font-size: 20px;
@@ -177,6 +182,12 @@ nav{
     
     background: #597781;
 }
+#selected{
+    border-right: 3px solid #fe2aa3;
+    color: #fff!important;
+    
+    background: #597781;
+}
 /*==============================================
                   QUICKSEND
 ===============================================*/
@@ -219,6 +230,25 @@ nav{
     color: #101518;
 }
 
+/*==============================================
+                  ANALYTICS DIV
+===============================================*/
+.analytics{
+    width: 100%;
+    padding: 20px;
+    background: #eee;
+    margin: 0 0 0 20px;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
 /*==============================================
                   HELPERS
 ===============================================*/

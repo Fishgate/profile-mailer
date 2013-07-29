@@ -21,7 +21,7 @@ $mail = new Mailer();
                 <div id="menutitle">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
-                    <li>Import list</li>
+                    <a href="importlist.php"><li>Import list</li></a>
                     <li>Manage lists</li>
                     <li>View full logs</li>
                 </ul>
@@ -68,49 +68,68 @@ $mail = new Mailer();
                 
                 <div class="left recents_holder">
                     <h3>Recent Emails</h3>
-                <div class="recents">
-                    <table border="1" width="100%" cellpadding="5">
-                        <tr>
-                            <td class="recent_heads">To</td>
-                            <td class="recent_heads">Email</td>
-                            <td class="recent_heads">Date</td>
-                            <td class="recent_heads">Opened</td>
-                        </tr>
-                        <?php
+                    <div class="recents">
+                        <table border="1" width="100%" cellpadding="5">
+                            <tr>
+                                <td class="recent_heads">To</td>
+                                <td class="recent_heads">Email</td>
+                                <td class="recent_heads">Date</td>
+                                <td class="recent_heads">Opened</td>
+                            </tr>
+                            <?php
 
-                        if($email_logs = $mail->outputLogs()){
-                            foreach($email_logs as $log){
+                            if($email_logs = $mail->outputLogs()){
+                                foreach($email_logs as $log){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $log['name']; ?></td>
+                                        <td><?php echo $log['email']; ?></td>
+                                        <td><?php echo $log['date']; ?></td>
+                                        <td align="center">
+                                            <?php 
+                                            if($log['opened']){
+                                                echo '<span style="color: green;">&#x2713;</span>';
+                                            }else{
+                                                echo '<span style="color: red;">&#x2717;</span>';
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }else{
                                 ?>
                                 <tr>
-                                    <td><?php echo $log['name']; ?></td>
-                                    <td><?php echo $log['email']; ?></td>
-                                    <td><?php echo $log['date']; ?></td>
-                                    <td>
-                                        <?php 
-                                        if($log['opened']){
-                                            echo '&#x2713;';
-                                        }else{
-                                            echo '&#x2717;';
-                                        }
-                                        ?>
-                                    </td>
+                                    <td colspan="4">No recent logs.</td>
                                 </tr>
                                 <?php
                             }
-                        }else{
                             ?>
-                            <tr>
-                                <td colspan="4">No recent logs.</td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                    </table>
+                        </table>
+                    </div>
                 </div>
+                
+                <!--/// OOCHART FOR ANALYTICS FROM GOOGLE \\\-->
+                <div class="left" id="oochart">
+                    <h3>Analytics Overview</h3>
+                    <div class="analytics">
+                        <script>
+                            //OOCHARTS - Google Analytics feed
+                            $.getJSON(
+                            "https://api.oocharts.com/v1/query.jsonp?" //note the 'jsonp' return type
+                            + "query=" + views
+                            + "&key=" + a8116ba25078169eda73bc45c4dffd9283d68eb7
+                            + "&start=" + "30d" //30 days from current date
+                            + "&callback=?"
+                            , null, function(data) {
+                                /*I have data! Muhahaha*/
+                                alert('DATA RECIEVED!');
+                            });
+                        </script>
+                    </div>
                 </div>
+                
             </div>
-            
-            
             
         </div>
     </body>
