@@ -76,34 +76,38 @@ $mail = new Mailer();
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
                             </tr>
+                            
                             <?php
-
-                            if($email_logs = $mail->outputLogs()){
-                                foreach($email_logs as $log){
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $log['name']; ?></td>
-                                        <td><?php echo $log['email']; ?></td>
-                                        <td><?php echo $log['date']; ?></td>
-                                        <td align="center">
-                                            <?php 
-                                            if($log['opened']){
-                                                echo '<span style="color: green;">&#x2713;</span>';
-                                            }else{
-                                                echo '<span style="color: red;">&#x2717;</span>';
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php
+                            
+                            try {
+                                if($email_logs = $mail->outputLogs()){
+                                    foreach($email_logs as $log){
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $log['name']; ?></td>
+                                            <td><?php echo $log['email']; ?></td>
+                                            <td><?php echo $log['date']; ?></td>
+                                            <td align="center">
+                                                <?php 
+                                                if($log['opened']){
+                                                    echo '<span style="color: green;">&#x2713;</span>';
+                                                }else{
+                                                    echo '<span style="color: red;">&#x2717;</span>';
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
                                 }
-                            }else{
+                            } catch (Exception $ex) {
                                 ?>
                                 <tr>
-                                    <td colspan="4">No recent logs.</td>
+                                    <td colspan="4"><?php echo $ex->getMessage(); ?></td>
                                 </tr>
                                 <?php
                             }
+                            
                             ?>
                         </table>
                     </div>

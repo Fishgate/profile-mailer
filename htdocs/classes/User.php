@@ -89,13 +89,15 @@ class User {
                 
                 if( md5($password.$result['salt']) == ($result['hash']) ){
                     $_SESSION['user_auth'] = true;
-                    echo trim('success');
+                    return true;
                     
                 } else {
-                    echo 'Password is incorrect';
+                    //echo 'Password is incorrect';
+                    throw new Exception('Password is incorrect');
                 }                            
             }else{
-                echo 'Username does not exist';
+                //echo 'Username does not exist';
+                throw new Exception('Username does not exist');
             }
         } catch(PDOException $ex) {
             $this->logs->output($ex->getMessage(), 'Error validating user from database.');

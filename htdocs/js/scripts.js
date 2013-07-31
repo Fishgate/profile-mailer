@@ -24,6 +24,8 @@ $(function(){
                success: function(result){
                    var res = result.trim();
                    
+                   console.log(res);
+                   
                    if(res === 'success'){
                        window.location = 'dashboard.php';
                    }else{
@@ -69,11 +71,13 @@ $(function(){
                success: function(result){
                    var res = result.trim();
                    
-                   if(res === 'success'){
+                   /*if(res === 'success'){
                        alert('Quick send has been successfully sent!');
                    }else{
                        alert(res);
-                   }
+                   }*/
+                   
+                   console.log(res);
                    
                    $("#loader").addClass('invisible');
                    $('#send').removeAttr('disabled');
@@ -89,5 +93,8 @@ $(function(){
             alert('Please fill in all the required fields correctly before trying to send an email.');
         }
     });
+    
+    //import list form
+    
     
 }); // end of document ready

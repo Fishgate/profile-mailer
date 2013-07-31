@@ -3,8 +3,13 @@
 <?php
 
 $mail = new Mailer();
-if($mail->quickSend()){
-    echo 'success';
+
+try {
+    if($mail->quickSend()){
+        echo 'success';
+    }
+} catch (Exception $ex) {
+    echo $ex->getMessage();
 }
 
 ?>

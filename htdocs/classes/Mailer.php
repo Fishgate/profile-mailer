@@ -111,7 +111,8 @@ class Mailer {
             }
             
         } catch (PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error creating email log.');
+            //$this->logs->output($ex->getMessage(), 'Error creating email log.');
+            throw new Exception($ex->getMessage());
         }
     }
     
@@ -136,11 +137,14 @@ class Mailer {
         
         $this->phpmailer->Body = $this->prepareTemplate();
         
-        if(!$this->phpmailer->Send()) {
-            $this->logs->output($this->phpmailer->ErrorInfo, 'Message could not be sent');
+        if($this->phpmailer->Send()) {
+            try {
+                return $this->logEmail($_POST['email'], $_POST['name'], $_POST['message'], $_POST['template']);
+            } catch (Exception $ex) {
+                throw new Exception($this->logs->output($ex->getMessage(), $ex->getMessage()));
+            }
         }else{
-            $this->logEmail($_POST['email'], $_POST['name'], $_POST['message'], $_POST['template']);
-            return true;
+            throw new Exception($this->logs->output($this->phpmailer->ErrorInfo, 'Message could not be sent'));
         }
     }
     
@@ -161,10 +165,10 @@ class Mailer {
                 
                 return $this->log_results;
             }else{
-                return false;
+                throw new Exception('Email logs are currently empty.');
             }
         } catch(PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error displaying email logs.');
+            $this->logs->output($ex->getMessage(), 'Error retrieving email logs from database.');
         }
     }
 }

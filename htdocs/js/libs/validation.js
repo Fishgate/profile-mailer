@@ -69,8 +69,13 @@ function validate_checkboxes(target){
     }
 }
 
-function validate_file (target, array) {
+function validate_file (target) {
+    var file = target.files[0];
+    name = file.name;
+    size = file.size;
+    type = file.type;
     
+    console.log(name);
 }
 
 /*function validate_file(target, array){
