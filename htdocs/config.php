@@ -1,6 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
 
-<?php
 /**
  * Holds constants/variables used in the configuration of the application.
  *

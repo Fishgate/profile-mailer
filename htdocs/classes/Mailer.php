@@ -74,7 +74,7 @@ class Mailer {
         
         $template_string = str_replace('[[name]]', strtoupper($_POST['name']), $template_string);
         $template_string = str_replace('[[message]]', $_POST['message'], $template_string);
-        $template_string = str_replace('[[id]]', $this->tokenId, $template_string);
+        $template_string = str_replace('[[tracking_string]]', SITE_URL.'/services.gif?token='.$this->tokenId, $template_string);
         
         return $template_string;
     }
