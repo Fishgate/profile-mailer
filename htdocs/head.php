@@ -7,4 +7,11 @@
         <script type="text/javascript" src="js/libs/validation.js"></script>
         <script type="text/javascript" src="js/libs/tinymce/tinymce.min.js"></script>
         <script type="text/javascript" src="js/scripts.js"></script>
+        <!-- TYRONE ADDS THIS LIBRARY, MIGHT BE COOL FOR VISUALIZING OPENDvsUNOPENED? -->
+        <script src="js/Chart.js"></script>
+        <!-- THIS CANVAS IS LINKED TO CHARTS -->
+        <style>
+            canvas{
+            }
+        </style>
     </head>

@@ -109,22 +109,39 @@ $mail = new Mailer();
                     </div>
                 </div>
                 
-                <!--/// OOCHART FOR ANALYTICS FROM GOOGLE \\\-->
-                <div class="left" id="oochart">
-                    <h3>Analytics Overview</h3>
+                <!--==========================================
+                            OPEN/UNOPEN PIE CHART
+                ================================================-->
+                <div class="left" id="chart">
+                    <h3>Statistics Overview</h3>
                     <div class="analytics">
+                        <h4>Opened vs Unopened</h4>
+                        <div class="total_sent">
+                            <div class="small_block blue_bg"></div> Total: 1234
+                        </div>
+                        <div class="opened">
+                            <div class="small_block green_bg"></div> Opened [<span class="green">1024</span>]
+                        </div>
+                        <div class="closed">
+                            <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
+                        </div>
+                        <br />
+                        <canvas id="canvas" height="250" width="250"></canvas>
                         <script>
-                            //OOCHARTS - Google Analytics feed
-                            $.getJSON(
-                            "https://api.oocharts.com/v1/query.jsonp?" //note the 'jsonp' return type
-                            + "query=" + views
-                            + "&key=" + a8116ba25078169eda73bc45c4dffd9283d68eb7
-                            + "&start=" + "30d" //30 days from current date
-                            + "&callback=?"
-                            , null, function(data) {
-                                /*I have data! Muhahaha*/
-                                alert('DATA RECIEVED!');
-                            });
+                            //DRAWS A CHART -- *TEST
+                            var pieData = [
+                                {
+                                    value: 27,//UNOPENED VALUE HERE
+                                    color:"#E74C3C"
+                                },
+                                {
+                                    value : 50,//OPENED VALUE HERE
+                                    color : "#2ECC71"
+                                }
+
+                                ];
+
+                            var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
                         </script>
                     </div>
                 </div>
