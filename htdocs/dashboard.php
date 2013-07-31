@@ -34,7 +34,7 @@ $mail = new Mailer();
             <div class="contents">
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
-                <form id="quicksendform" class="clearfix">
+                    <form id="quicksendform" class="clearfix">
                         <h2>Quick send</h2>
                         Template:<br /> 
                         <select id="template">
@@ -64,7 +64,7 @@ $mail = new Mailer();
                         <input class="right" type="button" id="send" value="Send" />
                         <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
                     </form>
-                    </div>
+                </div>
                 
                 <div class="left recents_holder">
                     <h3>Recent Emails</h3>
@@ -76,34 +76,38 @@ $mail = new Mailer();
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
                             </tr>
+                            
                             <?php
-
-                            if($email_logs = $mail->outputLogs()){
-                                foreach($email_logs as $log){
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $log['name']; ?></td>
-                                        <td><?php echo $log['email']; ?></td>
-                                        <td><?php echo $log['date']; ?></td>
-                                        <td align="center">
-                                            <?php 
-                                            if($log['opened']){
-                                                echo '<span style="color: green;">&#x2713;</span>';
-                                            }else{
-                                                echo '<span style="color: red;">&#x2717;</span>';
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php
+                            
+                            try {
+                                if($email_logs = $mail->outputLogs()){
+                                    foreach($email_logs as $log){
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $log['name']; ?></td>
+                                            <td><?php echo $log['email']; ?></td>
+                                            <td><?php echo $log['date']; ?></td>
+                                            <td align="center">
+                                                <?php 
+                                                if($log['opened']){
+                                                    echo '<span style="color: green;">&#x2713;</span>';
+                                                }else{
+                                                    echo '<span style="color: red;">&#x2717;</span>';
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
                                 }
-                            }else{
+                            } catch (Exception $ex) {
                                 ?>
                                 <tr>
-                                    <td colspan="4">No recent logs.</td>
+                                    <td colspan="4"><?php echo $ex->getMessage(); ?></td>
                                 </tr>
                                 <?php
                             }
+                            
                             ?>
                         </table>
                     </div>

@@ -1,6 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
 
-<?php
 /**
  * Holds constants/variables used in the configuration of the application.
  *
@@ -14,9 +13,9 @@
  */
 //localhost
 define('DB_HOST',       'localhost');
-define('DB_NAME',       'FG-profile-mailer');
+define('DB_NAME',       'fishgate-profile-mailer');
 define('DB_USERNAME',   'root');
-define('DB_PASSWORD',   'root');
+define('DB_PASSWORD',   '');
 define('DB_USER_TBL',   'users');
 define('DB_LOGS_TBL',   'emaillogs');
 

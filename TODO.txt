@@ -1,4 +1,3 @@
 - add support for multiple "quick send"
-- add displaying of email logs on the dashboard (full logs can come later)
 - impliment phpmailer into the error log system to notify us about errors
--
+- 
