@@ -7,6 +7,12 @@ $(function(){
             toolbar: 'undo redo | bold italic underline'
         });
     }
+    
+    // import list form
+    $('#upload').click(function(){
+       var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
+       console.log(valid_file);
+    }); 
 
     // login form authentication
     $('#login').click(function(){
@@ -61,8 +67,8 @@ $(function(){
                url: 'mail.send.php',
                type: 'POST',
                data: { 
-                   //jquery serialize doesnt get the value from tinymc, it just takes the original textarea
-                   //value, so just make our own json object of exactly what we need to submit to the php script
+                   //jquery serialize doesnt get the value from tinymc, so just make our 
+                   //own json object of exactly what we need to submit to the php script
                    name: $('#name').val(), 
                    email: $('#email').val(), 
                    message: tinymce.get('tinymce').getContent(),
@@ -71,13 +77,11 @@ $(function(){
                success: function(result){
                    var res = result.trim();
                    
-                   /*if(res === 'success'){
+                   if(res === 'success'){
                        alert('Quick send has been successfully sent!');
                    }else{
                        alert(res);
-                   }*/
-                   
-                   console.log(res);
+                   }
                    
                    $("#loader").addClass('invisible');
                    $('#send').removeAttr('disabled');
@@ -94,7 +98,19 @@ $(function(){
         }
     });
     
-    //import list form
+    //DRAWS A CHART -- *TEST
+    var pieData = [
+        {
+            value: 27,//UNOPENED VALUE HERE
+            color:"#E74C3C"
+        },
+        {
+            value : 50,//OPENED VALUE HERE
+            color : "#2ECC71"
+        }
+   ];
+
+    var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
     
     
 }); // end of document ready

@@ -32,8 +32,8 @@ $user->authUser($_SESSION['user_auth']);
                 <div id="importlist" class="left">
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
-                        <input type="file" />
-                        <input type="button" value="Upload" />
+                        <input id="fileupload" type="file" />
+                        <input id="upload" type="button" value="Upload" />
                     </form>
                 </div>
             </div>

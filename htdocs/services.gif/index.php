@@ -19,7 +19,7 @@ try {
     $update->execute();
         
 } catch (PDOException $ex) {
-    //
+    // silence is golden
 }
 
 $trackergif = imagecreatefromgif('../img/services.gif');

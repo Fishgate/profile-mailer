@@ -131,22 +131,7 @@ $mail = new Mailer();
                         </div>
                         <br />
                         <canvas id="canvas" height="250" width="250"></canvas>
-                        <script>
-                            //DRAWS A CHART -- *TEST
-                            var pieData = [
-                                {
-                                    value: 27,//UNOPENED VALUE HERE
-                                    color:"#E74C3C"
-                                },
-                                {
-                                    value : 50,//OPENED VALUE HERE
-                                    color : "#2ECC71"
-                                }
-
-                                ];
-
-                            var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
-                        </script>
+                
                     </div>
                 </div>
                 
