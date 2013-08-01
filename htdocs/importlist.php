@@ -21,7 +21,7 @@ $user->authUser($_SESSION['user_auth']);
                     <li>New mass mail</li>
                     <li id="selected">Import list</li>
                     <li>Manage lists</li>
-                    <li>View full logs</li>
+                    <a href="logs.php"><li>View full logs</li></a>
                 </ul>
             </nav>
         

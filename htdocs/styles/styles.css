@@ -225,7 +225,7 @@ nav{
                   RECENT EMAILS
 ===============================================*/
 .recents_holder{
-    margin: 0 0 0 25px;
+    margin: 0 0 60px 25px;
 }
 .recents{
     width: 400px;
@@ -272,6 +272,33 @@ nav{
     height: 10px;
     display: inline-block;
 }
+#stats_holder{
+    display: inline-block;
+}
+
+
+/*==============================================
+                 LOGS
+===============================================*/
+#logs_overview, #logs_menu{
+    padding: 20px;
+    margin-top: 30px;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    
+    background: #eee;
+}
+#logs_menu{
+    background: transparent;
+    padding: 0;
+}
+#logs_menu_holder{
+    padding: 0 25px;
+}
+
 /*==============================================
                   HELPERS
 ===============================================*/
