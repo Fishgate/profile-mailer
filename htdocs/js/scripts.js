@@ -11,7 +11,26 @@ $(function(){
     // import list form
     $('#upload').click(function(){
        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
-       console.log(valid_file);
+       
+       if(valid_file) {
+           var formData = new FormData($('#importlistform')[0]);
+           
+            $.ajax({
+                url: 'upload.php',
+                type: 'POST',
+                xhr: function() {
+                    myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){
+                        myXhr.upload.addEventListener('progress',progressHandlerFunction, false);
+                    }
+                    return myXhr;
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+       }
     }); 
 
     // login form authentication
@@ -110,7 +129,9 @@ $(function(){
         }
    ];
 
-    var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+   if($('#canvas').length > 0) {
+       var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+   }
     
     
 }); // end of document ready

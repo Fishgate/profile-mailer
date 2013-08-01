@@ -9,12 +9,15 @@
  */
 
 /* change log ---------------------------------------------------------------------
+2013/07/31
+    - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).
+
 2012/12/19
-    - added first variable for background colour on input errors
+    - added first variable for background colour on input errors.
     - changed resetting of inputs to remove all inline styles on the element instead of just changing its colour.
 
 2012/10/05
-    - removed the preset # selector, this must now be included in the "target" variable when calling the function
+    - removed the preset # selector, this must now be included in the "target" variable when calling the function.
     - removed 
 
 
@@ -78,7 +81,7 @@ function validate_file (target, filetypes_arr, max_size) {
         is_valid = false;
 
         for(var i in filetypes_arr){
-            if(type == filetypes_arr[i]){
+            if(type === filetypes_arr[i]){
                 is_valid = true;
             }
         }
