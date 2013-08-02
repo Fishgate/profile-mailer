@@ -132,15 +132,6 @@ $mail = new Mailer();
                                 <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div class="opened">
-                            <div class="small_block green_bg"></div> Opened [<span class="green">1024</span>]
-                        </div>
-                        <div class="closed">
-                            <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
-                        </div>
-                        <br />
-                        <canvas id="canvas" height="250" width="250"></canvas>
                 
                     </div>
                 </div>

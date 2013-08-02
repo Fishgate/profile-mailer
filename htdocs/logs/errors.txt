@@ -29,3 +29,4 @@
 23-07-2013, 12:24 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
 23-07-2013, 12:24 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
 23-07-2013, 12:57 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
+02-08-2013, 16:11 - SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)

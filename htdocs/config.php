@@ -13,9 +13,9 @@
  */
 //localhost
 define('DB_HOST',       'localhost');
-define('DB_NAME',       'FG-profile-mailer');
+define('DB_NAME',       'fishgate-profile-mailer');
 define('DB_USERNAME',   'root');
-define('DB_PASSWORD',   'root');
+define('DB_PASSWORD',   '');
 define('DB_USER_TBL',   'users');
 define('DB_LOGS_TBL',   'emaillogs');
 
@@ -24,7 +24,7 @@ define('DB_LOGS_TBL',   'emaillogs');
  * getting exceptions thrown at them, set to true/false. Also handles some other things
  * 
  */
-define('DEV', false);
+define('DEV', true);
 define('DEV_EMAIL', 'kyle@fishgate.co.za, tyrone@fishgate.co.za');
 
 /**
