@@ -118,11 +118,21 @@ $mail = new Mailer();
                 ================================================-->
                 <div class="left" id="chart">
                     <h3>Statistics Overview</h3>
-                    <div class="analytics">
+                    <div class="analytics clearfix">
                         <h4>Opened vs Unopened</h4>
-                        <div class="total_sent">
-                            <div class="small_block blue_bg"></div> Total: 1234
+                        <canvas class="left" id="canvas" height="250" width="250"></canvas>
+                        <div id="stats_holder" class="left">
+                            <div class="total_sent">
+                                <div class="small_block blue_bg"></div> Total [<span class="blue">1234</span>]
+                            </div>
+                            <div class="opened">
+                                <div class="small_block green_bg"></div> Opened [<span class="green">1024</span>]
+                            </div>
+                            <div class="closed">
+                                <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
+                            </div>
                         </div>
+<<<<<<< HEAD
                         <div class="opened">
                             <div class="small_block green_bg"></div> Opened [<span class="green">1024</span>]
                         </div>
