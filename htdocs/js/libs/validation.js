@@ -9,12 +9,15 @@
  */
 
 /* change log ---------------------------------------------------------------------
+2013/07/31
+    - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).
+
 2012/12/19
-    - added first variable for background colour on input errors
+    - added first variable for background colour on input errors.
     - changed resetting of inputs to remove all inline styles on the element instead of just changing its colour.
 
 2012/10/05
-    - removed the preset # selector, this must now be included in the "target" variable when calling the function
+    - removed the preset # selector, this must now be included in the "target" variable when calling the function.
     - removed 
 
 
@@ -69,51 +72,34 @@ function validate_checkboxes(target){
     }
 }
 
-function validate_file (target) {
-    var file = target.files[0];
-    name = file.name;
-    size = file.size;
-    type = file.type;
-    
-    console.log(name);
-}
-
-/*function validate_file(target, array){
-    jQuery(target).focus(function(){
-        jQuery(target + '_error').html('');
-    })
-    
-    jQuery(target).change(function(){
-        jQuery(target + '_error').html('');
-    })
-    
-    file = jQuery(target).val();
-    
-    if(file != ''){
+function validate_file (target, filetypes_arr, max_size) {
+    if(jQuery(target).val() !== ''){
+        var file = jQuery(target)[0].files[0];
+        size = file.size;
+        type = file.type;
+        
         is_valid = false;
 
-        file_ext = file.substr(file.lastIndexOf('.') + 1);
-        file_ext = file_ext.toLowerCase();
-
-        valid_files_array = array;
-
-        for(var i in valid_files_array){
-            if(file_ext == valid_files_array[i]){
+        for(var i in filetypes_arr){
+            if(type === filetypes_arr[i]){
                 is_valid = true;
             }
         }
 
         if(is_valid){
-            return true;
+            if(max_size*1048576 > size){
+                return true;
+            }else{
+                return false;
+            }
         }else{
-            jQuery(target + '_error').html(error);
             return false;        
         }
     }else{
-        return true;
+        return false;
     }
 }
-*/
+
 
 function validate(target, default_val){
     jQuery(target).focus(function(){

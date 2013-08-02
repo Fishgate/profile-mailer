@@ -1,3 +1,8 @@
+Small updates
 - add support for multiple "quick send"
 - impliment phpmailer into the error log system to notify us about errors
-- 
+- ajax update the "Recent emails" once one has been sent
+- submit forms using return key
+
+Medium updates
+- generate form fields of quick send form based on the template

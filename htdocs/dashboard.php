@@ -23,7 +23,7 @@ $mail = new Mailer();
                     <li>New mass mail</li>
                     <a href="importlist.php"><li>Import list</li></a>
                     <li>Manage lists</li>
-                    <a href="logs.php"><li>View full logs</li></a>
+                    <li>View full logs</li>
                 </ul>
             </nav>
         
@@ -132,22 +132,7 @@ $mail = new Mailer();
                                 <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
                             </div>
                         </div>
-                        <script>
-                            //DRAWS A CHART -- *TEST
-                            var pieData = [
-                                {
-                                    value: 27,//UNOPENED VALUE HERE
-                                    color:"#E74C3C"
-                                },
-                                {
-                                    value : 50,//OPENED VALUE HERE
-                                    color : "#2ECC71"
-                                }
-
-                                ];
-
-                            var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
-                        </script>
+                
                     </div>
                 </div>
                 
