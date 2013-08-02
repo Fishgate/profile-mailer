@@ -3,7 +3,7 @@ $(function(){
     //RETINA CHECK QUERY
     var retina = (window.retina || window.devicePixelRatio > 1);
     if(retina){
-      $('.decoration').css('top', '50px');
+      $('.decoration').css('top', '45px');
     }
     
     // initiate tinyMCE
