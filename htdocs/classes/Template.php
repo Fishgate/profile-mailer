@@ -11,6 +11,8 @@
  * @author Owner
  */
 class Template {
-    //put your code here
+    //if (preg_match("/\$(.*?)\$/",$mystring,$matches)) {
+    //[04:23:13 PM] Eddie Dunckley: print_r($matches);
+    
 }
 
