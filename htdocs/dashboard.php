@@ -34,7 +34,7 @@ $mail = new Mailer();
             <div class="contents">
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
-                    <form id="quicksendform" class="clearfix">
+                    <form method="post" id="quicksendform" class="clearfix">
                         <h2>Quick send</h2>
                         Template:<br /> 
                         <select id="template">
