@@ -22,7 +22,7 @@ $mail = new Mailer();
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <a href="importlist.php"><li>Import list</li></a>
-                    <li>Manage lists</li>
+                    <a href="managelist.php"><li>Manage lists</li></a>
                     <li id="selected">View full logs</li>
                 </ul>
             </nav>

@@ -19,8 +19,8 @@ $user->authUser($_SESSION['user_auth']);
                 <div id="menutitle">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
-                    <li id="selected">Import list</li>
-                    <a href="managelist.php"><li>Manage lists</li></a>
+                    <a  href="importlist.php"><li>Import list</li></a>
+                    <li id="selected">Manage lists</li>
                     <a href="logs.php"><li>View full logs</li></a>
                 </ul>
             </nav>
