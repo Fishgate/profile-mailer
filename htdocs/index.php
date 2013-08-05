@@ -17,7 +17,7 @@
             <br />
             <input placeholder="Password" id="password" type="password" name="password" />
             <br />
-            <input id="login" type="button" value="Login" />
+            <input id="login" type="submit" value="Login" />
             <img id="loader" class="invisible right" alt="loader" src="img/loader_index.gif" /><!-- replace this with some kind of loading gif -->
         </form>
         
