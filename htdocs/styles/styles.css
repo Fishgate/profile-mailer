@@ -13,6 +13,11 @@ body{
 /*==============================================
                   MINI RESETS
 ===============================================*/
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 h1{
     font-weight: normal;
     font-size: 16px;
@@ -122,6 +127,11 @@ input[type=button]{
 }
 input[type=button]:hover{
     background: #fee171;
+}
+
+input[type=checkbox]:hover{
+    background: #fee171;
+    display: inline;
 }
 
 
@@ -299,6 +309,25 @@ nav{
 #logs_menu_holder{
     padding: 0 25px;
 }
+
+/*==============================================
+             MANAGE LIST TABLE HOLDER
+===============================================*/
+.managelist_holder{
+    width: 750px;
+    margin: 25px 0 0 25px;
+}
+.managelist_table{
+    padding: 20px;
+    background: #eee;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
 
 /*==============================================
                   HELPERS
