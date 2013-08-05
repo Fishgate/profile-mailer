@@ -140,5 +140,6 @@ $(function(){
        var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
    }
     
+   
     
 }); // end of document ready
