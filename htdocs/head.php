@@ -5,8 +5,10 @@
         <link rel="stylesheet" type="text/css" href="styles/styles.css" media="screen" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.form.min.js"></script>
-        <script type="text/javascript" src="js/libs/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript" src="js/libs/jfp_validation.js"></script>
+        <!-- GROWL notifications ADD THIS -->
+        <script src="js/jquery.growl.js"></script>
+        <link rel="stylesheet" href="styles/jquery.growl.css" />
+        
         <script type="text/javascript" src="js/scripts.js"></script>
         
         <!-- TYRONE ADDS THIS LIBRARY, MIGHT BE COOL FOR VISUALIZING OPENDvsUNOPENED? -->
