@@ -57,6 +57,20 @@ a{
 a:hover{
     color: #fff;
 }
+img{
+    display: block;
+}
+
+
+/*==============================================
+                  BRANDING BAR
+===============================================*/
+#branding{
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    padding: 20px;
+}
 
 /*==============================================
                   COLOR GROUP
@@ -71,6 +85,7 @@ a:hover{
 .yellow_bg{background: #fc0;}
 .midnight_bg{background: #2C3E50;}
 .asphalt_bg{background: #34495E;}
+.dark_bg{background: #101617;}
 
 
 /*==============================================
@@ -190,7 +205,7 @@ nav{
 }
 #wrapper{
     height: 100%;
-    padding: 50px 0 50px 200px;
+    padding: 0 0 50px 180px;
 }
 #dash-nav{
     list-style-type: none;
@@ -228,6 +243,7 @@ nav{
 }
 .contents{
     width: 100%;
+    margin: 20px 0 0 0;
 }
 #quicksend{
     width: 350px;

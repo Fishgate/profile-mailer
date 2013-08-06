@@ -28,10 +28,12 @@ $mail = new Mailer();
             </nav>
         
         <div id="wrapper" class="clearfix">
-            
+            <div id="branding" class="dark_bg">
+                <img src="img/logo.png"/>
+            </div>
             
             <!--==================================== CONTENTS ===========-->
-            <div class="contents">
+            <div class="contents clearfix">
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
                     <form method="post" id="quicksendform" class="clearfix">

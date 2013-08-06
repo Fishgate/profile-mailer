@@ -14,6 +14,19 @@ $mail = new Mailer();
     <?php require_once('./head.php'); ?>
     
     <body>
+        <!--==============================================================
+                            DATALIST FOR INPUTS
+        ==================================================================-->
+        <datalist id="add_name">
+            <option value="John Doe [EXAMPLE NAME]">
+            <option value="Clients Name [EXAMPLE NAME]">
+        </datalist>
+        
+        <datalist id="add_email">
+            <option value="name@mail.com [EXAMPLE EMAIL]">
+                <option value="client@mail.com [EXAMPLE EMAIL]">
+        </datalist>
+        
         
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
@@ -131,8 +144,8 @@ $mail = new Mailer();
                                 <td class="recent_heads">Email</td>
                             </tr>
                             <tr>
-                                <td><input type="text" name="add_name" class="name" /></td>
-                                <td><input type="text" name="add_email" class="email" /></td>
+                                <td><input type="text" name="add_name" class="name" placeholder="Name*" list="add_name" /></td>
+                                <td><input type="text" name="add_email" class="email" placeholder="Email address*" list="add_email" /></td>
                             </tr>
                             </table>
                             <div class="right button asphalt_bg ok">OK</div>
