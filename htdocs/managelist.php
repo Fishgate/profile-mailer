@@ -48,15 +48,16 @@ $mail = new Mailer();
                 
                 <div class="left managelist_holder">
                     <h3>Comprehensive View</h3>
+                    <form method="post">
                     <div class="managelist_table">
-                        <form method="post">
+                        
                         <table border="1" width="100%" cellpadding="5">
                             <tr>
-                                <td class="recent_heads">Action</td>
                                 <td class="recent_heads">To</td>
                                 <td class="recent_heads">Email</td>
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
+                                <td class="recent_heads">Action</td>
                             </tr>
                             
                             <?php
@@ -66,10 +67,6 @@ $mail = new Mailer();
                                     foreach($email_logs as $log){
                                         ?>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" clas="remove_row" />
-                                                Remove
-                                            </td>
                                             <td><?php echo $log['name']; ?></td>
                                             <td><?php echo $log['email']; ?></td>
                                             <td><?php echo $log['date']; ?></td>
@@ -81,6 +78,9 @@ $mail = new Mailer();
                                                     echo '<span style="color: red;">&#x2717;</span>';
                                                 }
                                                 ?>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" clas="remove_row" />
                                             </td>
                                         </tr>
                                         <?php
@@ -96,8 +96,52 @@ $mail = new Mailer();
                             
                             ?>
                         </table>
-                        </form>
+                        
+                        <div id="action_buttons" class="clearfix">
+                            <div class="left button add green_bg">Add entry</div>
+                            <div class="right button delete red_bg">Remove selected</div>
+                        </div>
+                        
+                        <script>
+                            //============================ SHOW ADD ENTRY TABLE
+                            $('.add').click(function(){
+                                $('#add_holder').removeClass('hidden');
+                            });
+                            //============================ HIDE ADD ENTRY TABLE
+                            $('.ok').live('click', function(){
+                                $('#add_holder').addClass('hidden');
+                                //--- GROWL examples
+                                //$.growl.notice({message: 'YOUR NOTICE HERE'});
+                                //$.growl.warning({message: 'YOUR WARNING HERE'});
+                                //$.growl.error({message: 'YOUR ERROR HERE'});
+                                $.growl.notice({message: 'Extra entries added!'});
+                            });
+                            
+                            //simulate deletion
+                            $('.delete').click(function(){
+                                $.growl.error({message: 'row/s deleted'});
+                            });
+                            
+                        </script>
+                        
+                        <div id="add_holder" class="clearfix hidden">
+                            <table border="1" width="100%" cellpadding="5">
+                            <tr>
+                                <td class="recent_heads">Name</td>
+                                <td class="recent_heads">Email</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="add_name" class="name" /></td>
+                                <td><input type="text" name="add_email" class="email" /></td>
+                            </tr>
+                            </table>
+                            <div class="right button asphalt_bg ok">OK</div>
+                            <div class="right button midnight_bg another">Add another</div>
+                        </div>
+                        
                     </div>
+                    <div class="right button blue_bg save">Save my changes</div>
+                    </form>
                 </div>
             </div>
         </div>    

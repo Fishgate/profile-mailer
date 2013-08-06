@@ -68,6 +68,9 @@ a:hover{
 .red_bg{background: #E74C3C;}
 .green_bg{background: #2ECC71;}
 .blue_bg{background: #3498DB;}
+.yellow_bg{background: #fc0;}
+.midnight_bg{background: #2C3E50;}
+.asphalt_bg{background: #34495E;}
 
 
 /*==============================================
@@ -315,11 +318,17 @@ nav{
 ===============================================*/
 .managelist_holder{
     width: 750px;
-    margin: 25px 0 0 25px;
+    margin: 0 0 25px 25px;
+}
+#logs_menu_holder{
+    margin: 0 0 25px 0;
 }
 .managelist_table{
+    
     padding: 20px;
     background: #eee;
+    max-height: 500px;
+    overflow-y: scroll;
     
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -327,8 +336,50 @@ nav{
     border-radius: 5px;
 }
 
+#action_buttons{
+    padding: 15px 0 0 0;
+}
 
+.button{
+    cursor: pointer;
+    color: #fff;
+    padding: 10px;
+    display: inline-block;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
 
+.delete:hover{
+    background: #C0392B;
+}
+.add:hover, .another:hover{
+    background: #27AE60;
+}
+.save:hover{
+    background: #2980B9;
+}
+.save{
+    margin: 15px 20px 0 0;
+}
+#add_holder{
+    margin: 20px 0 0 0;
+}
+#add_holder table{
+    background: #8feab6;
+}
+.ok{
+    margin: 10px 0 0 0;
+}
+.ok:hover{
+    background: #fc0;
+    color: #2C3E50;
+}
+.another{
+    margin: 10px 10px 0 0;
+}
 /*==============================================
                   HELPERS
 ===============================================*/
