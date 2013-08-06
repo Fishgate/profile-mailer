@@ -10,7 +10,7 @@
 
 /* change log ---------------------------------------------------------------------
 2013/08/05
-    - migrating this to work with jquery form plugin, its just that damn good.
+    - migrating this to work with jquery form plugin
 
 2013/07/31
     - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).

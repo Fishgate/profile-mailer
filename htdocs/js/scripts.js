@@ -9,14 +9,7 @@ function enableForm(loader, submitBtn){
 }
 
 $(function(){
-    // initiate tinyMCE
-    if($('#tinymce').length > 0){
-        tinymce.init({
-            selector: '#tinymce',
-            menubar: false,
-            toolbar: 'undo redo | bold italic underline'
-        });
-    }
+    
 
     // import list form
     $('#upload').click(function(){
@@ -51,7 +44,7 @@ $(function(){
             alert('Please fill in your Username and Password.');
             enableForm('#loader', '#login');
             return false;
-        }    
+        }
     }
 
     function exec_login(e){
@@ -75,14 +68,40 @@ $(function(){
     });
       
     
-    // quick send authentication
-    /**
-     * Still using the old method *********************************
-     */
+    // quick send ============================================================
+    
+    $('#template').change(function(){
+        if($(this).val() !== 0){
+            $.ajax({
+                url: 'template.exec.php',
+                type: 'GET',
+                data: { 'template': $(this).val() },
+                success: function(e){
+                    console.log(e);
+                    
+                    $('#form_elements').html(e);
+                    
+                    // initiate tinyMCE
+                    if($('#tinymce').length > 0){
+                        tinymce.init({
+                            selector: '#tinymce',
+                            menubar: false,
+                            toolbar: 'undo redo | bold italic underline'
+                        });
+                    }
+                },
+                error: function(e){
+                    console.log(e);
+                }
+            });
+        }        
+        
+    });
+   
     function validate_quickSend(){
         disableForm('#loader', '#send');
         
-        
+        //these fields are determined by the template chosen
     }
     
     function exec_quicksend(){
