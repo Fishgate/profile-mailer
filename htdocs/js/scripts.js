@@ -10,6 +10,11 @@ function enableForm(loader, submitBtn){
 
 $(function(){
     
+    //RETINA CHECK QUERY
+    var retina = (window.retina || window.devicePixelRatio > 1);
+    if(retina){
+      $('.decoration').css('top', '45px');
+    }
 
     // import list form
     $('#upload').click(function(){
@@ -179,5 +184,6 @@ $(function(){
        var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
    }
     
+   
     
 }); // end of document ready

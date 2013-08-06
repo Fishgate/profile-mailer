@@ -20,7 +20,7 @@ $user->authUser($_SESSION['user_auth']);
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <li id="selected">Import list</li>
-                    <li>Manage lists</li>
+                    <a href="managelist.php"><li>Manage lists</li></a>
                     <a href="logs.php"><li>View full logs</li></a>
                 </ul>
             </nav>

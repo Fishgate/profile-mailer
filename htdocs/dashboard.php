@@ -22,8 +22,8 @@ $mail = new Mailer();
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <a href="importlist.php"><li>Import list</li></a>
-                    <li>Manage lists</li>
-                    <li>View full logs</li>
+                    <a href="managelist.php"><li>Manage lists</li></a>
+                    <a href="logs.php"><li>View full logs</li></a>
                 </ul>
             </nav>
         
@@ -34,7 +34,7 @@ $mail = new Mailer();
             <div class="contents">
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
-                    <form id="quicksendform" class="clearfix">
+                    <form method="post" id="quicksendform" class="clearfix">
                         <h2>Quick send</h2>
                         Template:<br /> 
                         <select id="template">
@@ -60,9 +60,9 @@ $mail = new Mailer();
                         
                         <!--
                         <br />
-                        <input placeholder="Name" id="name" name="name" type="text" />
+                        <input placeholder="Name" id="name" name="name" type="text" value="" />
                         <br />
-                        <input placeholder="Email" id="email" name="email" type="text" />
+                        <input placeholder="Email" id="email" name="email" type="text" value="" />
                         <br />
                         Message:<br /> <textarea name="message" id="tinymce">We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</textarea>
                         <br />
@@ -146,5 +146,17 @@ $mail = new Mailer();
             </div>
             
         </div>
+        <script>
+            //==================================
+            //       SUPER LABELS
+            //==================================
+            $('form').superLabels({
+                         duration:500,
+                         easingIn:'easeInOutCubic',
+                         easingOut:'easeInOutCubic',
+                         fadeDuration:250,
+                         opacity:0.5
+                 });
+        </script>
     </body>
 </html>
