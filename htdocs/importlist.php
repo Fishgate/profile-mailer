@@ -27,13 +27,14 @@ $user->authUser($_SESSION['user_auth']);
         
         <div id="wrapper" class="clearfix">
             
+            <?php include 'includes/branding.html' ?>
+            
             <!--==================================== CONTENTS ===========-->
-            <div class="contents">
+            <div class="contents clearfix">
                 <div id="importlist" class="left">
                     <!--<form id="importlistform" enctype="multipart/form-data" method="POST" action="import.exec.php">-->
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
-                        <input type="text" name="test" />
                         <input name="file" id="fileupload" type="file" />
                         <input id="upload" type="button" value="Upload" />
                         <!--<input type="submit" value="Upload" />-->

@@ -28,9 +28,8 @@ $mail = new Mailer();
             </nav>
         
         <div id="wrapper" class="clearfix">
-            <div id="branding" class="dark_bg">
-                <img src="img/logo.png"/>
-            </div>
+            <?php include 'includes/branding.html' ?>
+            
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
@@ -57,6 +56,12 @@ $mail = new Mailer();
 
                             ?>
                         </select>
+                        <!-- /// STATIC INPUTS \\\-->
+                        <input type="email" placeholder="email" />
+                        <input type="text" placeholder="subject" />
+                        <!-- /// SWITCHING TEMPLATES loader \\\-->
+                        <img id="loader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
+                        
                         
                         <div id="form_elements"></div>
 

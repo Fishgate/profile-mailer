@@ -29,6 +29,8 @@ $mail = new Mailer();
         
         <div id="wrapper" class="clearfix">
             
+            <?php include 'includes/branding.html' ?>
+            
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
                 <div id="logs_menu_holder" class="left">
