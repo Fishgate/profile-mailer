@@ -1,14 +1,8 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Template
  *
- * @author Owner
+ * @author Kyle Vermeulen <kyle@source-lab.co.za>
  */
 class Template {
     private $template_dir;
@@ -16,6 +10,7 @@ class Template {
     private $template_string;
     private $form_output;
     private $textarea;
+    private $lovelyString;
     
     /**
      * 
@@ -44,6 +39,8 @@ class Template {
     }
     
     private function filterMatch($preg_match){
+        $this->lovelyString = ucfirst(strtolower($preg_match));
+        
         foreach($this->textarea_matches as $val){
             if($preg_match == $val){
                 $this->textarea = true;
@@ -52,10 +49,10 @@ class Template {
         
         if($this->textarea){            
             $this->textarea = false;
-            return "$preg_match:<br /><textarea name=\"$preg_match\" id=\"tinymce\"></textarea>";
+            return "<textarea name=\"$preg_match\" placeholder=\"$this->lovelyString\" id=\"$preg_match\"></textarea>";
         }else{    
             $this->textarea = false;
-            return "<input placeholder=\"$preg_match\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
+            return "<input placeholder=\"$this->lovelyString\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
         }
     }
     

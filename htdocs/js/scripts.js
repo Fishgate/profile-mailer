@@ -8,8 +8,9 @@ function enableForm(loader, submitBtn){
     $(submitBtn).removeAttr('disabled');
 }
 
+var tinyMCE_config = [{ selector: '#textarea1',  }];
+
 $(function(){
-    
     //RETINA CHECK QUERY
     var retina = (window.retina || window.devicePixelRatio > 1);
     if(retina){
@@ -84,16 +85,7 @@ $(function(){
                 success: function(e){
                     console.log(e);
                     
-                    $('#form_elements').html(e);
-                    
-                    // initiate tinyMCE
-                    if($('#tinymce').length > 0){
-                        tinymce.init({
-                            selector: '#tinymce',
-                            menubar: false,
-                            toolbar: 'undo redo | bold italic underline'
-                        });
-                    }
+                    $('#form_elements').html(e);                                     
                 },
                 error: function(e){
                     console.log(e);
@@ -103,8 +95,12 @@ $(function(){
         
     });
    
+   
+   
+   
     function validate_quickSend(){
         disableForm('#loader', '#send');
+        
         
         //these fields are determined by the template chosen
     }
@@ -171,11 +167,11 @@ $(function(){
     //DRAWS A CHART -- *TEST
     var pieData = [
         {
-            value: 27, //UNOPENED VALUE HERE
+            value: 1, //UNOPENED VALUE HERE
             color:"#E74C3C"
         },
         {
-            value : 50, //OPENED VALUE HERE
+            value : 1, //OPENED VALUE HERE
             color : "#2ECC71"
         }
    ];
