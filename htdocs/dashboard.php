@@ -40,6 +40,7 @@ $mail = new Mailer();
                         <h2>Quick send</h2>
                         Template:<br /> 
                         <select id="template">
+                            <option value="0">--Select Template--</option>
                             <?php
 
                             $mail_templates = $mail->getTemplates();
@@ -49,22 +50,18 @@ $mail = new Mailer();
 
                                 if($filename != '.' && $filename != '..'){
                                     ?>
-                                    <option value="<?php echo $filename; ?>"><?php echo $filename; ?></option>";
+                                    <option value="<?php echo $filename; ?>"><?php echo $filename; ?></option>
                                     <?php
                                 }
                             }
 
                             ?>
                         </select>
-                        <br />
-                        <input placeholder="Name" id="name" name="name" type="text" value="" />
-                        <br />
-                        <input placeholder="Email" id="email" name="email" type="text" value="" />
-                        <br />
-                        Message:<br /> <textarea name="message" id="tinymce">We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</textarea>
-                        <br />
-                        <input class="right" type="button" id="send" value="Send" />
-                        <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" /><!-- replace this with some kind of loading gif -->
+                        
+                        <div id="form_elements"></div>
+
+                        <input class="right" type="submit" id="send" value="Send" />
+                        <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" />
                     </form>
                 </div>
                 
@@ -141,17 +138,6 @@ $mail = new Mailer();
             </div>
             
         </div>
-        <script>
-            //==================================
-            //       SUPER LABELS
-            //==================================
-            $('form').superLabels({
-                         duration:500,
-                         easingIn:'easeInOutCubic',
-                         easingOut:'easeInOutCubic',
-                         fadeDuration:250,
-                         opacity:0.5
-                 });
-        </script>
+
     </body>
 </html>
