@@ -23,11 +23,11 @@ $(function(){
        if(valid_file) {
            var options = {
                 beforeSubmit:   function(){ console.log('I\'m about to submit!'); },
-                success:        function(e){ console.log(e); },                             // post-submit callback 
-                url:            'import.exec.php',                                          // override for form's 'action' attribute 
-                type:           'post',                                                     // 'get' or 'post', override for form's 'method' attribute 
-                clearForm:      true,                                                       // clear all form fields after successful submit 
-                resetForm:      true                                                        // reset the form after successful submit
+                success:        function(e){ console.log(e); },
+                url:            'import.exec.php',             
+                type:           'post',                        
+                clearForm:      true,                          
+                resetForm:      true                           
             };
            
             $('#importlistform').ajaxSubmit(options);
