@@ -42,6 +42,6 @@ $user->authUser($_SESSION['user_auth']);
                 </div>
             </div>
             
-        </div>    
-    </body>
-</html>
+        </div>   
+        
+<?php require_once('footer.php'); ?>

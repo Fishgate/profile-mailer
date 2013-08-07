@@ -1,17 +1,15 @@
-function disableForm(loader, submitBtn){
-    $(loader).removeClass('invisible');
+function disableForm(loader, submitBtn, loaderClass){
+    $(loader).removeClass(loaderClass);
     $(submitBtn).attr('disabled','disabled');
 };
 
-function enableForm(loader, submitBtn){
-    $(loader).addClass('invisible');
+function enableForm(loader, submitBtn, loaderClass){
+    $(loader).addClass(loaderClass);
     $(submitBtn).removeAttr('disabled');
 }
 
-var tinyMCE_config = [{ selector: '#textarea1',  }];
-
 $(function(){
-    //RETINA CHECK QUERY
+    //retina check
     var retina = (window.retina || window.devicePixelRatio > 1);
     if(retina){
       $('.decoration').css('top', '45px');
@@ -37,7 +35,7 @@ $(function(){
        }
     }); 
 
-    // login form ============================================================
+    // login form    
     function validate_login(arr){
         disableForm('#loader', '#login');
         
@@ -48,7 +46,7 @@ $(function(){
             return true;
         }else{
             alert('Please fill in your Username and Password.');
-            enableForm('#loader', '#login');
+            enableForm('#loader', '#login', 'invisible');
             return false;
         }
     }
@@ -60,7 +58,7 @@ $(function(){
             window.location = 'dashboard.php';
         }else{
             alert(e);
-            enableForm('#loader', '#login');
+            enableForm('#loader', '#login', 'invisible');
         }
     }
 
@@ -72,39 +70,37 @@ $(function(){
         clearForm: true,
         resetForm: true
     });
-      
     
-    // quick send ============================================================
-    
-    $('#template').change(function(){
+    // quick send
+    $('#template').change(function(){       
         if($(this).val() != 0){
+            $('#quicksendloader').removeClass('hidden');
+            
             $.ajax({
                 url: 'template.exec.php',
                 type: 'GET',
                 data: { 'template': $(this).val() },
                 success: function(e){
                     console.log(e);
-                    
+                    $('#quicksendloader').addClass('hidden');
                     $('#form_elements').html(e);                                     
                 },
                 error: function(e){
+                    $('#quicksendloader').addClass('hidden');
                     console.log(e);
+                    $('#form_elements').html(e);
                 }
             });
         }else{
             $('#form_elements').html('<p>No template currently selected.</p>');
-        }    
+        }
         
     });
    
-   
-   
-   
     function validate_quickSend(){
-        disableForm('#loader', '#send');
-        
         
         //these fields are determined by the template chosen
+        
     }
     
     function exec_quicksend(){
@@ -181,7 +177,5 @@ $(function(){
    if($('#canvas').length > 0) {
        var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
    }
-    
-   
-    
+
 }); // end of document ready

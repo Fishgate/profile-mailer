@@ -21,5 +21,4 @@
             <img id="loader" class="invisible right" alt="loader" src="img/loader_index.gif" /><!-- replace this with some kind of loading gif -->
         </form>
         
-    </body>
-</html>
+<?php require_once('footer.php'); ?>

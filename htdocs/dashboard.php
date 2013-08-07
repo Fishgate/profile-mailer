@@ -36,7 +36,7 @@ $mail = new Mailer();
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
                     <form method="post" id="quicksendform" class="clearfix">
-                        <h2>Quick send</h2>                        
+                        <h3>Quick send</h3>
                         <select id="template">
                             <option value="0">--Select Template--</option>
                             <?php
@@ -61,8 +61,7 @@ $mail = new Mailer();
                         <input type="text" placeholder="Subject" />
                         
                         <!-- /// SWITCHING TEMPLATES loader \\\-->
-                        <img id="loader" class="right switch_loader" alt="loader" src="img/loader.gif" />
-                        
+                        <img id="quicksendloader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
                         
                         <div id="form_elements"><p>No template currently selected.</p></div>
 

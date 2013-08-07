@@ -131,6 +131,6 @@ $mail = new Mailer();
                 </div>
             </div>
             
-        </div>    
-    </body>
-</html>
+        </div>
+        
+<?php require_once('footer.php'); ?>
