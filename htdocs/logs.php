@@ -64,22 +64,6 @@ $mail = new Mailer();
                                 <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
                             </div>
                         </div>
-                        <script>
-                            //DRAWS A CHART -- *TEST
-                            var pieData = [
-                                {
-                                    value: 17,//UNOPENED VALUE HERE
-                                    color:"#E74C3C"
-                                },
-                                {
-                                    value : 61,//OPENED VALUE HERE
-                                    color : "#2ECC71"
-                                }
-
-                                ];
-
-                            var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
-                        </script>
                     </div>
                 </div>
                 
