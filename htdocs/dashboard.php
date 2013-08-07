@@ -36,8 +36,7 @@ $mail = new Mailer();
                 <!--========================= QUICK SEND =========-->
                 <div id="quicksend" class="left">
                     <form method="post" id="quicksendform" class="clearfix">
-                        <h2>Quick send</h2>
-                        Template:<br /> 
+                        <h2>Quick send</h2>                        
                         <select id="template">
                             <option value="0">--Select Template--</option>
                             <?php
@@ -56,14 +55,16 @@ $mail = new Mailer();
 
                             ?>
                         </select>
+                        
                         <!-- /// STATIC INPUTS \\\-->
-                        <input type="email" placeholder="email" />
-                        <input type="text" placeholder="subject" />
+                        <input type="email" placeholder="Email" />
+                        <input type="text" placeholder="Subject" />
+                        
                         <!-- /// SWITCHING TEMPLATES loader \\\-->
-                        <img id="loader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
+                        <img id="loader" class="right switch_loader" alt="loader" src="img/loader.gif" />
                         
                         
-                        <div id="form_elements"></div>
+                        <div id="form_elements"><p>No template currently selected.</p></div>
 
                         <input class="right" type="submit" id="send" value="Send" />
                         <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" />
@@ -140,9 +141,8 @@ $mail = new Mailer();
                     </div>
                 </div>
                 
-            </div>
+            </div><!--.content close-->
             
-        </div>
+        </div><!--#wrapper close-->
 
-    </body>
-</html>
+<?php require_once('footer.php'); ?>

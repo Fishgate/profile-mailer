@@ -28,7 +28,12 @@ class Template {
         $this->template_dir = TEMPLATE_DIR;
         $this->textarea = false;
     }
-
+    
+    /**
+     * Opens the file template and returns it as a string.
+     * 
+     * @return String
+     */
     private function openTemplate() {
         $this->template_file = fopen($this->template_dir . $this->template_name, 'r');
         $this->template_string = fread($this->template_file, filesize($this->template_dir . $this->template_name));
@@ -38,6 +43,13 @@ class Template {
         return $this->template_string;
     }
     
+    /**
+     * Input matched elements found with preg_match and returns the appropriate 
+     * markup to dynamicaly generate the quick send form.
+     * 
+     * @param String $preg_match Matched element from preg_match.
+     * @return String Returns markup for dynamicaly generated form elements.
+     */
     private function filterMatch($preg_match){
         $this->lovelyString = ucfirst(strtolower($preg_match));
         
@@ -56,6 +68,13 @@ class Template {
         }
     }
     
+    /**
+     * Returns the entire markup block for the quick send form based
+     * on shortcodes found in the selected template.
+     * 
+     * @return String
+     * @throws Exception
+     */
     public function generateForm() {        
         if(preg_match_all('/\[(.*)\]/', $this->openTemplate(), $matches)){
             foreach($matches[1] as $val){

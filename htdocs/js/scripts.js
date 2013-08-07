@@ -33,7 +33,7 @@ $(function(){
            
             $('#importlistform').ajaxSubmit(options);
        }else{
-           //
+           // nothing!
        }
     }); 
 
@@ -77,7 +77,7 @@ $(function(){
     // quick send ============================================================
     
     $('#template').change(function(){
-        if($(this).val() !== 0){
+        if($(this).val() != 0){
             $.ajax({
                 url: 'template.exec.php',
                 type: 'GET',
@@ -91,7 +91,9 @@ $(function(){
                     console.log(e);
                 }
             });
-        }        
+        }else{
+            $('#form_elements').html('<p>No template currently selected.</p>');
+        }    
         
     });
    
