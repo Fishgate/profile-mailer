@@ -5,8 +5,12 @@
 $user = new User();
 $user->authUser($_SESSION['user_auth']);
 
-$mail = new Mailer();
 $reports = new Reports();
+$quicksend_total = $reports->get_quicksend_total();
+$quicksend_opened = $reports->get_quicksend_opened();
+$quicksend_unopened = $reports->get_quicksend_unopened();
+
+$mail = new Mailer();
 
 ?>
 
@@ -62,12 +66,14 @@ $reports = new Reports();
                         <input id="subject" name="subject" type="text" placeholder="Subject" />
                         
                         <!-- /// SWITCHING TEMPLATES loader \\\-->
-                        <img id="quicksendloader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
+                        <img id="templateSelectLoader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
                         
                         <div id="form_elements"><p>No template currently selected.</p></div>
 
                         <input class="right" type="submit" id="send" value="Send" />
-                        <img id="loader" class="invisible right" alt="loader" src="img/loader.gif" />
+                        
+                        <!-- /// SENDING TEMPLATES loader \\\-->
+                        <img id="quickSendLoader" class="invisible right" alt="loader" src="img/loader.gif" />
                     </form>
                 </div>
                 
@@ -130,13 +136,13 @@ $reports = new Reports();
                         <canvas class="left" id="canvas" height="250" width="250"></canvas>
                         <div id="stats_holder" class="left">
                             <div class="total_sent">
-                                <div class="small_block blue_bg"></div> Total [<span class="blue"><?php echo $reports->get_quicksend_total(); ?></span>]
+                                <div class="small_block blue_bg"></div> Total [<span class="blue"><?php echo $quicksend_total; ?></span>]
                             </div>
                             <div class="opened">
-                                <div class="small_block green_bg"></div> Opened [<span class="green"><?php echo $reports->get_quicksend_opened(); ?></span>]
+                                <div class="small_block green_bg"></div> Opened [<span class="green"><?php echo $quicksend_opened; ?></span>]
                             </div>
                             <div class="closed">
-                                <div class="small_block red_bg"></div> Unopened [<span class="red"><?php echo $reports->get_quicksend_unopened(); ?></span>]
+                                <div class="small_block red_bg"></div> Unopened [<span class="red"><?php echo $quicksend_unopened; ?></span>]
                             </div>
                         </div>
                     </div>
@@ -149,7 +155,10 @@ $reports = new Reports();
         
         <script type="text/javascript">
         /* <![CDATA[ */
-        var quicksend_data = {"opened" : <?php echo $reports->get_quicksend_opened(); ?>, "unopened" : <?php echo $reports->get_quicksend_unopened(); ?>};
+        var quicksend_data = {
+            "opened" : <?php echo $quicksend_opened; ?>, 
+            "unopened" : <?php echo $quicksend_unopened; ?>
+        };
         /* ]]> */
         </script>
 <?php require_once('footer.php'); ?>

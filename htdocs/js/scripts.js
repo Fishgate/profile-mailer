@@ -50,13 +50,13 @@ $(function(){
         }
     }
 
-    function exec_login(e){
-        var res = e.trim();
+    function exec_login(result){
+        var res = result.trim();
 
         if(res === 'success'){
             window.location = 'dashboard.php';
         }else{
-            alert(e);
+            alert(result);
             enableForm('#loader', '#login', 'invisible');
         }
     }
@@ -72,18 +72,18 @@ $(function(){
     // quick send --------------------------------------------------------------------------------------------------------
     $('#template').change(function(){       
         if($(this).val() != 0){
-            $('#quicksendloader').removeClass('hidden');
+            $('#templateSelectLoader').removeClass('hidden');
             
             $.ajax({
                 url: 'template.exec.php',
                 type: 'GET',
                 data: { 'template': $(this).val() },
                 success: function(e){
-                    $('#quicksendloader').addClass('hidden');
+                    $('#templateSelectLoader').addClass('hidden');
                     $('#form_elements').html(e);                                     
                 },
                 error: function(e){
-                    $('#quicksendloader').addClass('hidden');
+                    $('#templateSelectLoader').addClass('hidden');
                     $('#form_elements').html(e);
                 }
             });
@@ -94,6 +94,8 @@ $(function(){
     });
    
     function validate_quickSend(arr){
+        disableForm('#quickSendLoader', '#send', 'invisible');
+        
         var quicksend = true;
         
         if($('#template').val() != 0){
@@ -114,8 +116,19 @@ $(function(){
         }
     }
     
-    function exec_quicksend(){
-        $('#form_elements').html('<p>No template currently selected.</p>');
+    function exec_quicksend(result){
+        var res = result.trim();
+
+        if(res === 'success'){
+            $('#form_elements').html('<p>No template currently selected.</p>');
+            enableForm('#quickSendLoader', '#send', 'invisible');
+            
+            alert('Quick send successfully sent!');
+        }else{
+            enableForm('#quickSendLoader', '#send', 'invisible');
+            alert(result);
+        }
+        
     }
     
     $('#quicksendform').ajaxForm({
@@ -127,7 +140,8 @@ $(function(){
     });
     
     //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
-    var pieData = [
+   if($('#canvas').length > 0) {
+       var pieData = [
         {
             value: quicksend_data.unopened, //UNOPENED VALUE HERE
             color:"#E74C3C"
@@ -136,9 +150,8 @@ $(function(){
             value : quicksend_data.opened, //OPENED VALUE HERE
             color : "#2ECC71"
         }
-   ];
-
-   if($('#canvas').length > 0) {
+        ];
+       
        var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
    }
 
