@@ -2,7 +2,7 @@
 /**
  * Handles user creation, login, verification and authentication
  *
- * @author kyle@fishgate.co.za
+ * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
 require_once(SITE_ROOT . '/classes/Connection.php');
@@ -12,6 +12,18 @@ class User {
     
     private $con;
     private $logs;
+    
+    /**
+     *
+     * @var String
+     */
+    public $username;
+    
+    /**
+     *
+     * @var String
+     */
+    public $password;
     
     /**
      * Initiates a new instance of the Error log class, creates a new PDO database connection 

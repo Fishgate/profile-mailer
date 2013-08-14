@@ -3,9 +3,11 @@
 <?php
 
 $user = new User();
+$user->username = $_GET['username'];
+$user->password = $_GET['password'];
 
 try {
-   if($user->validateUser($_GET['username'], $_GET['password'])){
+   if($user->validateUser($user->username, $user->password)){
        echo 'success';
    }
 } catch (Exception $ex) {

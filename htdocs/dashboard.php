@@ -6,6 +6,7 @@ $user = new User();
 $user->authUser($_SESSION['user_auth']);
 
 $mail = new Mailer();
+$reports = new Reports();
 
 ?>
 
@@ -75,20 +76,21 @@ $mail = new Mailer();
                     <div class="recents">
                         <table border="1" width="100%" cellpadding="5">
                             <tr>
-                                <td class="recent_heads">To</td>
                                 <td class="recent_heads">Email</td>
+                                <td class="recent_heads">Template</td>
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
                             </tr>
+                            
                             <?php
                             
                             try {
-                                if($email_logs = $mail->outputLogs()){
+                                if($email_logs = $reports->quicksend_logs()){
                                     foreach($email_logs as $log){
                                         ?>
                                         <tr>
-                                            <td><?php echo $log['name']; ?></td>
                                             <td><?php echo $log['email']; ?></td>
+                                            <td><?php echo $log['template']; ?></td>
                                             <td><?php echo $log['date']; ?></td>
                                             <td align="center">
                                                 <?php 
@@ -112,6 +114,7 @@ $mail = new Mailer();
                             }
                             
                             ?>
+                            
                         </table>
                     </div>
                 </div>
@@ -120,27 +123,33 @@ $mail = new Mailer();
                             OPEN/UNOPEN PIE CHART
                 ================================================-->
                 <div class="left" id="chart">
-                    <h3>Statistics Overview</h3>
+                    <h3>Quick Send Overview</h3>
+                    
                     <div class="analytics clearfix">
                         <h4>Opened vs Unopened</h4>
                         <canvas class="left" id="canvas" height="250" width="250"></canvas>
                         <div id="stats_holder" class="left">
                             <div class="total_sent">
-                                <div class="small_block blue_bg"></div> Total [<span class="blue">1234</span>]
+                                <div class="small_block blue_bg"></div> Total [<span class="blue"><?php echo $reports->get_quicksend_total(); ?></span>]
                             </div>
                             <div class="opened">
-                                <div class="small_block green_bg"></div> Opened [<span class="green">1024</span>]
+                                <div class="small_block green_bg"></div> Opened [<span class="green"><?php echo $reports->get_quicksend_opened(); ?></span>]
                             </div>
                             <div class="closed">
-                                <div class="small_block red_bg"></div> Unopened [<span class="red">119</span>]
+                                <div class="small_block red_bg"></div> Unopened [<span class="red"><?php echo $reports->get_quicksend_unopened(); ?></span>]
                             </div>
                         </div>
-                
                     </div>
-                </div>
+                    
+                </div><!--#chart close -->
                 
             </div><!--.content close-->
             
         </div><!--#wrapper close-->
-
+        
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        var quicksend_data = {"opened" : <?php echo $reports->get_quicksend_opened(); ?>, "unopened" : <?php echo $reports->get_quicksend_unopened(); ?>};
+        /* ]]> */
+        </script>
 <?php require_once('footer.php'); ?>

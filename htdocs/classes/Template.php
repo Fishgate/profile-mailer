@@ -2,8 +2,9 @@
 /**
  * Description of Template
  *
- * @author Kyle Vermeulen <kyle@source-lab.co.za>
+ * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
+
 class Template {
     private $template_dir;
     private $template_file;

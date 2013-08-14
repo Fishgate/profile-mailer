@@ -129,11 +129,11 @@ $(function(){
     //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
     var pieData = [
         {
-            value: 1, //UNOPENED VALUE HERE
+            value: quicksend_data.unopened, //UNOPENED VALUE HERE
             color:"#E74C3C"
         },
         {
-            value : 1, //OPENED VALUE HERE
+            value : quicksend_data.opened, //OPENED VALUE HERE
             color : "#2ECC71"
         }
    ];

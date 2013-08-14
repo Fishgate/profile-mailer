@@ -2,7 +2,7 @@
 /**
  * Handles all processes of the mail, its sending, and its database communication
  *
- * @author kyle@fishgate.co.za
+ * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
 require_once(SITE_ROOT . '/classes/Connection.php');
@@ -10,8 +10,6 @@ require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class Mailer {
     private $con;
-    private $logs;
-    private $log_results = array();
     private $phpmailer;
     private $template_dir;
     private $template_fh;
@@ -177,28 +175,5 @@ class Mailer {
             throw new Exception($this->logs->output($this->phpmailer->ErrorInfo, 'Message could not be sent'));
         }
     }
-    
-    /**
-     * Returns and assoc array of the latest 10 email log entries in the database table
-     * 
-     * @return boolean
-     */
-    public function outputLogs(){
-        try {
-            $this->logs = $this->con->prepare('SELECT * FROM '.DB_LOGS_TBL.' ORDER BY unix DESC LIMIT 10;');
-            $this->logs->execute();
-            
-            if($this->logs->rowCount() > 0) {
-                while($result = $this->logs->fetch(PDO::FETCH_ASSOC)){
-                    array_push($this->log_results, $result);
-                }
-                
-                return $this->log_results;
-            }else{
-                throw new Exception('Email logs are currently empty.');
-            }
-        } catch(PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error retrieving email logs from database.');
-        }
-    }
+
 }

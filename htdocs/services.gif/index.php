@@ -12,10 +12,10 @@ try {
     $ip_address = $_SERVER['REMOTE_ADDR'];
     $host = gethostbyaddr($ip_address);
     
-    $update = $dbConnect->prepare("UPDATE emaillogs SET opened='1', ip=:ip, host=:host WHERE token=:token;");
-    $update->bindParam(':token',$token);
-    $update->bindParam(':ip', $ip_address);
-    $update->bindParam(':host', $host);
+    $update = $dbConnect->prepare("UPDATE ".DB_LOGS_TBL." SET opened='1', ip=:ip, host=:host WHERE token=:token;");
+    $update->bindParam(':token',    $token);
+    $update->bindParam(':ip',       $ip_address);
+    $update->bindParam(':host',     $host);
     $update->execute();
         
 } catch (PDOException $ex) {

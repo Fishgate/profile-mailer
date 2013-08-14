@@ -2,7 +2,7 @@
 /**
  * Controls database connection wherever its required
  *
- * @author kyle@fishgate.co.za
+ * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
 require_once(SITE_ROOT . '/classes/ErrorLog.php');

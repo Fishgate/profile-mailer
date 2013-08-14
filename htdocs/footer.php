@@ -3,6 +3,11 @@
         <script type="text/javascript" src="js/libs/tinymce/tinymce.min.js"></script>
         <script src="js/jquery.growl.js"></script>
         <script type="text/javascript" src="js/libs/jfp_validation.js"></script>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        var quicksend_data = {"opened" : <?php echo $reports->get_quicksend_opened; ?>, "unopened" : <?php echo $reports->get_quicksend_unopened; ?>};
+        /* ]]> */
+        </script>
         <script type="text/javascript" src="js/scripts.js"></script>
         <script src="js/Chart.js"></script>
         
