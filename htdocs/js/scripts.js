@@ -9,7 +9,7 @@ function enableForm(loader, submitBtn, loaderClass){
 }
 
 $(function(){
-    //retina check
+    //retina check --------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     if(retina){
       $('.decoration').css('top', '45px');
@@ -24,8 +24,7 @@ $(function(){
                 beforeSubmit:   function(){ console.log('I\'m about to submit!'); },
                 success:        function(e){ console.log(e); },
                 url:            'import.exec.php',             
-                type:           'post',                        
-                clearForm:      true,                          
+                type:           'post',                
                 resetForm:      true                           
             };
            
@@ -35,9 +34,9 @@ $(function(){
        }
     }); 
 
-    // login form    
+    // login form --------------------------------------------------------------------------------------------------------
     function validate_login(arr){
-        disableForm('#loader', '#login');
+        disableForm('#loader', '#login', 'invisible');
         
         var valid_username = validate(arr[0]['value']);
         var valid_password = validate(arr[1]['value']);
@@ -63,15 +62,14 @@ $(function(){
     }
 
     $('#loginform').ajaxForm({
-        url: 'login.auth.php',
-        type: 'get',
-        beforeSubmit: validate_login,
-        success: exec_login,
-        clearForm: true,
-        resetForm: true
+        url:            'login.auth.php',
+        type:           'get',
+        beforeSubmit:   validate_login,
+        success:        exec_login,
+        resetForm:      true
     });
     
-    // quick send
+    // quick send --------------------------------------------------------------------------------------------------------
     $('#template').change(function(){       
         if($(this).val() != 0){
             $('#quicksendloader').removeClass('hidden');
@@ -81,13 +79,11 @@ $(function(){
                 type: 'GET',
                 data: { 'template': $(this).val() },
                 success: function(e){
-                    console.log(e);
                     $('#quicksendloader').addClass('hidden');
                     $('#form_elements').html(e);                                     
                 },
                 error: function(e){
                     $('#quicksendloader').addClass('hidden');
-                    console.log(e);
                     $('#form_elements').html(e);
                 }
             });
@@ -97,72 +93,40 @@ $(function(){
         
     });
    
-    function validate_quickSend(){
+    function validate_quickSend(arr){
+        var quicksend = true;
         
-        //these fields are determined by the template chosen
-        
+        if($('#template').val() != 0){
+            for(i in arr){
+                if(!validate(arr[i]['value'])){
+                    quicksend = false;
+                    break;
+                }
+            }
+            
+            if(!quicksend){
+                alert('Please fill in all the form fields before submitting.');
+                return false;
+            }
+        }else{
+            alert('Please select a template.');
+            return false;
+        }
     }
     
     function exec_quicksend(){
-        
+        $('#form_elements').html('<p>No template currently selected.</p>');
     }
     
     $('#quicksendform').ajaxForm({
         url: 'mail.send.php',
-        type: 'post',
+        type: 'POST',
         beforeSubmit: validate_quickSend,
         success: exec_quicksend,
-        clearForm: true,
         resetForm: true
     });
     
-    /*$('#send').click(function(){
-        
-        var valid_name = validate('#name', null);
-        var valid_email = validate_email('#email', null);
-        var valid_tinymce = valideate_tinymce('tinymce');
-        
-        if(valid_name && valid_email && valid_tinymce){           
-            $('#loader').removeClass('invisible');
-            $('#send').attr('disabled','disabled');
-            
-            $.ajax({
-               url: 'mail.send.php',
-               type: 'POST',
-               data: { 
-                   //jquery serialize doesnt get the value from tinymc, so just make our 
-                   //own json object of exactly what we need to submit to the php script
-                   name: $('#name').val(), 
-                   email: $('#email').val(), 
-                   message: tinymce.get('tinymce').getContent(),
-                   template: $('#template :selected').val()
-               }, 
-               success: function(result){
-                   var res = result.trim();
-                   
-                   if(res === 'success'){
-                       alert('Quick send has been successfully sent!');
-                   }else{
-                       alert(res);
-                   }
-                   
-                   $("#loader").addClass('invisible');
-                   $('#send').removeAttr('disabled');
-               },
-               error: function(){
-                    $("#loader").addClass('invisible');
-                    $('#send').removeAttr('disabled');
-                    
-                    alert('Error sending email.');
-                }
-            });
-        }else{            
-            alert('Please fill in all the required fields correctly before trying to send an email.');
-        }
-        
-    });*/
-    
-    //DRAWS A CHART -- *TEST
+    //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
     var pieData = [
         {
             value: 1, //UNOPENED VALUE HERE

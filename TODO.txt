@@ -3,6 +3,7 @@ Small updates
 - impliment phpmailer into the error log system to notify us about errors
 - ajax update the "Recent emails" once one has been sent
 - submit forms using return key
+- find a more dynamic way of matching the tracking strings when preparing an email template (classes/Mailer.php, prepareTemplate)
 
 Medium updates
 - generate form fields of quick send form based on the template

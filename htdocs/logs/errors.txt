@@ -31,3 +31,26 @@
 23-07-2013, 12:57 - SQLSTATE[42000] [1049] Unknown database 'fishgate-profile-mailer'
 02-08-2013, 16:11 - SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
 07-08-2013, 14:07 - You must provide at least one recipient email address.
+12-08-2013, 10:43 - You must provide at least one recipient email address.
+12-08-2013, 10:44 - You must provide at least one recipient email address.
+12-08-2013, 10:48 - You must provide at least one recipient email address.
+12-08-2013, 10:49 - You must provide at least one recipient email address.
+12-08-2013, 10:49 - You must provide at least one recipient email address.
+12-08-2013, 10:50 - You must provide at least one recipient email address.
+12-08-2013, 10:50 - You must provide at least one recipient email address.
+12-08-2013, 10:51 - You must provide at least one recipient email address.
+12-08-2013, 10:52 - You must provide at least one recipient email address.
+12-08-2013, 10:56 - You must provide at least one recipient email address.
+12-08-2013, 10:59 - You must provide at least one recipient email address.
+12-08-2013, 11:00 - Message body empty
+12-08-2013, 11:00 - You must provide at least one recipient email address.
+12-08-2013, 11:01 - You must provide at least one recipient email address.
+12-08-2013, 11:01 - You must provide at least one recipient email address.
+12-08-2013, 11:01 - Message body empty
+12-08-2013, 11:02 - Message body empty
+12-08-2013, 11:05 - You must provide at least one recipient email address.
+12-08-2013, 11:05 - You must provide at least one recipient email address.
+12-08-2013, 11:09 - You must provide at least one recipient email address.
+12-08-2013, 11:11 - Message body empty
+12-08-2013, 11:11 - Message body empty
+12-08-2013, 11:13 - Message body empty

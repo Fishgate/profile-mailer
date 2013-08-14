@@ -19,6 +19,12 @@ class Template {
     public $template_name;
     
     /**
+     *
+     * @var Array Listing of shortcode string matches in the email template to be ignored
+     */
+    public $ignore_matches;
+    
+    /**
      * 
      * @var Array Shortcode labels which will be considered as textareas instead of input type text.
      */
@@ -67,6 +73,18 @@ class Template {
             return "<input placeholder=\"$this->lovelyString\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
         }
     }
+
+    
+    private function ignoreMatch($input_string){
+        foreach($this->ignore_matches as $ignore){
+            if($input_string == $ignore){
+                return true;
+                break;
+            }             
+        }
+        
+        return false;
+    }
     
     /**
      * Returns the entire markup block for the quick send form based
@@ -78,7 +96,9 @@ class Template {
     public function generateForm() {        
         if(preg_match_all('/\[(.*)\]/', $this->openTemplate(), $matches)){
             foreach($matches[1] as $val){
-                $this->form_output .= $this->filterMatch($val) . '<br />';
+                if(!$this->ignoreMatch($val)){
+                    $this->form_output .= $this->filterMatch($val) . '<br />';
+                }
             }
             
             return $this->form_output;

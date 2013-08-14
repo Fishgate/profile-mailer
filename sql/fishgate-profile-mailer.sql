@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2013 at 02:57 PM
+-- Generation Time: Aug 14, 2013 at 10:03 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -23,14 +23,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emaillogs`
+-- Table structure for table `quicksendlogs`
 --
 
-CREATE TABLE IF NOT EXISTS `emaillogs` (
+CREATE TABLE IF NOT EXISTS `quicksendlogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` text NOT NULL,
-  `name` text NOT NULL,
-  `message` text NOT NULL,
   `date` text NOT NULL,
   `unix` int(11) NOT NULL,
   `template` text NOT NULL,
@@ -39,19 +37,14 @@ CREATE TABLE IF NOT EXISTS `emaillogs` (
   `ip` text NOT NULL,
   `host` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `emaillogs`
+-- Dumping data for table `quicksendlogs`
 --
 
-INSERT INTO `emaillogs` (`id`, `email`, `name`, `message`, `date`, `unix`, `template`, `opened`, `token`, `ip`, `host`) VALUES
-(1, '123@123.123', '123', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373978462, 'profilemailer.html', 0, '', '', ''),
-(2, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373978651, 'profilemailer.html', 0, '', '', ''),
-(3, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373979121, 'profilemailer.html', 0, '', '', ''),
-(4, '123@123.123', '3213213123213', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '16-07-2013', 1373979558, 'profilemailer.html', 0, '', '', ''),
-(5, 'kyle@fishgate.co.za', 'kyle', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '17-07-2013', 1374051450, 'profilemailer.html', 0, '', '', ''),
-(6, 'test@test.com', 'test', '<p>We know your field, so i thought that I would email you. We are an award winning PR and advertising agency that understands how to get people talking and buying. Lets us put some ideas together for you. We do everything under one roof. Capable and inventive - we would like the opportunity to prove it. I would be happy to come in and chat to you about your current promotional activities and provide you with some real, free, market research.</p>', '18-07-2013', 1374152202, 'profilemailer.html', 0, '69cb3ea317a32c4e6143e665fdb20b14', '', '');
+INSERT INTO `quicksendlogs` (`id`, `email`, `date`, `unix`, `template`, `opened`, `token`, `ip`, `host`) VALUES
+(7, 'kyle@fishgate.co.za', '14-08-2013', 1376466665, 'profilemailer.html', 0, '19ca14e7ea6328a42e0eb13d585e4c22', '', '');
 
 -- --------------------------------------------------------
 
@@ -65,14 +58,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `salt` text NOT NULL,
   `hash` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `user`, `salt`, `hash`) VALUES
-(1, 'admin', '0537f', 'f778a8ace7b7f14984d79aeb630c9c5a');
+(1, 'admin', '0537f', 'f778a8ace7b7f14984d79aeb630c9c5a'),
+(2, 'kyle', 'salt', 'dsad43dfasfafd');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

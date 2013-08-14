@@ -37,7 +37,7 @@ $mail = new Mailer();
                 <div id="quicksend" class="left">
                     <form method="post" id="quicksendform" class="clearfix">
                         <h3>Quick send</h3>
-                        <select id="template">
+                        <select name="template" id="template">
                             <option value="0">--Select Template--</option>
                             <?php
 
@@ -56,9 +56,9 @@ $mail = new Mailer();
                             ?>
                         </select>
                         
-                        <!-- /// STATIC INPUTS \\\-->
-                        <input type="email" placeholder="Email" />
-                        <input type="text" placeholder="Subject" />
+                        <!-- /// STATIC INPUTS \\\-->                        
+                        <input id="email" name="email" type="email" placeholder="Email" />
+                        <input id="subject" name="subject" type="text" placeholder="Subject" />
                         
                         <!-- /// SWITCHING TEMPLATES loader \\\-->
                         <img id="quicksendloader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
@@ -80,7 +80,6 @@ $mail = new Mailer();
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
                             </tr>
-                            
                             <?php
                             
                             try {

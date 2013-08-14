@@ -9,16 +9,41 @@ require_once(SITE_ROOT . '/classes/Connection.php');
 require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class Mailer {
-    
     private $con;
     private $logs;
     private $log_results = array();
     private $phpmailer;
     private $template_dir;
+    private $template_fh;
+    private $template_string;
     private $date;
     private $unix;
     private $opened;
     private $tokenId;
+    
+    /**
+     *
+     * @var String Name of the template file.
+     */
+    public $template_name;
+    
+    /**
+     *
+     * @var String The shortcode match which should be replaced with the tracking URL + token
+     */
+    public $tracking_string_match;
+    
+    /**
+     *
+     * @var String
+     */
+    public $recipient_address;
+    
+    /**
+     *
+     * @var String
+     */
+    public $email_subject;
     
     /**
      * Includes the PHPmailer class, initiates a new instance of the Error log class, 
@@ -47,7 +72,6 @@ class Mailer {
         return new DirectoryIterator($this->template_dir);
     }
     
-    
     /**
      * Returns an randomly generated md5 string
      * 
@@ -67,16 +91,25 @@ class Mailer {
     private function prepareTemplate() {
         $this->tokenId = $this->generateTokenId();
         
-        $template_file = fopen($this->template_dir . $_POST['template'], 'r');
-        $template_string = fread($template_file, filesize($this->template_dir . $_POST['template']));
-        $template_string = trim($template_string);
-        fclose($template_file);
+        $this->template_fh = fopen($this->template_dir . $this->template_name, 'r');
+        $this->template_string = fread($this->template_fh, filesize($this->template_dir . $_POST['template']));
+        $this->template_string = trim($this->template_string);
+        fclose($this->template_fh);
         
-        $template_string = str_replace('$name$', strtoupper($_POST['name']), $template_string);
-        $template_string = str_replace('$message$', $_POST['message'], $template_string);
-        $template_string = str_replace('$tracking_string$', SITE_URL.'/services.gif?token='.$this->tokenId, $template_string);
+        $this->template_string = str_replace($this->tracking_string_match, SITE_URL.'/services.gif?token='.$this->tokenId, $this->template_string);
         
-        return $template_string;
+        if(isset($_POST) && !empty($_POST)){
+            foreach($_POST as $key => $val) {
+                $this->template_string = str_replace("[$key]", $val, $this->template_string);   
+            }
+        }
+        else if(isset($_GET) && !empty($_GET)){
+            foreach($_GET as $key => $val) {
+                $this->template_string = str_replace("[$key]", $val, $this->template_string);   
+            }
+        }
+        
+        return $this->template_string;
     }
     
     /**
@@ -89,29 +122,26 @@ class Mailer {
      * @param String $template
      * @return boolean
      */
-    private function logEmail($email, $name, $message, $template) {
+    private function logEmail($email, $template) {
         try {
             $this->date = date('d-m-Y');
             $this->unix = time();
             $this->opened = false;
             
-            $logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, name, message, date, unix, template, opened, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+            $logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, date, unix, template, opened, token) VALUES (:email, :date, :unix, :template, :opened, :token);');
             
-            $logEmail->bindParam(1, $email);
-            $logEmail->bindParam(2, $name);
-            $logEmail->bindParam(3, $message);
-            $logEmail->bindParam(4, $this->date);
-            $logEmail->bindParam(5, $this->unix);
-            $logEmail->bindParam(6, $template);
-            $logEmail->bindParam(7, $this->opened);
-            $logEmail->bindParam(8, $this->tokenId);
+            $logEmail->bindValue(':email',      $email);    
+            $logEmail->bindValue(':date',       $this->date);
+            $logEmail->bindValue(':unix',       $this->unix);
+            $logEmail->bindValue(':template',   $template);
+            $logEmail->bindValue(':opened',     $this->opened);
+            $logEmail->bindValue(':token',      $this->tokenId);
             
             if($logEmail->execute()) {
                 return true;
             }
             
         } catch (PDOException $ex) {
-            //$this->logs->output($ex->getMessage(), 'Error creating email log.');
             throw new Exception($ex->getMessage());
         }
     }
@@ -131,15 +161,15 @@ class Mailer {
         $this->phpmailer->AddReplyTo('info@fishgate.co.za', 'Fishgate');
         $this->phpmailer->IsHTML(true);
         
-        $this->phpmailer->AddAddress($_POST['email']);
+        $this->phpmailer->AddAddress($this->recipient_address);
         
-        $this->phpmailer->Subject = 'Here is the subject';
+        $this->phpmailer->Subject = $this->email_subject;
         
         $this->phpmailer->Body = $this->prepareTemplate();
         
         if($this->phpmailer->Send()) {
             try {
-                return $this->logEmail($_POST['email'], $_POST['name'], $_POST['message'], $_POST['template']);
+                return $this->logEmail($this->recipient_address, $this->template_name);
             } catch (Exception $ex) {
                 throw new Exception($this->logs->output($ex->getMessage(), $ex->getMessage()));
             }

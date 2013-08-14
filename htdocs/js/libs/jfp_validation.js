@@ -1,29 +1,32 @@
-/*
+/**
  * Author:              Kyle Vermeulen
  * Date:                Updated - 2013/08/05
  * Dependencies:        Latest jQuery, jQuery form plugin (http://malsup.com/jquery/form/)
  * TODO:                - add options to parse into the document for things like error colour, error types
  *                      - remove the smaller functions and consoldate them into their bigger purposes, e.g. validating a phone number, passwords, etc
- *                      - 
- * 
  */
 
-/* change log ---------------------------------------------------------------------
-2013/08/05
-    - migrating this to work with jquery form plugin
-
-2013/07/31
-    - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).
-
-2012/12/19
-    - added first variable for background colour on input errors.
-    - changed resetting of inputs to remove all inline styles on the element instead of just changing its colour.
-
-2012/10/05
-    - removed the preset # selector, this must now be included in the "target" variable when calling the function.
-    - removed 
-
----------------------------------------------------------------------------------*/
+/** 
+ * change log ---------------------------------------------------------------------
+ *
+ * 2013/08/12
+ *  - removed default value argument in favour of html 5 placeholder attribute
+ *
+ * 2013/08/05
+ *  - migrating this to work with jquery form plugin
+ * 
+ * 2013/07/31
+ *  - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).
+ * 
+ * 2012/12/19
+ *  - added first variable for background colour on input errors.
+ *  - changed resetting of inputs to remove all inline styles on the element instead of just changing its colour.
+ * 
+ * 2012/10/05
+ *  - removed the preset # selector, this must now be included in the "target" variable when calling the function.
+ *  - removed 
+ * 
+ */
 
 error = "red";
 
@@ -31,10 +34,11 @@ function linktest(){
     alert('validation.js linked correctly');
 }
 
-function validate(target){
+function validate (target){
     if(target !== ''){
         return true;
     }else{
+        jQuery(target).css('background', 'red');
         return false;
     }
 }
@@ -64,6 +68,39 @@ function validate_file (target, filetypes_arr, max_size) {
         }
     }else{
         return false;
+    }
+}
+
+function validate_email (target){    
+    var atSymbol    = target.indexOf('@');
+    var dot         = target.indexOf('.');
+    var lastDot     = target.lastIndexOf('.');
+    var length      = (target.length)-1;
+    var secondAt    = target.indexOf('@', (atSymbol+1));
+    
+    if(target == ''){
+        return false;
+    }
+    else if(atSymbol < 0){
+        return false;
+    }
+    else if(atSymbol == 0){
+        return false;
+    }
+    else if(dot < 0){
+        return false;
+    }
+    else if(lastDot < atSymbol){
+        return false;
+    }
+    else if(lastDot >= length){
+        return false;
+    }
+    else if(secondAt > 0){
+        return false;
+    }
+    else{
+        return true;
     }
 }
 
@@ -170,50 +207,3 @@ function validate_password(target){
     }
 }
 
-function validate_email(target, default_val){    
-    var atSymbol = jQuery(target).val().indexOf('@');
-    var dot = jQuery(target).val().indexOf('.');
-    var lastDot = jQuery(target).val().lastIndexOf('.');
-    var length = (jQuery(target).val().length)-1;
-    var secondAt = jQuery(target).val().indexOf('@', (atSymbol+1));
-
-    jQuery(target).focus(function(){
-        jQuery(target).removeAttr("style");
-    })
-    
-    jQuery(target).change(function(){
-        jQuery(target).removeAttr("style");
-    })
-
-    if(jQuery(target).val() == '' || jQuery(target).val() == default_val){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(atSymbol < 0){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(atSymbol == 0){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(dot < 0){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(lastDot < atSymbol){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(lastDot >= length){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else if(secondAt > 0){
-        jQuery(target).css('background', error);
-        return false;
-    }
-    else{
-        return true;
-    }
-}
