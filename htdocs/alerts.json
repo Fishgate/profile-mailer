@@ -1,0 +1,21 @@
+{
+    "ACCESS_DENIED":            "You do not have sufficient permissions to access this page. Please <a href=\"index.php\">log in</a> to continue.",
+    "USER_CREATE_ERROR":        "Error creating user.",
+    "USER_DOESNT_EXIST":        "Username does not exist",
+    "PASSWORD_WRONG":           "Password is incorrect.",
+    "FILE_INVALID":             "Please select a valid file before submitting.",
+    "EMPTY_USER_PASS":		"Please fill in your Username and Password.",
+    "EMPTY_FORM_FIELDS":	"Please fill in all the form fields correctly before submitting.",
+    "NO_TEMPLATE_SELECTED":	"Please select a template.",
+    "EMPTY_TEMPLATE":           "<p>No template currently selected.</p>",
+    "TEMPLATE_NO_SHORTCODES":   "<p>No shortcodes found in template file.</p>",
+    "TEMPLATE_DOESNT_EXIST":    "<p>Cannot find selected template file.</p>",
+    "QUICKSEND_SUCCCESS":	"Quick send successfully sent!",
+    "DB_CONNECT_FAIL":          "Error connecting to database.",
+    "DB_USER_ERROR":            "Error validating user from database.",
+    "LOG_OPEN_FAIL":            "Could not open log file ",
+    "LOG_WRITE_FAIL":           "Could not write to log file ",
+    "QUICKSEND_SEND_FAIL":      "Quicksend message could not be sent.",
+    "QUICKSEND_LOGS_FAIL":      "Error retrieving email logs from database.",
+    "QUICKSEND_LOGS_EMPTY":     "Email logs are currently empty."
+}

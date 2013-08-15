@@ -9,6 +9,19 @@ function enableForm(loader, submitBtn, loaderClass){
 }
 
 $(function(){
+    //JSON alerts prep --------------------------------------------------------------------------------------------------------
+    var alerts = {};
+    
+    $.ajax({
+    	url: "alerts.json",
+    	async: false,
+    	dataType: 'json',
+    	success: function(data) {
+            alerts = data;
+    	}
+    });
+    
+    
     //retina check --------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
@@ -37,8 +50,8 @@ $(function(){
     
     function validate_import(arr){
         var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);        
-        if(!valid_file){
-            alert('Please select a valid file before submitting.');
+        if(!valid_file){            
+            $.growl.error({message: alerts.FILE_INVALID});
             return false;
         }
         
@@ -66,7 +79,7 @@ $(function(){
         if(valid_username && valid_password){
             return true;
         }else{
-            alert('Please fill in your Username and Password.');
+            $.growl.error({message: alerts.EMPTY_USER_PASS});            
             enableForm('#loader', '#login', 'invisible');
             return false;
         }
@@ -78,7 +91,7 @@ $(function(){
         if(res === 'success'){
             window.location = 'dashboard.php';
         }else{
-            alert(result);
+            $.growl.error({message: result});
             enableForm('#loader', '#login', 'invisible');
         }
     }
@@ -110,7 +123,7 @@ $(function(){
                 }
             });
         }else{
-            $('#form_elements').html('<p>No template currently selected.</p>');
+            $('#form_elements').html(alerts.EMPTY_TEMPLATE);
         }
         
     });
@@ -129,12 +142,12 @@ $(function(){
             }
             
             if(!quicksend){
-                alert('Please fill in all the form fields before submitting.');
+                $.growl.error({message: alerts.EMPTY_FORM_FIELDS});
                 enableForm('#quickSendLoader', '#send', 'invisible');
                 return false;
             }
         }else{
-            alert('Please select a template.');
+            $.growl.error({message: alerts.NO_TEMPLATE_SELECTED});
             enableForm('#quickSendLoader', '#send', 'invisible');
             return false;
         }
@@ -147,10 +160,10 @@ $(function(){
             $('#form_elements').html('<p>No template currently selected.</p>');
             enableForm('#quickSendLoader', '#send', 'invisible');
             
-            alert('Quick send successfully sent!');
+            $.growl.notice({title: "Success!", message: alerts.QUICKSEND_SUCCCESS});
         }else{
             enableForm('#quickSendLoader', '#send', 'invisible');
-            alert(result);
+            $.growl.error({message: result});
         }
         
     }
@@ -162,23 +175,6 @@ $(function(){
         success: exec_quicksend,
         resetForm: true
     });
-    
-    if($('#quicksendLogHeaders').length > 0){
-        $.ajax({
-            url: 'quicksend.fetch.php',
-            type: 'GET',
-            success: function(result){
-                /*$('#templateSelectLoader').addClass('hidden');
-                $('#form_elements').html(e);*/
-                
-                $('#quickSendData').html(result);
-            },
-            error: function(result){
-                /*$('#templateSelectLoader').addClass('hidden');
-                $('#form_elements').html(e);*/
-            }
-        });
-    }
     
     //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
    if ($('#canvas').length > 0) {

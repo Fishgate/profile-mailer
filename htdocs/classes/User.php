@@ -10,6 +10,7 @@ require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class User {
     
+    private $alerts;
     private $con;
     private $logs;
     
@@ -49,6 +50,8 @@ class User {
         $this->con = new Connection();
         $this->con = $this->con->dbConnect();        
         if($this->con) $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $this->alerts = new Alerts();
     }
     
     /**
@@ -92,7 +95,7 @@ class User {
             }
             
         } catch (PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error creating user.');
+            $this->logs->output($ex->getMessage(), $this->alerts->USER_CREATE_ERROR);
         }
     }
     
@@ -116,14 +119,14 @@ class User {
                     
                 } else {
                     //echo 'Password is incorrect';
-                    throw new Exception('Password is incorrect');
+                    throw new Exception($this->alerts->PASSWORD_WRONG);
                 }                            
             }else{
                 //echo 'Username does not exist';
-                throw new Exception('Username does not exist');
+                throw new Exception($this->alerts->USER_DOESNT_EXIST);
             }
         } catch(PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error validating user from database.');
+            $this->logs->output($ex->getMessage(), $this->alerts->DB_USER_ERROR);
         }
     }
     
@@ -135,10 +138,10 @@ class User {
      */
     public function authUser(){
         if(!isset($this->sessionBool) || empty($this->sessionBool)){
-            die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
+            die($this->alerts->ACCESS_DENIED);
         }else{
             if(!$this->sessionBool){
-                die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
+                die($this->alerts->ACCESS_DENIED);
             }
         }   
     }

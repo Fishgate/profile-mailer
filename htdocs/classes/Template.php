@@ -1,11 +1,13 @@
 <?php
 /**
- * Description of Template
+ * Prepare the front end form elements based on the shortcodes 
+ * inside of the selected template file.
  *
  * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
 class Template {
+    private $alerts;
     private $template_dir;
     private $template_file;
     private $template_string;
@@ -34,6 +36,8 @@ class Template {
     public function __construct() {
         $this->template_dir = TEMPLATE_DIR;
         $this->textarea = false;
+        
+        $this->alerts = new Alerts();
     }
     
     /**
@@ -42,12 +46,15 @@ class Template {
      * @return String
      */
     private function openTemplate() {
-        $this->template_file = fopen($this->template_dir . $this->template_name, 'r');
-        $this->template_string = fread($this->template_file, filesize($this->template_dir . $this->template_name));
-        $this->template_string = trim($this->template_string);
-        fclose($this->template_file);
-        
-        return $this->template_string;
+        if(@$this->template_file = fopen($this->template_dir . $this->template_name, 'r')){
+            $this->template_string = fread($this->template_file, filesize($this->template_dir . $this->template_name));
+            $this->template_string = trim($this->template_string);
+            fclose($this->template_file);
+
+            return $this->template_string;
+        }else{
+            throw new Exception($this->alerts->TEMPLATE_DOESNT_EXIST);
+        }
     }
     
     /**
@@ -94,17 +101,21 @@ class Template {
      * @return String
      * @throws Exception
      */
-    public function generateForm() {        
-        if(preg_match_all('/\[(.*)\]/', $this->openTemplate(), $matches)){
-            foreach($matches[1] as $val){
-                if(!$this->ignoreMatch($val)){
-                    $this->form_output .= $this->filterMatch($val) . '<br />';
+    public function generateForm() {
+        try {
+            if(preg_match_all('/\[(.*)\]/', $this->openTemplate(), $matches)){
+                foreach($matches[1] as $val){
+                    if(!$this->ignoreMatch($val)){
+                        $this->form_output .= $this->filterMatch($val) . '<br />';
+                    }
                 }
+
+                return $this->form_output;
+            }else{
+                throw new Exception($this->alerts->TEMPLATE_NO_SHORTCODES);
             }
-            
-            return $this->form_output;
-        }else{
-            throw new Exception('<p>No shortcodes found in template file.</p>');
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
         }
     }
     

@@ -8,7 +8,7 @@
 require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class Connection {
-    
+    private $alerts;
     private $logs;
     
     /**
@@ -17,6 +17,7 @@ class Connection {
      */
     public function __construct() {
         $this->logs = new ErrorLog;
+        $this->alerts = new Alerts();
     }
     
     /**
@@ -28,7 +29,7 @@ class Connection {
         try {
             return new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);
         } catch (PDOException $ex) {
-            $this->logs->output($ex->getMessage(), 'Error connecting to database.');
+            $this->logs->output($ex->getMessage(), $this->alerts->DB_CONNECT_FAIL);
         }
     }
     

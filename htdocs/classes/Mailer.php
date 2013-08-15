@@ -9,6 +9,7 @@ require_once(SITE_ROOT . '/classes/Connection.php');
 require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class Mailer {
+    private $alerts;
     private $con;
     private $phpmailer;
     private $template_dir;
@@ -59,6 +60,8 @@ class Mailer {
         if($this->con) $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $this->template_dir = TEMPLATE_DIR;
+        
+        $this->alerts = new Alerts();
     }
     
     /**
@@ -172,7 +175,7 @@ class Mailer {
                 throw new Exception($this->logs->output($ex->getMessage(), $ex->getMessage()));
             }
         }else{
-            throw new Exception($this->logs->output($this->phpmailer->ErrorInfo, 'Message could not be sent'));
+            throw new Exception($this->logs->output($this->phpmailer->ErrorInfo, $this->alerts->QUICKSEND_SEND_FAIL));
         }
     }
 
