@@ -32,14 +32,12 @@ $user->authUser();
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
-                <div id="importlist" class="left">
-                    <!--<form id="importlistform" enctype="multipart/form-data" method="POST" action="import.exec.php">-->
+                <div id="importlist" class="left">                   
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
                         <input name="file" id="fileupload" type="file" />
                         <em>Max file size 2MB. Supported file types include CSV and XLS</em>
-                        <input id="upload" type="submit" value="Upload" />
-                        <!--<input type="submit" value="Upload" />-->
+                        <input id="upload" type="submit" value="Upload" />                   
                     </form>
                 </div>
             </div>

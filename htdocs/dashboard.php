@@ -19,8 +19,7 @@ $mail = new Mailer();
 <html>
     <?php require_once('./head.php'); ?>
     
-    <body>
-        
+    <body>       
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
@@ -45,6 +44,7 @@ $mail = new Mailer();
                         <h3>Quick send</h3>
                         <select name="template" id="template">
                             <option value="0">--Select Template--</option>
+                            
                             <?php
 
                             $mail_templates = $mail->getTemplates();

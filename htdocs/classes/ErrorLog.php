@@ -8,6 +8,7 @@
 
 class ErrorLog {
     
+    private $alerts;
     private $logFile;
     private $phpmailer;
     
@@ -21,7 +22,9 @@ class ErrorLog {
     public function __construct(){
         require_once('class.phpmailer.php');
         
-        $this->logFile = SITE_ROOT.'/logs/errors.txt';         
+        $this->logFile = SITE_ROOT.'/logs/errors.txt';      
+        
+        $this->alerts = new Alerts();
     }
     
     /**
@@ -58,8 +61,8 @@ class ErrorLog {
      * @param String $error Error string which will be written to the log file.
      */
     private function writeLog($error){
-        $fh = fopen($this->logFile, "a") or die('Could not open log file '.$this->logFile);
-        fwrite($fh, date('d-m-Y, H:i').' - '.$error."\n") or die('Could not write to log file '.$this->logFile);
+        $fh = fopen($this->logFile, "a") or die($this->alerts->LOG_OPEN_FAIL . $this->logFile);
+        fwrite($fh, date('d-m-Y, H:i').' - '.$error."\n") or die($this->alerts->LOG_WRITE_FAIL . $this->logFile);
         fclose($fh);
     }
     

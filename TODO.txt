@@ -1,4 +1,6 @@
 Small updates
 - impliment phpmailer into the error log system to notify us about errors
+- get rid of the neccecity for <p> tags in the template alerts of alerts.json
 
 Medium updates
+- localise all end user strings into a single json file
