@@ -1,8 +1,4 @@
 Small updates
-- add support for multiple "quick send"
 - impliment phpmailer into the error log system to notify us about errors
-- ajax update the "Recent emails" once one has been sent
-- auto redirect to dashboard.php page if the login session is already set
 
 Medium updates
-- make a reports class for email logs and statistics gathering

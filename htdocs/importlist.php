@@ -3,7 +3,8 @@
 <?php
 
 $user = new User();
-$user->authUser($_SESSION['user_auth']);
+$user->sessionBool = $_SESSION['user_auth'];
+$user->authUser();
 
 ?>
 
@@ -36,7 +37,8 @@ $user->authUser($_SESSION['user_auth']);
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
                         <input name="file" id="fileupload" type="file" />
-                        <input id="upload" type="button" value="Upload" />
+                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>
+                        <input id="upload" type="submit" value="Upload" />
                         <!--<input type="submit" value="Upload" />-->
                     </form>
                 </div>

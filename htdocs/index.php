@@ -1,5 +1,18 @@
 <?php require_once('./config.php'); ?>
 
+<?php
+
+if(isset($_SESSION['user_auth'])){
+    $user = new User();
+    
+    $user->sessionBool= $_SESSION['user_auth'];
+    $user->defaultRedirect = 'dashboard.php';
+
+    $user->autoRedirect();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <?php require_once('./head.php'); ?>
@@ -13,9 +26,9 @@
         <br />
         <form id="loginform" class="">
             <div id="decoration_index"></div>
-            <input placeholder="Username" id="username" type="text" name="username" />
+            <input required="required" placeholder="Username" id="username" type="text" name="username" />
             <br />
-            <input placeholder="Password" id="password" type="password" name="password" />
+            <input required="required" placeholder="Password" id="password" type="password" name="password" />
             <br />
             <input id="login" type="submit" value="Login" />
             <img id="loader" class="invisible right" alt="loader" src="img/loader_index.gif" /><!-- replace this with some kind of loading gif -->

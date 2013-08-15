@@ -7,7 +7,7 @@ $user->username = $_GET['username'];
 $user->password = $_GET['password'];
 
 try {
-   if($user->validateUser($user->username, $user->password)){
+   if($user->validateUser()){
        echo 'success';
    }
 } catch (Exception $ex) {

@@ -26,6 +26,19 @@ class User {
     public $password;
     
     /**
+     *
+     * @var Boolean
+     */
+    public $sessionBool;
+    
+    
+    /**
+     *
+     * @var String URL to the default page a user should be redicted to if they already have a valid login session but end up on the login page.
+     */
+    public $defaultRedirect;
+    
+    /**
      * Initiates a new instance of the Error log class, creates a new PDO database connection 
      * and sets its error mode attribute to exception.
      * 
@@ -87,19 +100,17 @@ class User {
      * Authenticates login attempts by checking if the user exists in the user database table. Starts
      * a session if the current user is valid which will allow them access to the rest of the application.
      * 
-     * @param String $username
-     * @param String $password
      */
-    public function validateUser($username, $password) {
+    public function validateUser() {
         try {
             $st = $this->con->prepare('SELECT * FROM '.DB_USER_TBL.' WHERE user=?;');
-            $st->bindParam(1, $username);
+            $st->bindParam(1, $this->username);
             $st->execute();
             
             if($st->rowCount() > 0) {
                 $result = $st->fetch(PDO::FETCH_ASSOC);
                 
-                if( md5($password.$result['salt']) == ($result['hash']) ){
+                if( md5($this->password.$result['salt']) == ($result['hash']) ){
                     $_SESSION['user_auth'] = true;
                     return true;
                     
@@ -122,14 +133,22 @@ class User {
      * 
      * @param boolean $sessionBool
      */
-    public function authUser($sessionBool){
-        if(!isset($sessionBool) || empty($sessionBool)){
+    public function authUser(){
+        if(!isset($this->sessionBool) || empty($this->sessionBool)){
             die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
         }else{
-            if(!$sessionBool){
+            if(!$this->sessionBool){
                 die('You do not have sufficient permissions to access this page. Please <a href="index.php">log in</a> to continue.');
             }
         }   
+    }
+    
+    public function autoRedirect(){
+        if(isset($this->sessionBool) || !empty($this->sessionBool)){
+            header('Location: ' . $this->defaultRedirect);
+        }else{
+            return false;
+        }
     }
     
 }

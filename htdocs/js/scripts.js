@@ -11,12 +11,13 @@ function enableForm(loader, submitBtn, loaderClass){
 $(function(){
     //retina check --------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
+    
     if(retina){
       $('.decoration').css('top', '45px');
     }
 
-    // import list form
-    $('#upload').click(function(){
+    // import list form --------------------------------------------------------------------------------------------------------
+    /*$('#upload').click(function(){
        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
        
        if(valid_file) {
@@ -30,9 +31,30 @@ $(function(){
            
             $('#importlistform').ajaxSubmit(options);
        }else{
-           // nothing!
+           
        }
-    }); 
+    });*/
+    
+    function validate_import(arr){
+        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);        
+        if(!valid_file){
+            alert('Please select a valid file before submitting.');
+            return false;
+        }
+        
+    }
+    
+    function exec_import(){
+        
+    }
+    
+    $('#importlistform').ajaxForm({
+        url:            'import.exec.php',
+        type:           'post',
+        beforeSubmit:   validate_import,
+        success:        exec_import,
+        resetForm:      true
+    });
 
     // login form --------------------------------------------------------------------------------------------------------
     function validate_login(arr){
@@ -108,10 +130,12 @@ $(function(){
             
             if(!quicksend){
                 alert('Please fill in all the form fields before submitting.');
+                enableForm('#quickSendLoader', '#send', 'invisible');
                 return false;
             }
         }else{
             alert('Please select a template.');
+            enableForm('#quickSendLoader', '#send', 'invisible');
             return false;
         }
     }
@@ -139,18 +163,29 @@ $(function(){
         resetForm: true
     });
     
+    if($('#quicksendLogHeaders').length > 0){
+        $.ajax({
+            url: 'quicksend.fetch.php',
+            type: 'GET',
+            success: function(result){
+                /*$('#templateSelectLoader').addClass('hidden');
+                $('#form_elements').html(e);*/
+                
+                $('#quickSendData').html(result);
+            },
+            error: function(result){
+                /*$('#templateSelectLoader').addClass('hidden');
+                $('#form_elements').html(e);*/
+            }
+        });
+    }
+    
     //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
-   if($('#canvas').length > 0) {
+   if ($('#canvas').length > 0) {
        var pieData = [
-        {
-            value: quicksend_data.unopened, //UNOPENED VALUE HERE
-            color:"#E74C3C"
-        },
-        {
-            value : quicksend_data.opened, //OPENED VALUE HERE
-            color : "#2ECC71"
-        }
-        ];
+            { value: quicksend_data.unopened, color:"#E74C3C" },
+            { value : quicksend_data.opened, color : "#2ECC71" }
+       ];
        
        var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
    }

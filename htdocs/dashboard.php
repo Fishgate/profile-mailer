@@ -3,7 +3,8 @@
 <?php
 
 $user = new User();
-$user->authUser($_SESSION['user_auth']);
+$user->sessionBool = $_SESSION['user_auth'];
+$user->authUser();
 
 $reports = new Reports();
 $quicksend_total = $reports->get_quicksend_total();
@@ -60,19 +61,15 @@ $mail = new Mailer();
 
                             ?>
                         </select>
+                                           
+                        <input required="required" id="email" name="email" type="email" placeholder="Email" />
                         
-                        <!-- /// STATIC INPUTS \\\-->                        
-                        <input id="email" name="email" type="email" placeholder="Email" />
-                        <input id="subject" name="subject" type="text" placeholder="Subject" />
-                        
-                        <!-- /// SWITCHING TEMPLATES loader \\\-->
+                        <input required="required" id="subject" name="subject" type="text" placeholder="Subject" />
                         <img id="templateSelectLoader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
                         
                         <div id="form_elements"><p>No template currently selected.</p></div>
-
-                        <input class="right" type="submit" id="send" value="Send" />
                         
-                        <!-- /// SENDING TEMPLATES loader \\\-->
+                        <input class="right" type="submit" id="send" value="Send" />                        
                         <img id="quickSendLoader" class="invisible right" alt="loader" src="img/loader.gif" />
                     </form>
                 </div>
@@ -81,15 +78,15 @@ $mail = new Mailer();
                     <h3>Recent Emails</h3>
                     <div class="recents">
                         <table border="1" width="100%" cellpadding="5">
-                            <tr>
+                            <tr id="quicksendLogHeaders">
                                 <td class="recent_heads">Email</td>
                                 <td class="recent_heads">Template</td>
                                 <td class="recent_heads">Date</td>
                                 <td class="recent_heads">Opened</td>
                             </tr>
-                            
+                        
                             <?php
-                            
+
                             try {
                                 if($email_logs = $reports->quicksend_logs()){
                                     foreach($email_logs as $log){
@@ -118,9 +115,8 @@ $mail = new Mailer();
                                 </tr>
                                 <?php
                             }
-                            
+
                             ?>
-                            
                         </table>
                     </div>
                 </div>

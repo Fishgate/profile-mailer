@@ -68,10 +68,10 @@ class Template {
         
         if($this->textarea){            
             $this->textarea = false;
-            return "<textarea name=\"$preg_match\" placeholder=\"$this->lovelyString\" id=\"$preg_match\"></textarea>";
+            return "<textarea required=\"required\" name=\"$preg_match\" placeholder=\"$this->lovelyString\" id=\"$preg_match\"></textarea>";
         }else{    
             $this->textarea = false;
-            return "<input placeholder=\"$this->lovelyString\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
+            return "<input required=\"required\" placeholder=\"$this->lovelyString\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
         }
     }
 
