@@ -11,11 +11,22 @@
     "TEMPLATE_NO_SHORTCODES":   "<p>No shortcodes found in template file.</p>",
     "TEMPLATE_DOESNT_EXIST":    "<p>Cannot find selected template file.</p>",
     "QUICKSEND_SUCCCESS":	"Quick send successfully sent!",
+    "QUICKSEND_LOG_FAIL":       "Error creating database log",
     "DB_CONNECT_FAIL":          "Error connecting to database.",
     "DB_USER_ERROR":            "Error validating user from database.",
     "LOG_OPEN_FAIL":            "Could not open log file ",
     "LOG_WRITE_FAIL":           "Could not write to log file ",
     "QUICKSEND_SEND_FAIL":      "Quicksend message could not be sent.",
     "QUICKSEND_LOGS_FAIL":      "Error retrieving email logs from database.",
-    "QUICKSEND_LOGS_EMPTY":     "Email logs are currently empty."
+    "QUICKSEND_LOGS_EMPTY":     "Email logs are currently empty.",
+    "UPLOAD_ERROR_GENERAL":     "There was an error uploading the file.",
+    "UPLOAD_ERROR_1":           "The uploaded file exceeds the UPLOAD_MAX_FILESIZE directive in php.ini.",
+    "UPLOAD_ERROR_2":           "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.",
+    "UPLOAD_ERROR_3":           "The uploaded file was only partially uploaded.",
+    "UPLOAD_ERROR_4":           "No file was uploaded.",
+    "UPLOAD_ERROR_6":           "Missing a temporary folder.",
+    "UPLOAD_ERROR_7":           "Failed to write file to disk.",
+    "UPLOAD_ERROR_8":           "File upload stopped by extension.",
+    "LOG_UPLOAD_ERR":           "Error creating database log",
+    "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed."
 }

@@ -19,6 +19,7 @@ class Mailer {
     private $unix;
     private $opened;
     private $tokenId;
+    private $logEmail;
     
     /**
      *
@@ -129,21 +130,21 @@ class Mailer {
             $this->unix = time();
             $this->opened = false;
             
-            $logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, date, unix, template, opened, token) VALUES (:email, :date, :unix, :template, :opened, :token);');
+            $this->logEmail = $this->con->prepare('INSERT INTO '.DB_LOGS_TBL.' (email, date, unix, template, opened, token) VALUES (:email, :date, :unix, :template, :opened, :token);');
             
-            $logEmail->bindValue(':email',      $email);    
-            $logEmail->bindValue(':date',       $this->date);
-            $logEmail->bindValue(':unix',       $this->unix);
-            $logEmail->bindValue(':template',   $template);
-            $logEmail->bindValue(':opened',     $this->opened);
-            $logEmail->bindValue(':token',      $this->tokenId);
+            $this->logEmail->bindValue(':email',      $email);    
+            $this->logEmail->bindValue(':date',       $this->date);
+            $this->logEmail->bindValue(':unix',       $this->unix);
+            $this->logEmail->bindValue(':template',   $template);
+            $this->logEmail->bindValue(':opened',     $this->opened);
+            $this->logEmail->bindValue(':token',      $this->tokenId);
             
-            if($logEmail->execute()) {
+            if($this->logEmail->execute()) {
                 return true;
             }
             
         } catch (PDOException $ex) {
-            throw new Exception($ex->getMessage());
+            throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->QUICKSEND_LOG_FAIL) );
         }
     }
     
@@ -170,12 +171,12 @@ class Mailer {
         
         if($this->phpmailer->Send()) {
             try {
-                return $this->logEmail($this->recipient_address, $this->template_name);
+                return $this->logEmail( $this->recipient_address, $this->template_name );
             } catch (Exception $ex) {
-                throw new Exception($this->logs->output($ex->getMessage(), $ex->getMessage()));
+                throw new Exception( $this->logs->output($ex->getMessage(), $ex->getMessage()) );
             }
         }else{
-            throw new Exception($this->logs->output($this->phpmailer->ErrorInfo, $this->alerts->QUICKSEND_SEND_FAIL));
+            throw new Exception( $this->logs->output($this->phpmailer->ErrorInfo, $this->alerts->QUICKSEND_SEND_FAIL) );
         }
     }
 

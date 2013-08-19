@@ -18,7 +18,8 @@ define('DB_USERNAME',   'root');
 define('DB_PASSWORD',   'root');
 define('DB_USER_TBL',   'users');
 define('DB_LOGS_TBL',   'quicksendlogs');
- 
+define('DB_LISTS_TBL',  'lists');
+
 /**
  * Set the project state here for error handling, saves the end user from 
  * getting exceptions thrown at them, set to true/false. Also handles some other things
@@ -38,6 +39,8 @@ define('SITE_URL',      'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_FOLDER);
 define('ERROR_LOG',     SITE_ROOT.'/logs/errors.txt');
 define('TEMPLATE_DIR',  SITE_ROOT.'/templates/');
 define('ALERTS_FILE',   '/alerts.json');
+define('UPLOAD_DIR',    SITE_ROOT.'/uploads/');
+
 
 /**
  * Setup autoloader to initiate classes

@@ -22,7 +22,7 @@ $(function(){
     });
     
     
-    //retina check --------------------------------------------------------------------------------------------------------
+    //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
     if(retina){
@@ -30,34 +30,24 @@ $(function(){
     }
 
     // import list form --------------------------------------------------------------------------------------------------------
-    /*$('#upload').click(function(){
-       var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
-       
-       if(valid_file) {
-           var options = {
-                beforeSubmit:   function(){ console.log('I\'m about to submit!'); },
-                success:        function(e){ console.log(e); },
-                url:            'import.exec.php',             
-                type:           'post',                
-                resetForm:      true                           
-            };
-           
-            $('#importlistform').ajaxSubmit(options);
-       }else{
-           
-       }
-    });*/
-    
     function validate_import(arr){
-        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);        
-        if(!valid_file){            
+        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
+        if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
         }
         
     }
     
-    function exec_import(){
+    function exec_import(result){
+        var res = result.trim();
+        
+        if(res === 'success'){
+            console.log(res);
+        }else{
+            $.growl.error({message: result});
+            //enableForm('#loader', '#login', 'invisible');
+        }
         
     }
     
@@ -69,7 +59,7 @@ $(function(){
         resetForm:      true
     });
 
-    // login form --------------------------------------------------------------------------------------------------------
+    // login form --------------------------------------------------------------------------------------------------------------
     function validate_login(arr){
         disableForm('#loader', '#login', 'invisible');
         
@@ -104,7 +94,7 @@ $(function(){
         resetForm:      true
     });
     
-    // quick send --------------------------------------------------------------------------------------------------------
+    // quick send --------------------------------------------------------------------------------------------------------------
     $('#template').change(function(){       
         if($(this).val() != 0){
             $('#templateSelectLoader').removeClass('hidden');
@@ -160,7 +150,7 @@ $(function(){
             $('#form_elements').html('<p>No template currently selected.</p>');
             enableForm('#quickSendLoader', '#send', 'invisible');
             
-            $.growl.error({message: alerts.QUICKSEND_SUCCCESS});
+            $.growl.notice({title: "Success!", message: alerts.QUICKSEND_SUCCCESS});
         }else{
             enableForm('#quickSendLoader', '#send', 'invisible');
             $.growl.error({message: result});
@@ -176,7 +166,7 @@ $(function(){
         resetForm: true
     });
     
-    //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------
+    //DRAWS A PIE CHART --------------------------------------------------------------------------------------------------------------
    if ($('#canvas').length > 0) {
        var pieData = [
             { value: quicksend_data.unopened, color:"#E74C3C" },
