@@ -35,9 +35,10 @@ $user->authUser();
                 <div id="importlist" class="left">                   
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
+                        <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
                         <input name="file" id="fileupload" type="file" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>
-                        <input id="upload" type="submit" value="Upload" />                   
+                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>                        
+                        <input id="upload" type="submit" value="Upload" />
                     </form>
                 </div>
             </div>

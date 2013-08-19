@@ -4,3 +4,4 @@ Small updates
 
 Medium updates
 - localise all end user strings into a single json file
+- force errors on the file upload (import.exec.php) for testing

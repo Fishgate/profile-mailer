@@ -1,4 +1,17 @@
+<?php require_once('./config.php'); ?>
+
 <?php
-print_r($_FILES);
-print_r($_POST);
+
+$upload = new Upload();
+$upload->file = $_FILES['file'];
+$upload->newName = $_POST['listname'];
+
+try {
+    if($upload->uploadFile()){
+        echo 'success';
+    }
+} catch (Exception $ex) {
+    echo $ex->getMessage();
+}
+    
 ?>
