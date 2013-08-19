@@ -29,6 +29,4 @@
     "UPLOAD_ERROR_8":           "File upload stopped by extension.",
     "LOG_UPLOAD_ERR":           "Error creating database log",
     "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed."
-    
-
 }
