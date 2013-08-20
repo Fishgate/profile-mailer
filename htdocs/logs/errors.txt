@@ -57,3 +57,4 @@
 15-08-2013, 14:14 - SQLSTATE[HY000] [1049] Unknown database 'db_n3ame'
 15-08-2013, 14:14 - SQLSTATE[HY000] [1049] Unknown database 'db_n3ame'
 15-08-2013, 14:15 - SQLSTATE[HY000] [1049] Unknown database 'db_n3ame'
+20-08-2013, 10:29 - SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)

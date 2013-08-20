@@ -63,12 +63,16 @@ class Upload {
         return '.' . pathinfo($this->file['name'], PATHINFO_EXTENSION);
     }
     
+    private function filterName($filename){
+        return str_replace(' ', '_', $filename);
+    }
+    
     private function logUploads($name, $file){
         try {
             $this->logList = $this->con->prepare('INSERT INTO '.DB_LISTS_TBL.' (name, file, date, unix) VALUES (:name, :file, :date, :unix);');
             
             $this->logList->bindValue(':name', $name);
-            $this->logList->bindValue(':file', $file);
+            $this->logList->bindValue(':file', $this->filterName($file));
             $this->logList->bindValue(':date', date('d-m-Y'));
             $this->logList->bindValue(':unix', time());
             
@@ -79,10 +83,10 @@ class Upload {
             throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->LOG_UPLOAD_ERR) );
         }
     }
-    
+        
     public function uploadFile(){
         if($this->errorCheck()){
-            if ( @move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR.$this->newName.$this->getFileExt()) ){
+            if ( @move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR.$this->filterName($this->newName).$this->getFileExt()) ){
                 return $this->logUploads($this->newName, $this->file['name']);
             }else{
                 throw new Exception( $this->logs->output($this->alerts->MOVE_UPLOADED_FILE_FAIL, $this->alerts->UPLOAD_ERROR_GENERAL) );
