@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2013 at 01:49 PM
+-- Generation Time: Aug 20, 2013 at 11:22 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -28,19 +28,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `lists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `file` text NOT NULL,
+  `nice_name` text NOT NULL,
+  `file_name` text NOT NULL,
+  `tbl_name` text NOT NULL,
   `date` text NOT NULL,
   `unix` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `lists`
---
-
-INSERT INTO `lists` (`id`, `name`, `file`, `date`, `unix`) VALUES
-(1, '123', 'wallpaper-3914.jpg', '19-08-2013', '1376912785');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
