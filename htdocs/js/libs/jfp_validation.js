@@ -16,7 +16,7 @@
  *  - migrating this to work with jquery form plugin
  * 
  * 2013/07/31
- *  - validate_file() now uses XMLhttpRequest 2 (because fuck outdated browsers).
+ *  - worked in some XMLhttpRequest 2 into the file validation
  * 
  * 2012/12/19
  *  - added first variable for background colour on input errors.
@@ -25,7 +25,7 @@
  * 2012/10/05
  *  - removed the preset # selector, this must now be included in the "target" variable when calling the function.
  *  - removed 
- * 
+ *   
  */
 
 error = "red";
@@ -46,18 +46,21 @@ function validate (target){
 function validate_file (target, filetypes_arr, max_size) {
     if(jQuery(target).val() !== ''){
         var file = jQuery(target)[0].files[0];
-        size = file.size;
-        type = file.type;
+        var size = file.size;
         
-        is_valid = false;
+        var value = jQuery(target).val();
+        var lastDot = value.lastIndexOf('.');
+        var type = value.substr(lastDot);
+        
+        is_valid_ext = false;
 
         for(var i in filetypes_arr){
             if(type === filetypes_arr[i]){
-                is_valid = true;
+                is_valid_ext = true;
             }
         }
-
-        if(is_valid){
+        
+        if(is_valid_ext){
             if(max_size*1048576 > size){
                 return true;
             }else{

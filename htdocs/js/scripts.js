@@ -31,12 +31,11 @@ $(function(){
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
-        var valid_file = validate_file('#fileupload', ['image/jpeg', 'image/gif'], 2);
+        var valid_file = validate_file('#fileupload', ['.csv', '.xls'], 2);
         if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
         }
-        
     }
     
     function exec_import(result){
@@ -48,7 +47,6 @@ $(function(){
             $.growl.error({message: result});
             //enableForm('#loader', '#login', 'invisible');
         }
-        
     }
     
     $('#importlistform').ajaxForm({
@@ -95,7 +93,7 @@ $(function(){
     });
     
     // quick send --------------------------------------------------------------------------------------------------------------
-    $('#template').change(function(){       
+    $('#template').change(function(){
         if($(this).val() != 0){
             $('#templateSelectLoader').removeClass('hidden');
             
