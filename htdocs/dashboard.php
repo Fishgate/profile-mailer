@@ -25,10 +25,28 @@ $mail = new Mailer();
                 <div class="decoration"></div>
                 <div id="menutitle">menu</div>
                 <ul id="dash-nav">
-                    <li>New mass mail</li>
-                    <a href="importlist.php"><li>Import list</li></a>
-                    <a href="managelist.php"><li>Manage lists</li></a>
-                    <a href="logs.php"><li>View full logs</li></a>
+                    <li>
+                        <span class="icons menu_icons">C</span>
+                        New mass mail
+                    </li>
+                    <a href="importlist.php">
+                        <li>
+                            <span class="icons menu_icons">w</span>
+                            Import list
+                        </li>
+                    </a>
+                    <a href="managelist.php">
+                        <li>
+                            <span class="icons menu_icons">n</span>
+                            Manage lists
+                        </li>
+                    </a>
+                    <a href="logs.php">
+                        <li>
+                            <span class="icons menu_icons">g</span>
+                            View full logs
+                        </li>
+                    </a>
                 </ul>
             </nav>
         

@@ -19,11 +19,33 @@ $user->authUser();
                 <div class="decoration"></div>
                 <div id="menutitle">menu</div>
                 <ul id="dash-nav">
-                    <li>New mass mail</li>
-                    <li id="selected">Import list</li>
-                    <a href="managelist.php"><li>Manage lists</li></a>
-                    <a href="logs.php"><li>View full logs</li></a>
+                    <li>
+                        <span class="icons menu_icons">C</span>
+                        New mass mail
+                    </li>
+                    <li id="selected">
+                        <span class="icons menu_icons selected_icon">w</span>
+                        Import list
+                    </li>
+                    <a href="managelist.php">
+                        <li>
+                            <span class="icons menu_icons">n</span>
+                            Manage lists
+                        </li>
+                    </a>
+                    <a href="logs.php">
+                        <li>
+                            <span class="icons menu_icons">g</span>
+                            View full logs
+                        </li>
+                    </a>
                 </ul>
+                
+                <div id="techs" class="clearfix">
+                    <span class="left icons">q</span>
+                    <span class="left icons">r</span>
+                    <span class="left icons">s</span>
+                </div>
             </nav>
         
         <div id="wrapper" class="clearfix">
