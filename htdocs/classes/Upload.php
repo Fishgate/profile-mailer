@@ -38,6 +38,10 @@ class Upload {
         $this->logs = new ErrorLog();
     }
     
+    /**
+     * 
+     * @return boolean
+     */
     private function errorCheck(){
         switch ($this->file['error']) {
             case 1:
@@ -59,6 +63,10 @@ class Upload {
         }
     }
     
+    /**
+     * 
+     * @return type
+     */
     private function getFileExt(){
         return '.' . pathinfo($this->file['name'], PATHINFO_EXTENSION);
     }
@@ -67,6 +75,13 @@ class Upload {
         return str_replace(' ', '_', $filename);
     }
     
+    /**
+     * 
+     * @param type $name
+     * @param type $file
+     * @return boolean
+     * @throws Exception
+     */
     private function logUploads($name, $file){
         try {
             $this->logList = $this->con->prepare('INSERT INTO '.DB_LISTS_TBL.' (name, file, date, unix) VALUES (:name, :file, :date, :unix);');
@@ -83,7 +98,12 @@ class Upload {
             throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->LOG_UPLOAD_ERR) );
         }
     }
-        
+    
+    /**
+     * 
+     * @return type
+     * @throws Exception
+     */
     public function uploadFile(){
         if($this->errorCheck()){
             if ( @move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR.$this->filterName($this->newName).$this->getFileExt()) ){

@@ -37,9 +37,31 @@ $user->authUser();
                         <h2>Import List</h2>
                         <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
                         <input name="file" id="fileupload" type="file" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>                        
                         <input id="upload" type="submit" value="Upload" />
+                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>    
+                        <br />
                     </form>
+                </div>
+                <!--=========== STEPS INDICATOR ============-->
+                <div id="guide" class="left">
+                    <h2>Progress</h2>
+                    <div id="stepsHolder" class="clearfix">
+                        <div class="left steps currentStep">
+                            <div class="stepsDecoration  currentStep_decoration"></div>
+                            <div class="stepsDecoration_mirror"></div>
+                            IMPORT
+                        </div>
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            CONFIGURE
+                        </div>
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            COMPLETED!
+                        </div>
+                    </div>
                 </div>
             </div>
             

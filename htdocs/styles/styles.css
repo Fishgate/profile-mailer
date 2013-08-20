@@ -14,10 +14,17 @@ canvas{}
 /*==============================================
                   MINI RESETS
 ===============================================*/
+em{
+    font-size: 11px;
+    color: #95a5a6;
+}
 ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+p{
+    margin-top: 0;
 }
 h1{
     font-weight: normal;
@@ -79,6 +86,7 @@ img{
 .red{color: #E74C3C;}
 .green{color: #2ECC71;}
 .blue{color: #3498DB;}
+.white{color: #fff;}
 
 .red_bg{background: #E74C3C;}
 .green_bg{background: #2ECC71;}
@@ -321,7 +329,100 @@ nav{
     width: 200px;
     margin: 0 0 0 25px;
 }
-
+#guide, #success_import{
+    margin: 0 0 0 25px;
+}
+#success_import{
+    width: 400px;
+}
+.success{
+    color: #2ecc71;
+    font-size: 25px;
+    text-transform: uppercase;
+    
+}
+#stepsHolder{
+    border: 1px solid #2c3e50;
+    background: #ecf0f1;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+.steps{
+    position: relative;
+    padding: 20px 40px;
+    
+    -webkit-border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -o-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+}
+.stepsDecoration{
+    position: absolute;
+    top: 0;
+    right: -26px;
+    z-index: 100;
+    
+    border-left: 28px solid #ecf0f1;
+    border-top: 28px solid transparent;
+    border-bottom: 28px solid transparent;
+    
+    width: 0;
+    height: 0;
+}
+.stepsDecoration_mirror{
+    position: absolute;
+    top: 0;
+    right: -27px;
+    z-index: 99;
+    
+    border-left: 28px solid #2c3e50;
+    border-top: 28px solid transparent;
+    border-bottom: 28px solid transparent;
+    
+    width: 0;
+    height: 0;
+}
+.currentStep{
+    background: #2ecc71;
+    color: #fff;
+}
+.currentStep_decoration{
+    border-left: 28px solid #2ecc71;
+}
+.noticeDiv{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    
+    background: #fff;
+    padding: 20px;
+}
+.noticeDiv a{
+    color: #2ecc71;
+    text-transform: uppercase;
+    padding: 3px;
+}
+.noticeDiv a:hover{
+    background: #2ecc71;
+    color: #fff;
+}
+/*.successLinks{
+    padding: 10px 20px;
+    margin: 0 10px 0 0;
+    
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -o-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+.successLinks:hover{
+    background: #fc0;
+    color: #2C3E50;
+}*/
 /*==============================================
                  LOGS
 ===============================================*/
