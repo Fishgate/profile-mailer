@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles file uploads
+ * Handles file uploads, indexing, and renaming
  *
  * @author Kyle Vermeulen <kyle@source-lab.co.za>
  */
@@ -11,16 +11,17 @@ class Upload {
     private $alerts;
     
     private $logList;
+    private $nospace;
     
     /**
      *
-     * @var Array
+     * @var Array The $_FILES array being post with php
      */
     public $file;
     
     /**
      *
-     * @var String
+     * @var String The users desired name for the list, this is also send from the form
      */
     public $newName;
     
@@ -39,6 +40,7 @@ class Upload {
     }
     
     /**
+     * Checks for errors in the file upload and returns an appropriate message
      * 
      * @return boolean
      */
@@ -64,6 +66,7 @@ class Upload {
     }
     
     /**
+     * Gets the extention of the current file being processed
      * 
      * @return type
      */
@@ -71,25 +74,36 @@ class Upload {
         return '.' . pathinfo($this->file['name'], PATHINFO_EXTENSION);
     }
     
-    private function filterName($filename){
-        return str_replace(' ', '_', $filename);
+    /**
+     * 
+     * @param String $string The matched string to remove spaces from
+     * @return String
+     */
+    private function filterName($string){
+        $this->nospace = trim($string);
+        $this->nospace = strtolower($this->nospace);
+        $this->nospace = preg_replace('/[^A-Za-z0-9_\-]/', '_', $this->nospace);
+        
+        return $this->nospace;
     }
     
     /**
+     * Captures the uploaded list into an indexing table which will be used later
+     * to reference all of the available lists.
      * 
-     * @param type $name
-     * @param type $file
-     * @return boolean
+     * @param String $name The new name of the file after it has been uploaded
+     * @return boolean returns true on success
      * @throws Exception
      */
-    private function logUploads($name, $file){
+    private function logUploads($newName){
         try {
-            $this->logList = $this->con->prepare('INSERT INTO '.DB_LISTS_TBL.' (name, file, date, unix) VALUES (:name, :file, :date, :unix);');
+            $this->logList = $this->con->prepare('INSERT INTO '.DB_LISTS_TBL.' (nice_name, file_name, tbl_name, date, unix) VALUES (:nice, :file, :tbl, :date, :unix);');
             
-            $this->logList->bindValue(':name', $name);
-            $this->logList->bindValue(':file', $this->filterName($file));
-            $this->logList->bindValue(':date', date('d-m-Y'));
-            $this->logList->bindValue(':unix', time());
+            $this->logList->bindValue(':nice',  $newName);
+            $this->logList->bindValue(':file',  $this->filterName($newName).$this->getFileExt());
+            $this->logList->bindValue(':tbl',   $this->filterName($newName));
+            $this->logList->bindValue(':date',  date('d-m-Y'));
+            $this->logList->bindValue(':unix',  time());
             
             if($this->logList->execute()){
                 return true;
@@ -100,8 +114,9 @@ class Upload {
     }
     
     /**
+     * Uploads the file to a specified location. Location specified in config.php
      * 
-     * @return type
+     * @return Boolean returns true on success
      * @throws Exception
      */
     public function uploadFile(){
