@@ -19,8 +19,14 @@ $mail = new Mailer();
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
-                <div id="menutitle">menu</div>
+                <div id="menu">menu</div>
                 <ul id="dash-nav">
+                    <a href="dashboard.php">
+                        <li>
+                            <span class="icons menu_icons">F</span>
+                            Dashboard
+                        </li>
+                    </a>
                    <li>
                         <span class="icons menu_icons">C</span>
                         New mass mail

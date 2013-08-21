@@ -68,7 +68,33 @@ a:hover{
 img{
     display: block;
 }
-
+.custom{
+    color: #eee;
+    outline: 2px dashed #2ecc71;
+    
+    position: relative;
+    z-index: 200;
+}
+.custom_bg{
+    background: #eee!important;
+    color: #666;
+    outline: 2px dashed #2ecc71;
+}
+.custom_bg_dark{
+    background: #999!important;
+    color: #666;
+    outline: 2px dashed #2ecc71;
+}
+.icons_custom{
+    font-family: 'icons';
+    font-size: 16px;
+    color: deeppink;
+    
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 999;
+}
 
 /*==============================================
                   BRANDING BAR
@@ -78,6 +104,13 @@ img{
     position: fixed;
     z-index: 999;
     padding: 20px;
+}
+#branding_custom{
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    padding: 20px;
+    background: #eee;
 }
 
 /*==============================================
@@ -210,6 +243,60 @@ nav{
    position: relative;
    z-index: 1;
 }
+#menu{
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #9fc20e;
+    margin: 0;
+    padding: 10px;
+    color: #fff;
+    
+   -webkit-box-shadow: 0 2px 2px #000;
+   -moz-box-shadow: 0 2px 2px #000;
+   -o-box-shadow: 0 2px 2px #000;
+   box-shadow: 0 2px 2px #000;
+   
+   position: relative;
+   z-index: 1;
+}
+#menu_custom{
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #eee;
+    margin: 0;
+    padding: 10px;
+    color: #666;
+    
+   -webkit-box-shadow: 0 2px 2px #000;
+   -moz-box-shadow: 0 2px 2px #000;
+   -o-box-shadow: 0 2px 2px #000;
+   box-shadow: 0 2px 2px #000;
+   
+   position: relative;
+   z-index: 1;
+}
+.decoration_custom{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    
+   -webkit-box-shadow: 2px 2px 2px #222;
+   -moz-box-shadow: 2px 2px 2px #222;
+   -o-box-shadow: 2px 2px 2px #222;
+   box-shadow: 2px 2px 2px #222;
+    
+    width: 15px;
+    height: 15px;
+    background: #eee;
+    
+    position: absolute;
+    z-index: 2;
+    top: 25px;
+    right: 80px;
+}
 .decoration{
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -221,13 +308,13 @@ nav{
    -o-box-shadow: 2px 2px 2px #222;
    box-shadow: 2px 2px 2px #222;
     
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background: #9fc20e;
     
     position: absolute;
     z-index: 2;
-    top: 45px;
+    top: 25px;
     right: 80px;
 }
 #wrapper{

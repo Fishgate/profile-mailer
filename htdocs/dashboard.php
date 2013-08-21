@@ -23,8 +23,14 @@ $mail = new Mailer();
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
-                <div id="menutitle">menu</div>
+                <div id="menu">menu</div>
                 <ul id="dash-nav">
+                    <a href="dashboard.php">
+                        <li id="selected">
+                            <span class="icons menu_icons selected_icon">F</span>
+                            Dashboard
+                        </li>
+                    </a>
                     <li>
                         <span class="icons menu_icons">C</span>
                         New mass mail
@@ -116,9 +122,9 @@ $mail = new Mailer();
                                             <td align="center">
                                                 <?php 
                                                 if($log['opened']){
-                                                    echo '<span style="color: green;">&#x2713;</span>';
+                                                    echo '<span class="icons green">h</span>';
                                                 }else{
-                                                    echo '<span style="color: red;">&#x2717;</span>';
+                                                    echo '<span class="icons red">i</span>';
                                                 }
                                                 ?>
                                             </td>
