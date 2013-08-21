@@ -17,8 +17,14 @@ $user->authUser();
         <!--==================================== NAVIGATION ===========-->
             <nav>
                 <div class="decoration"></div>
-                <div id="menutitle" class="centered">menu</div>
+                <div id="menu" class="centered">menu</div>
                 <ul id="dash-nav">
+                    <a href="dashboard.php">
+                        <li>
+                            <span class="icons menu_icons">F</span>
+                            Dashboard
+                        </li>
+                    </a>
                     <li>
                         <span class="icons menu_icons">C</span>
                         New mass mail

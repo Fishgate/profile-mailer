@@ -3,6 +3,10 @@
         <script type="text/javascript" src="js/libs/tinymce/tinymce.min.js"></script>
         <script src="js/libs/jquery.growl.js"></script>
         <script type="text/javascript" src="js/libs/jfp_validation.js"></script>
+        
+        <!--/// REVEAL JS \\\-->
+        <script src="js/reveal/jquery.reveal.js"></script>
+        
         <script type="text/javascript" src="js/scripts.js"></script>
         <script src="js/Chart.js"></script>
     </body>

@@ -13,11 +13,23 @@ $user->authUser();
     <?php require_once('./head.php'); ?>
     
     <body>
-        
+            <!--============================
+            MODAL - MENU HEADING
+            ==============================-->
+            <div id="modal-menu-heading" class="reveal-modal">
+                <h1>Customise your Menu Heading Background</h1>
+                <p>HELLOW</p>
+                <a class="close-reveal-modal">&#215;</a>
+            </div>
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
-                <div class="decoration"></div>
-                <div id="menu">menu</div>
+                <div class="decoration_custom"></div>
+                <a data-reveal-id="modal-menu-heading">
+                    <span class="icons_custom">u</span>
+                </a>
+                <div id="menu_custom" class="custom">
+                    menu
+                </div>
                 <ul id="dash-nav">
                     <a href="dashboard.php">
                         <li>
@@ -29,8 +41,9 @@ $user->authUser();
                         <span class="icons menu_icons">C</span>
                         New mass mail
                     </li>
-                    <li id="selected">
-                        <span class="icons menu_icons selected_icon">w</span>
+                    <li id="selected_custom" class="custom">
+                        <span class="icons_custom">u</span>
+                        <span class="icons menu_icons">w</span>
                         Import list
                     </li>
                     <a href="managelist.php">
@@ -54,43 +67,31 @@ $user->authUser();
                 </div>
             </nav>
         
-        <div id="wrapper" class="clearfix">
+        <div id="wrapper" class="clearfix custom_bg_dark">
             
-            <?php include 'includes/branding.html' ?>
+            
+            <span style="position: fixed; top: 130px;" class="icons_custom">u</span>
+            <span style="position: fixed;" class="icons_custom">u</span>
+            
+            <div id="branding_custom" class="custom">
+                <img src="img/logo.png"/>
+            </div>
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
                 <div id="importlist" class="left">                   
                     <form id="importlistform" enctype="multipart/form-data">
-                        <h2>Import List</h2>
-                        <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
-                        <input name="file" id="fileupload" type="file" />
-                        <input id="upload" type="submit" value="Upload" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>    
-                        <br />
+                        <h2 class="custom">
+                            <span class="icons_custom">u</span>
+                            Import List
+                        </h2>
+                        <div style="position: relative;">
+                            <span class="icons_custom">u</span>
+                        <input id="upload" class="custom_bg" type="submit" value="Upload" />
+                        </div>
                     </form>
                 </div>
-                <!--=========== STEPS INDICATOR ============-->
-                <div id="guide" class="left">
-                    <h2>Progress</h2>
-                    <div id="stepsHolder" class="clearfix">
-                        <div class="left steps currentStep">
-                            <div class="stepsDecoration  currentStep_decoration"></div>
-                            <div class="stepsDecoration_mirror"></div>
-                            IMPORT
-                        </div>
-                        <div class="left steps">
-                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                            <div class="hidden stepsDecoration_mirror"></div>
-                            CONFIGURE
-                        </div>
-                        <div class="left steps">
-                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                            <div class="hidden stepsDecoration_mirror"></div>
-                            COMPLETED!
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             
         </div>   
