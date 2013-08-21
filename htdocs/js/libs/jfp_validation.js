@@ -25,7 +25,7 @@
  * 2012/10/05
  *  - removed the preset # selector, this must now be included in the "target" variable when calling the function.
  *  - removed 
- * 
+ *   
  */
 
 error = "red";
