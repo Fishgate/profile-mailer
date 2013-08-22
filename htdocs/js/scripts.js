@@ -31,7 +31,7 @@ $(function(){
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
-        var valid_file = validate_file('#fileupload', ['.csv', '.xls'], 2);
+        var valid_file = validate_file('#fileupload', ['.csv'], 2);
         if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
