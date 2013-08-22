@@ -17,8 +17,14 @@ $user->authUser();
             MODAL - MENU HEADING
             ==============================-->
             <div id="modal-menu-heading" class="reveal-modal">
-                <h1>Customise your Menu Heading Background</h1>
-                <p>HELLOW</p>
+                <h2>Customise your Menu Heading Background</h2>
+                <div class="clearfix">
+                    <div class="left">
+                        Example:
+                        <img src="img/customise/menu_heading.jpg" />
+                    </div>
+                    <div class="left">COPY HERE</div>
+                </div>
                 <a class="close-reveal-modal">&#215;</a>
             </div>
         <!--==================================== NAVIGATION ===========-->
