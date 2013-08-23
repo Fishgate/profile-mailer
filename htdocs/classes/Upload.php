@@ -12,6 +12,14 @@ class Upload {
     
     private $logList;
     private $nospace;
+    private $create_tbl;
+    private $addColumn;
+    private $addColumn_success;
+    private $colCount;
+    private $populate;
+    private $populate_success;
+    private $colsToInsert = array();
+    
     
     /**
      *
@@ -88,6 +96,76 @@ class Upload {
     }
     
     /**
+     * Gets the total number of columns inside of the CSV file to prepare
+     * its temporary table columns. These will later be cleaned up by the user.
+     * 
+     * @param String $filename Name of the file in the uploads directory to read
+     * @return Int
+     */
+    public function csvGetColumnCount($filename){
+        ini_set('auto_detect_line_endings', TRUE);
+                
+        if($fh = fopen(UPLOAD_DIR.$filename, 'r')){
+            $row = fgetcsv($fh);
+            return count($row);                    
+        }
+    }
+    
+    public function prepareCreateTblSQL(){
+        
+    }
+    
+    private function importCSV($tbl_name, $filename){
+        try {
+            $this->create_tbl = $this->con->prepare("CREATE TABLE $tbl_name (id INT NOT NULL AUTO_INCREMENT,  PRIMARY KEY(id));");
+            
+            if($this->create_tbl->execute()){
+                $this->colCount = $this->csvGetColumnCount($filename);                       
+
+                if($this->colCount > 0){
+                    for($i=1; $i<=$this->colCount; $i++){
+                        // populate an array of the columns we just made to use in the INSERT statement later
+                        array_push($this->colsToInsert, 'temp_'.$i);
+
+                        // append the neccesary amount of columns onto the table we just created
+                        $this->addColumn = $this->con->prepare("ALTER TABLE $tbl_name ADD COLUMN temp_$i TEXT NOT NULL;");                    
+
+                        if(!$this->addColumn->execute()){
+                            $this->addColumn_success = false;
+                            break;
+                        }else{
+                            $this->addColumn_success = true;
+                        }
+                    }
+
+                    if($this->addColumn_success){
+                        if($fh = fopen(UPLOAD_DIR.$filename, 'r')){
+                            while($row = fgetcsv($fh)) {
+                                $this->populate = $this->con->prepare("INSERT INTO $tbl_name (". implode(",", $this->colsToInsert) .") VALUES ('". implode("','", $row) ."');");
+                                
+                                if(!$this->populate->execute()){
+                                    $this->populate_success = false;
+                                    break;
+                                }else{
+                                    $this->populate_success = true;
+                                }
+                            }
+                            
+                            if($this->populate_success){
+                                return true;
+                            }
+                        }
+                    }
+                }else{
+                    throw new Exception( $this->logs->output('Could not count columns in CSV file.', 'Could not count columns in CSV file.') );
+                }
+            }
+        } catch (PDOException $ex) {
+           throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->CREATE_LIST_DB_ERR) );
+        }
+    }
+    
+    /**
      * Captures the uploaded list into an indexing table which will be used later
      * to reference all of the available lists.
      * 
@@ -97,16 +175,21 @@ class Upload {
      */
     private function logUploads($newName){
         try {
-            $this->logList = $this->con->prepare('INSERT INTO '.DB_LISTS_TBL.' (nice_name, file_name, tbl_name, date, unix) VALUES (:nice, :file, :tbl, :date, :unix);');
+            $this->logList = $this->con->prepare(
+                'INSERT INTO '.DB_LISTS_TBL.' 
+                (nice_name, file_name, tbl_name, date, unix)
+                VALUES 
+                (:nice, :file, :tbl, :date, :unix);'
+            );
             
             $this->logList->bindValue(':nice',  $newName);
             $this->logList->bindValue(':file',  $this->filterName($newName).$this->getFileExt());
-            $this->logList->bindValue(':tbl',   $this->filterName($newName));
+            $this->logList->bindValue(':tbl',   'mailinglist_'.$this->filterName($newName));
             $this->logList->bindValue(':date',  date('d-m-Y'));
             $this->logList->bindValue(':unix',  time());
             
             if($this->logList->execute()){
-                return true;
+                return $this->importCSV('mailinglist_'.$this->filterName($newName), $this->filterName($newName).$this->getFileExt());
             }
         } catch (PDOException $ex) {
             throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->LOG_UPLOAD_ERR) );
@@ -130,6 +213,8 @@ class Upload {
             throw new Exception( $this->logs->output($this->errorCheck(), $this->alerts->UPLOAD_ERROR_GENERAL) );
         }
     }
+    
+    
     
     
 }

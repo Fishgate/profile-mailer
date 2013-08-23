@@ -67,7 +67,8 @@ $user->authUser();
                         <input name="file" id="fileupload" type="file" />
                         <input id="upload" type="submit" value="Upload" />
                         <em>Max file size 2MB. Supported file types include CSV</em>    
-                        <br />
+                        <br />                        
+                        <img src="img/loader.gif" alt="loader" class="invisible right" id="importLoader">
                     </form>
                 </div>
                 <!--=========== STEPS INDICATOR ============-->

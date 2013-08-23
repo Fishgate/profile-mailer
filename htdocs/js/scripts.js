@@ -31,7 +31,10 @@ $(function(){
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
+        disableForm('#importLoader', '#upload', 'invisible');
+        
         var valid_file = validate_file('#fileupload', ['.csv'], 2);
+        
         if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
@@ -40,12 +43,12 @@ $(function(){
     
     function exec_import(result){
         var res = result.trim();
-        
+               
         if(res === 'success'){
-            console.log(res);
+            window.location = 'importconfig.php';
         }else{
             $.growl.error({message: result});
-            //enableForm('#loader', '#login', 'invisible');
+            enableForm('#importLoader', '#upload', 'invisible');
         }
     }
     
