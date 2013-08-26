@@ -1,7 +1,7 @@
 function disableForm(loader, submitBtn, loaderClass){
     $(loader).removeClass(loaderClass);
     $(submitBtn).attr('disabled','disabled');
-};
+}
 
 function enableForm(loader, submitBtn, loaderClass){
     $(loader).addClass(loaderClass);
@@ -17,7 +17,7 @@ $(function(){
     	async: false,
     	dataType: 'json',
     	success: function(data) {
-            alerts = data;
+        alerts = data;
     	}
     });
     

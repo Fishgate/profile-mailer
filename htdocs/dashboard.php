@@ -17,7 +17,7 @@ $mail = new Mailer();
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>       
         <!--==================================== NAVIGATION ===========-->
@@ -54,6 +54,12 @@ $mail = new Mailer();
                         </li>
                     </a>
                 </ul>
+                
+                <div id="techs" class="clearfix">
+                    <span class="left icons">q</span>
+                    <span class="left icons">r</span>
+                    <span class="left icons">s</span>
+                </div>
             </nav>
         
         <div id="wrapper" class="clearfix">
@@ -181,4 +187,4 @@ $mail = new Mailer();
         };
         /* ]]> */
         </script>
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>

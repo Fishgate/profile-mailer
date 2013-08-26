@@ -11,7 +11,7 @@ $reports = new Reports();
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>
         <!--==============================================================
@@ -31,7 +31,7 @@ $reports = new Reports();
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
-                <div id="menutitle">menu</div>
+                <div id="menu">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <a  href="importlist.php"><li>Import list</li></a>
@@ -159,4 +159,4 @@ $reports = new Reports();
             </div>
         </div>
         
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>
