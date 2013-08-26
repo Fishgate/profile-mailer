@@ -10,7 +10,7 @@ $user->authUser();
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>
         
@@ -95,4 +95,4 @@ $user->authUser();
             
         </div>   
         
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>

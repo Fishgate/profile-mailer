@@ -11,7 +11,7 @@ $mail = new Mailer();
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>
         <!--==============================================================
@@ -162,4 +162,4 @@ $mail = new Mailer();
             </div>
         </div>
         
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>

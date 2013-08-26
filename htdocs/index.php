@@ -15,7 +15,7 @@ if(isset($_SESSION['user_auth'])){
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>
         <h1 class="centered">
@@ -34,4 +34,4 @@ if(isset($_SESSION['user_auth'])){
             <img id="loader" class="invisible right" alt="loader" src="img/loader_index.gif" /><!-- replace this with some kind of loading gif -->
         </form>
         
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>
