@@ -60,19 +60,9 @@ $user->authUser();
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
-                <div id="importlist" class="left">                   
-                    <form id="importlistform" enctype="multipart/form-data">
-                        <h2>Import List</h2>
-                        <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
-                        <input name="file" id="fileupload" type="file" />
-                        <input id="upload" type="submit" value="Upload" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>    
-                        <br />
-                    </form>
-                </div>
+                <!--  -->
                 <!--=========== STEPS INDICATOR ============-->
-                <div id="guide" class="left">
-                    <h2>Progress</h2>
+                <!--<h2>Progress</h2>-->
                     <div id="stepsHolder" class="clearfix">
                         <div class="left steps currentStep">
                             <div class="stepsDecoration  currentStep_decoration"></div>
@@ -90,6 +80,16 @@ $user->authUser();
                             COMPLETED!
                         </div>
                     </div>
+                <!--  -->
+                <div id="importlist">                   
+                    <form id="importlistform" enctype="multipart/form-data">
+                        <h2>Import List</h2>
+                        <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
+                        <input name="file" id="fileupload" type="file" />
+                        <input id="upload" type="submit" value="Upload" />
+                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>    
+                        <br />
+                    </form>
                 </div>
             </div>
             

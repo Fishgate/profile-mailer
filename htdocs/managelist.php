@@ -31,7 +31,7 @@ $mail = new Mailer();
         <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration"></div>
-                <div id="menutitle">menu</div>
+                <div id="menu">menu</div>
                 <ul id="dash-nav">
                     <li>New mass mail</li>
                     <a  href="importlist.php"><li>Import list</li></a>
