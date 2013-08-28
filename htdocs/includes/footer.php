@@ -7,9 +7,6 @@
         <!--/// REVEAL JS \\\-->
         <script src="js/reveal/jquery.reveal.js"></script>
         
-        <!--/// STICKY-KIT JS \\\-->
-        <script src="js/sticky-kit.js"></script>
-        
         <script type="text/javascript" src="js/scripts.js"></script>
         <script src="js/Chart.js"></script>
     </body>
