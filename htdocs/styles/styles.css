@@ -575,8 +575,7 @@ nav{
 /*==============================================
              MANAGE LIST TABLE HOLDER
 ===============================================*/
-.managelist_holder{
-    width: 750px;
+.managelist_holder{    
     margin: 0 0 25px 25px;
 }
 #logs_menu_holder{

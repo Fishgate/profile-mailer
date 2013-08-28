@@ -3,10 +3,11 @@
  * Fetches data used in frontend logging and reporting
  *
  * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
+ * 
  */
 
-require_once(SITE_ROOT . '/classes/Connection.php');
-require_once(SITE_ROOT . '/classes/ErrorLog.php');
+/*require_once(SITE_ROOT . '/classes/Connection.php');
+require_once(SITE_ROOT . '/classes/ErrorLog.php');*/
 
 class Reports {
     private $alerts;

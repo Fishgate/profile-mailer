@@ -27,7 +27,7 @@ $user->authUser();
                 </div>
                 <a class="close-reveal-modal">&#215;</a>
             </div>
-        <!--==================================== NAVIGATION ===========-->
+            <!--==================================== NAVIGATION ===========-->
             <nav class="centered">
                 <div class="decoration_custom"></div>
                 <a data-reveal-id="modal-menu-heading">

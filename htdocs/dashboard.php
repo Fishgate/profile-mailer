@@ -31,10 +31,12 @@ $mail = new Mailer();
                             Dashboard
                         </li>
                     </a>
-                    <li>
-                        <span class="icons menu_icons">C</span>
-                        New mass mail
-                    </li>
+                    <a href="dashboard.php">
+                        <li>
+                            <span class="icons menu_icons">C</span>
+                            New mass mail
+                        </li>
+                    </a>
                     <a href="importlist.php">
                         <li>
                             <span class="icons menu_icons">w</span>

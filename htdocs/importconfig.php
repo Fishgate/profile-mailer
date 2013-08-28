@@ -6,6 +6,14 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
+
+
+if(isset($_GET['id']) && !empty($_GET['id'])){
+    $editList = new EditList();
+    $editList->refID = mysql_real_escape_string($_GET['id']);
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -84,84 +92,17 @@ $user->authUser();
                     </div>
                 <!--  -->
                 <div class="left managelist_holder">
-                    <h3>Comprehensive View</h3>
+                    <h3>Rename Headers</h3>
                     <form method="post">
                     <div class="managelist_table">
-                        
-                        <table border="1" width="100%" cellpadding="5">
-                            <tr>
-                                <td class="recent_heads">To</td>
-                                <td class="recent_heads">Email</td>
-                                <td class="recent_heads">Date</td>
-                                <td class="recent_heads">Opened</td>
-                                <td class="recent_heads">Action</td>
-                            </tr>
-                            
-                            <?php
-                            
-                            try {
-                                if($email_logs = $mail->outputLogs()){
-                                    foreach($email_logs as $log){
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $log['name']; ?></td>
-                                            <td><?php echo $log['email']; ?></td>
-                                            <td><?php echo $log['date']; ?></td>
-                                            <td align="center">
-                                                <?php 
-                                                if($log['opened']){
-                                                    echo '<span style="color: green;">&#x2713;</span>';
-                                                }else{
-                                                    echo '<span style="color: red;">&#x2717;</span>';
-                                                }
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" clas="remove_row" />
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                }
-                            } catch (Exception $ex) {
-                                ?>
-                                <tr>
-                                    <td colspan="4"><?php echo $ex->getMessage(); ?></td>
-                                </tr>
-                                <?php
-                            }
-                            
-                            ?>
-                        </table>
                         
                         <div id="action_buttons" class="clearfix">
                             <div class="left button add green_bg">Add entry</div>
                             <div class="right button delete red_bg">Remove selected</div>
                         </div>
                         
-                        <script>
-                            //============================ SHOW ADD ENTRY TABLE
-                            $('.add').click(function(){
-                                $('#add_holder').removeClass('hidden');
-                            });
-                            //============================ HIDE ADD ENTRY TABLE
-                            $('.ok').live('click', function(){
-                                $('#add_holder').addClass('hidden');
-                                //--- GROWL examples
-                                //$.growl.notice({message: 'YOUR NOTICE HERE'});
-                                //$.growl.warning({message: 'YOUR WARNING HERE'});
-                                //$.growl.error({message: 'YOUR ERROR HERE'});
-                                $.growl.notice({message: 'Extra entries added!'});
-                            });
-                            
-                            //simulate deletion
-                            $('.delete').click(function(){
-                                $.growl.error({message: 'row/s deleted'});
-                            });
-                            
-                        </script>
-                        
-                        <div id="add_holder" class="clearfix hidden">
+                        <!-- come back to this later
+                        <div id="add_holder" class="clearfix">
                             <table border="1" width="100%" cellpadding="5">
                             <tr>
                                 <td class="recent_heads">Name</td>
@@ -175,6 +116,7 @@ $user->authUser();
                             <div class="right button asphalt_bg ok">OK</div>
                             <div class="right button midnight_bg another">Add another</div>
                         </div>
+                        -->
                         
                     </div>
                     <div class="right button blue_bg save">Save my changes</div>

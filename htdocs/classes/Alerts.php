@@ -5,7 +5,7 @@
  * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
-require_once(SITE_ROOT . '/classes/ErrorLog.php');
+//require_once(SITE_ROOT . '/classes/ErrorLog.php');
 
 class Alerts {
     private $json_string;

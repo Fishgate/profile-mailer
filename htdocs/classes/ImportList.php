@@ -5,12 +5,16 @@
  * @author Kyle Vermeulen <kyle@source-lab.co.za>
  */
 
-class Upload {
+class ImportList {
     private $con;
     private $logs;
     private $alerts;
     
     private $logList;
+    private $listLogID;
+    private $readListLog;
+    private $listLogResult;
+    
     private $nospace;
     private $create_tbl;
     private $addColumn;
@@ -19,7 +23,6 @@ class Upload {
     private $populate;
     private $populate_success;
     private $colsToInsert = array();
-    
     
     /**
      *
@@ -52,7 +55,7 @@ class Upload {
      * 
      * @return boolean
      */
-    private function errorCheck(){
+    private function errorCheck() {
         switch ($this->file['error']) {
             case 1:
                 return $this->logs->output($this->alerts->UPLOAD_ERROR_1, $this->alerts->UPLOAD_ERROR_GENERAL);
@@ -111,10 +114,23 @@ class Upload {
         }
     }
     
+    /**
+     * 
+     * 
+     */
     public function prepareCreateTblSQL(){
         
     }
     
+    /**
+     * Creates a new database table with temporary column headers based on the uploaded CSV file.
+     * 
+     * 
+     * @param type $tbl_name
+     * @param type $filename
+     * @return type
+     * @throws Exception
+     */
     private function importCSV($tbl_name, $filename){
         try {
             $this->create_tbl = $this->con->prepare("CREATE TABLE $tbl_name (id INT NOT NULL AUTO_INCREMENT,  PRIMARY KEY(id));");
@@ -152,7 +168,7 @@ class Upload {
                             }
                             
                             if($this->populate_success){
-                                return true;
+                                return $this->logUploads($this->newName);
                             }
                         }
                     }
@@ -166,11 +182,10 @@ class Upload {
     }
     
     /**
-     * Captures the uploaded list into an indexing table which will be used later
-     * to reference all of the available lists.
+     * Captures the uploaded list into an indexing table which will be used later to reference all of the available lists.
      * 
      * @param String $name The new name of the file after it has been uploaded
-     * @return boolean returns true on success
+     * @return boolean returns a json object with the result of the final query and the data it retrieved
      * @throws Exception
      */
     private function logUploads($newName){
@@ -188,8 +203,15 @@ class Upload {
             $this->logList->bindValue(':date',  date('d-m-Y'));
             $this->logList->bindValue(':unix',  time());
             
-            if($this->logList->execute()){
-                return $this->importCSV('mailinglist_'.$this->filterName($newName), $this->filterName($newName).$this->getFileExt());
+            if($this->logList->execute()){                
+                $this->readListLog = $this->con->prepare("SELECT id FROM ".DB_LISTS_TBL." WHERE tbl_name = :tbl_name");
+                $this->readListLog->bindValue(':tbl_name', 'mailinglist_'.$this->filterName($newName));
+                $this->readListLog->execute();
+                
+                if($this->readListLog->rowCount() > 0){
+                    $this->listLogResult = $this->readListLog->fetch(PDO::FETCH_ASSOC);
+                    return json_encode(array('result' => 'success', 'id' => $this->listLogResult['id']));
+                }
             }
         } catch (PDOException $ex) {
             throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->LOG_UPLOAD_ERR) );
@@ -205,7 +227,7 @@ class Upload {
     public function uploadFile(){
         if($this->errorCheck()){
             if ( @move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR.$this->filterName($this->newName).$this->getFileExt()) ){
-                return $this->logUploads($this->newName, $this->file['name']);
+                return $this->importCSV('mailinglist_'.$this->filterName($this->newName), $this->filterName($this->newName).$this->getFileExt());
             }else{
                 throw new Exception( $this->logs->output($this->alerts->MOVE_UPLOADED_FILE_FAIL, $this->alerts->UPLOAD_ERROR_GENERAL) );
             }

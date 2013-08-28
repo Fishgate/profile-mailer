@@ -81,7 +81,6 @@ class Template {
             return "<input required=\"required\" placeholder=\"$this->lovelyString\" id=\"$preg_match\" name=\"$preg_match\" type=\"text\" />";
         }
     }
-
     
     private function ignoreMatch($input_string){
         foreach($this->ignore_matches as $ignore){

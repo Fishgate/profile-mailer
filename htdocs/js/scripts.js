@@ -21,7 +21,6 @@ $(function(){
     	}
     });
     
-    
     //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
@@ -43,9 +42,10 @@ $(function(){
     
     function exec_import(result){
         var res = result.trim();
-               
-        if(res === 'success'){
-            window.location = 'importconfig.php';
+        res = JSON.parse(res);
+        
+        if(res.result === 'success'){
+            window.location = 'importconfig.php?id=' + res.id;
         }else{
             $.growl.error({message: result});
             enableForm('#importLoader', '#upload', 'invisible');
