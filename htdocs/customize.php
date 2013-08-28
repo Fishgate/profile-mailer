@@ -23,10 +23,11 @@ $user->authUser();
                         Example:
                         <img src="img/customise/menu_heading.jpg" />
                     </div>
-                    <div class="left">
+                    <div style="width:180px;" class="left clearfix">
                         <form action="">
-                                <label for="color">Color:</label>
-                                <input type="color" id="color" name="color" value="#123456" />
+                                <label class="left" for="color">Choose your Color:</label>
+                                <input style="width: 100px;" class="left" type="color" id="color" name="color" value="#3399ff" />
+                                <div class="hex left">&nbsp;</div>
                         </form>
                     </div>
                 </div>

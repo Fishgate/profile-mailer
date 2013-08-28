@@ -29,6 +29,22 @@ $(function(){
 //      $('.decoration').css('top', '25px');
 //    }
 
+
+
+
+// Color Picker Colorizer --------------------------------------------------------------------------------------------------------------
+var color = $('#color').val();
+    hexcolor = $('.hex');
+    
+    hexcolor.css('background', color);
+    
+    $('#color').on('change', function(){
+        color = $('#color').val();
+       hexcolor.css('background', color);
+    });
+
+
+
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
         disableForm('#importLoader', '#upload', 'invisible');
