@@ -2,13 +2,16 @@
 
 <?php
 
-$upload = new Upload();
-$upload->file = $_FILES['file'];
-$upload->newName = $_POST['listname'];
+$import = new ImportList();
+$import->file = $_FILES['file'];
+$import->newName = $_POST['listname'];
 
 try {
-    if($upload->uploadFile()){
-        echo 'success';
+    $importFile = $import->uploadFile();
+    $result = json_decode( $importFile, true);
+    
+    if($result['result'] == 'success'){
+        echo $importFile;
     }
 } catch (Exception $ex) {
     echo $ex->getMessage();

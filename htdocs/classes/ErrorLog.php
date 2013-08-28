@@ -7,7 +7,6 @@
  */
 
 class ErrorLog {
-    
     private $alerts;
     private $logFile;
     private $phpmailer;

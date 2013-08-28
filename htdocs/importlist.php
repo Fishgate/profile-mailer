@@ -60,7 +60,6 @@ $user->authUser();
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
-                <!--  -->
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
                     <div id="stepsHolder" class="clearfix">
@@ -92,7 +91,7 @@ $user->authUser();
                     </form>
                 </div>
             </div>
-            
-        </div>   
+                       
+        </div><!--#wrapper close--> 
         
 <?php require_once('includes/footer.php'); ?>

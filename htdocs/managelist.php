@@ -1,11 +1,11 @@
 <?php require_once('./config.php'); ?>
 
 <?php
-
 $user = new User();
-$user->authUser($_SESSION['user_auth']);
+$user->sessionBool = $_SESSION['user_auth'];
+$user->authUser();
 
-$mail = new Mailer();
+$reports = new Reports();
 
 ?>
 
@@ -77,26 +77,23 @@ $mail = new Mailer();
                             </tr>
                             
                             <?php
-                            
+
                             try {
-                                if($email_logs = $mail->outputLogs()){
+                                if($email_logs = $reports->quicksend_logs()){
                                     foreach($email_logs as $log){
                                         ?>
                                         <tr>
-                                            <td><?php echo $log['name']; ?></td>
                                             <td><?php echo $log['email']; ?></td>
+                                            <td><?php echo $log['template']; ?></td>
                                             <td><?php echo $log['date']; ?></td>
                                             <td align="center">
                                                 <?php 
                                                 if($log['opened']){
-                                                    echo '<span style="color: green;">&#x2713;</span>';
+                                                    echo '<span class="icons green">h</span>';
                                                 }else{
-                                                    echo '<span style="color: red;">&#x2717;</span>';
+                                                    echo '<span class="icons red">i</span>';
                                                 }
                                                 ?>
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" clas="remove_row" />
                                             </td>
                                         </tr>
                                         <?php
@@ -109,7 +106,7 @@ $mail = new Mailer();
                                 </tr>
                                 <?php
                             }
-                            
+
                             ?>
                         </table>
                         

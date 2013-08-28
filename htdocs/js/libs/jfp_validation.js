@@ -115,8 +115,6 @@ function validate_email (target){
  * 
  */
 
-
-
 function clear_focus(target, defaultVal){
     jQuery(target).focus(function(){
         if(jQuery(this).val() == defaultVal){

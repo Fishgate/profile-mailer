@@ -21,7 +21,6 @@ $(function(){
     	}
     });
     
-    
     //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
@@ -32,7 +31,10 @@ $(function(){
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
-        var valid_file = validate_file('#fileupload', ['.csv', '.xls'], 2);
+        disableForm('#importLoader', '#upload', 'invisible');
+        
+        var valid_file = validate_file('#fileupload', ['.csv'], 2);
+        
         if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
@@ -41,12 +43,13 @@ $(function(){
     
     function exec_import(result){
         var res = result.trim();
+        res = JSON.parse(res);
         
-        if(res === 'success'){
-            console.log(res);
+        if(res.result === 'success'){
+            window.location = 'importconfig.php?id=' + res.id;
         }else{
             $.growl.error({message: result});
-            //enableForm('#loader', '#login', 'invisible');
+            enableForm('#importLoader', '#upload', 'invisible');
         }
     }
     
