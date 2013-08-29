@@ -24,9 +24,10 @@ $(function(){
     //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
-    if(retina){
-      $('.decoration').css('top', '45px');
-    }
+    //USE THIS IS YOU NEED TO STYLE ANYTHING FOR RETINA MACBOOK SPECIFICALLY
+//    if(retina){
+//      $('.decoration').css('top', '25px');
+//    }
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){

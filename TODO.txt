@@ -1,7 +1,7 @@
 Small updates
 - impliment phpmailer into the error log system to notify us about errors
 - get rid of the neccecity for <p> tags in the template alerts of alerts.json
-- add a logout method to the user class.
+- Add "Chrome frame" to rectify HTML5 elements rendering and better browsing for end user.
 
 Medium updates
 - localise all end user strings into a single json file

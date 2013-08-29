@@ -11,9 +11,15 @@ body{
     font-size: 14px;
 }
 canvas{}
+nav{
+    display: block;
+}
 /*==============================================
                   MINI RESETS
 ===============================================*/
+a:hover{
+    cursor: pointer;
+}
 em{
     font-size: 11px;
     color: #95a5a6;

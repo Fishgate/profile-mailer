@@ -10,7 +10,7 @@ $user->authUser();
 
 <!DOCTYPE html>
 <html>
-    <?php require_once('./head.php'); ?>
+    <?php require_once('includes/head.php'); ?>
     
     <body>
             <!--============================
@@ -23,7 +23,12 @@ $user->authUser();
                         Example:
                         <img src="img/customise/menu_heading.jpg" />
                     </div>
-                    <div class="left">COPY HERE</div>
+                    <div class="left">
+                        <form action="">
+                                <label for="color">Color:</label>
+                                <input type="color" id="color" name="color" value="#123456" />
+                        </form>
+                    </div>
                 </div>
                 <a class="close-reveal-modal">&#215;</a>
             </div>
@@ -32,10 +37,11 @@ $user->authUser();
                 <div class="decoration_custom"></div>
                 <a data-reveal-id="modal-menu-heading">
                     <span class="icons_custom">u</span>
+                
+                    <div id="menu_custom" class="custom">
+                        menu
+                    </div>
                 </a>
-                <div id="menu_custom" class="custom">
-                    menu
-                </div>
                 <ul id="dash-nav">
                     <a href="dashboard.php">
                         <li>
@@ -102,4 +108,4 @@ $user->authUser();
             
         </div>   
         
-<?php require_once('footer.php'); ?>
+<?php require_once('includes/footer.php'); ?>
