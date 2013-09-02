@@ -2,8 +2,13 @@ Small updates
 - impliment phpmailer into the error log system to notify us about errors
 - get rid of the neccecity for <p> tags in the template alerts of alerts.json
 - Add "Chrome frame" to rectify HTML5 elements rendering and better browsing for end user.
+- Add validation to list_acquired textarea on importlist.php
 
 Medium updates
 - localise all end user strings into a single json file
 - force errors on the file upload (import.exec.php) for testing
 - server side validation for import list (if list name is already in use)
+- error exception handling in the whole EditList class
+
+Large updates
+- Server side validation on all form inputs

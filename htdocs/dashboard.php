@@ -11,8 +11,6 @@ $quicksend_total = $reports->get_quicksend_total();
 $quicksend_opened = $reports->get_quicksend_opened();
 $quicksend_unopened = $reports->get_quicksend_unopened();
 
-$mail = new Mailer();
-
 ?>
 
 <!DOCTYPE html>
