@@ -24,10 +24,6 @@ $(function(){
     //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
-    //USE THIS IS YOU NEED TO STYLE ANYTHING FOR RETINA MACBOOK SPECIFICALLY
-//    if(retina){
-//      $('.decoration').css('top', '25px');
-//    }
 
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
@@ -50,7 +46,7 @@ $(function(){
         }else{
             $.growl.error({message: result});
             enableForm('#importLoader', '#upload', 'invisible');
-        }
+        }        
     }
     
     $('#importlistform').ajaxForm({

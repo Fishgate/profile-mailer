@@ -79,14 +79,15 @@ $user->authUser();
                             COMPLETED!
                         </div>
                     </div>
-                <!--  -->
                 <div id="importlist">                   
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
                         <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
+                        <textarea id="list_acquired" name="list_acquired" required="required" placeholder="How was this list acquired?"></textarea>
+                        <p><em>In order to adhere to SPAM and Unsolicited Email policies, you need to state exactly how this list was acquired. Sending email to recipients without their knowledge or concent could lead to being blacklisted and your account with your ISP terminated.</em></p>
                         <input name="file" id="fileupload" type="file" />
                         <input id="upload" type="submit" value="Upload" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS</em>    
+                        <em>Max file size 2MB. Supported file types include CSV and XLS.</em>
                         <br />
                     </form>
                 </div>

@@ -4,6 +4,7 @@
 
 $import = new ImportList();
 $import->file = $_FILES['file'];
+$import->acquired = $_POST['list_acquired'];
 $import->newName = $_POST['listname'];
 
 try {
