@@ -105,7 +105,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                     
                     <p><em>Here is your chance to rename the column header. Make sure it described the information appropriately because these names will be referenced later. If there are any rows you want to get rid of, just tick the check box to the left of the row before continuing and it will be deleted!</em></p>
                     
-                    <form method="post">
+                    <form method="post" action="importconfig.exec.php">
                         <div class="managelist_table">
                             <?php if($id_set) { ?>
                                 <table border="1">
@@ -115,7 +115,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                                             $totalCols = count($tbl_data[0]) - 1;
 
                                             for($i=1; $i<=$totalCols; $i++){
-                                                echo "<td><input data-oldname=\"temp_$i\" type=\"text\"></td>";
+                                                echo "<td><input name=\"temp_$i\" type=\"text\"></td>";
                                             }
                                         ?>
                                     </tr>
@@ -126,7 +126,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                                                 <td>
                                                     <?php
                                                         if($key == "id"){
-                                                            echo "<input type=\"checkbox\" class=\"deleteRow\" data-id=\"$val\" />";
+                                                            echo "<input type=\"checkbox\" class=\"deleteRow\" name=\"delete[]\" value=\"$val\" />";
                                                         }else{
                                                             echo $val;
                                                         }
@@ -166,7 +166,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                             -->
 
                         </div>
-                        <div class="right button blue_bg save">Done</div>
+                        <!--<div class="right button blue_bg save">Done</div>-->
+                        <input type="submit" />
                     </form>
                 </div>
                 <!--  -->

@@ -50,7 +50,7 @@ $(function(){
     }
     
     $('#importlistform').ajaxForm({
-        url:            'import.exec.php',
+        url:            'importlist.exec.php',
         type:           'post',
         beforeSubmit:   validate_import,
         success:        exec_import,

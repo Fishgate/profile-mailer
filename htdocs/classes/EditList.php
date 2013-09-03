@@ -50,7 +50,7 @@ class EditList {
      * 
      * @return String
      */
-    public function getWorkingTable() {
+    private function getWorkingTable() {
         $this->getTableName = $this->con->prepare("SELECT tbl_name FROM ".DB_LISTS_TBL." WHERE id=:id");
         $this->getTableName->bindValue(":id", $this->tableRefID);
         $this->getTableName->execute();
@@ -62,7 +62,9 @@ class EditList {
     }
     
     /**
-     * might not need this seeing as its just incrimentaly numbered
+     * might not need this seeing as its just incrimentaly numbered,
+     * the names of the temp column heading can just be output using 
+     * an interator inside of the loop
      * 
     public function getTableSchema(){
         $this->tableSchema = $this->con->prepare("SELECT COLUMN_NAME FROM information_schema.columns WHERE table_name=:name;");
@@ -87,9 +89,10 @@ class EditList {
             return $this->tableDataArray;
             
         } catch (PDOException $ex) {
-            throw new Exception($ex->getMessage());
+            throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->EDIT_FETCH_TBL_ERR) );
         }
     }
+    
     
 }
 

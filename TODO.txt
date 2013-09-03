@@ -3,6 +3,7 @@ Small updates
 - get rid of the neccecity for <p> tags in the template alerts of alerts.json
 - Add "Chrome frame" to rectify HTML5 elements rendering and better browsing for end user.
 - Add validation to list_acquired textarea on importlist.php
+- Should probably put user authentication on the script execute pages too and not just the front end interface ones
 
 Medium updates
 - localise all end user strings into a single json file

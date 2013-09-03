@@ -29,5 +29,6 @@
     "UPLOAD_ERROR_8":           "File upload stopped by extension.",
     "LOG_UPLOAD_ERR":           "Error creating database log",
     "CREATE_LIST_DB_ERR":       "Error creating database table.",
-    "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed."
+    "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed.",
+    "EDIT_FETCH_TBL_ERR":       "There was an error retrieving the table information"
 }
