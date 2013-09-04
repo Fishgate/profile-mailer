@@ -15,8 +15,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $editList->tableRefID = mysql_real_escape_string($_GET['id']);
    
     try {
-        $tbl_data = $editList->getTableData();        
-        
+        $tbl_data = $editList->getTableData();
     } catch (Exception $ex) {
         echo $ex->getMessage();
     }
@@ -106,6 +105,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                     <p><em>Here is your chance to rename the column header. Make sure it described the information appropriately because these names will be referenced later. If there are any rows you want to get rid of, just tick the check box to the left of the row before continuing and it will be deleted!</em></p>
                     
                     <form method="post" action="importconfig.exec.php">
+                        <input type="hidden" name="workingTable" value="<?php echo $editList->getWorkingTable(); ?>" />
                         <div class="managelist_table">
                             <?php if($id_set) { ?>
                                 <table border="1">

@@ -3,13 +3,17 @@ Small updates
 - get rid of the neccecity for <p> tags in the template alerts of alerts.json
 - Add "Chrome frame" to rectify HTML5 elements rendering and better browsing for end user.
 - Add validation to list_acquired textarea on importlist.php
-- Should probably put user authentication on the script execute pages too and not just the front end interface ones
+- Put user authentication on the script execute pages too and not just the front end interface ones
+- Need a progress GIF on the importlist.php page when uploading a lit
+- Put the end user strings from the import process into the alerts.json
 
 Medium updates
-- localise all end user strings into a single json file
 - force errors on the file upload (import.exec.php) for testing
 - server side validation for import list (if list name is already in use)
 - error exception handling in the whole EditList class
+- Need some kind of error checking in the imported CSV file incase it is empty or nothing was imported
+- on importconfig.php the current column headers are assumed as temp_1, temp_2, etc, and just generated in a for loop. This needs to be actually fetched dynamicaly from the information schema for the propper manageing of lists
 
 Large updates
-- Server side validation on all form inputs
+- Server side validation on all forms
+- Upon uploading a list, auto remove all role based and misformed email addresses

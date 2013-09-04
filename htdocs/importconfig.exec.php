@@ -2,27 +2,34 @@
 
 <?php
 
+/**
+ * NOTE: after we have assinged the necccesary information to the class instance we get rid
+ * of the variable from the post array, so the only values we are left with are the names of 
+ * the temporary column headers to be changes. This makes the final step of renaming each 
+ * column header an easy foreach as $key => $val loop.
+ * 
+ */
+
 $editList = new EditList();
 
-
-/*
-$import = new ImportList();
-$import->file = $_FILES['file'];
-$import->acquired = $_POST['list_acquired'];
-$import->newName = $_POST['listname'];
-
 try {
-    $importFile = $import->uploadFile();
-    $result = json_decode( $importFile, true);
-    
-    if($result['result'] == 'success'){
-        echo $importFile;
+    $editList->tableName = $_POST['workingTable'];    
+    unset($_POST['workingTable']); //done
+
+    if(isset($_POST['delete']) && !empty($_POST['delete'])) {
+        $editList->removeRowsArray = $_POST['delete'];
+        unset($_POST['delete']); // done
+
+        if($editList->removeRows()){
+            $editList->columnNamesArray = $_POST;
+            if($editList->renameColumns()){
+                echo 'success';
+            }
+        }
     }
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
-*/
 
-print_r($_POST);
 
 ?>
