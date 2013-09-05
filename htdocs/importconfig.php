@@ -106,7 +106,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                     <?php if($id_set) { ?>
                         <p><em><?php echo $alerts->IMPORT_CONF_INSTRUCTIONS; ?></em></p>
 
-                        <form method="post" action="importconfig.exec.php">
+                        <form method="post" action="importconfig.exec.php" id="importconfigform">
                             <input type="hidden" name="workingTable" value="<?php echo $editList->getWorkingTable(); ?>" />
 
 
@@ -118,7 +118,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                                                 $totalCols = count($tbl_data[0]) - 1;
 
                                                 for($i=1; $i<=$totalCols; $i++){
-                                                    echo "<td><input name=\"temp_$i\" type=\"text\"></td>";
+                                                    echo "<td><input class=\"colNames\" name=\"temp_$i\" type=\"text\"></td>";
                                                 }
                                             ?>
                                         </tr>
@@ -167,9 +167,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
 
                             </div>
 
-                            <input type="submit" />
+                            <input id="update" type="submit" value="Update List" />
 
-                            <img id="importLoader" class="right switch_loader" alt="loader" src="img/loader.gif" />
+                            <img id="importconfigLoader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
                         </form>
                     
                     <?php }else{ ?>

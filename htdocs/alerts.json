@@ -4,6 +4,8 @@
     "USER_DOESNT_EXIST":        "Username does not exist",
     "PASSWORD_WRONG":           "Password is incorrect.",
     "FILE_INVALID":             "Please select a valid file before submitting.",
+    "IMPORT_FORM_INVALID":      "Please fill in all the required form fields correctly and select a valid file.",
+    "COL_HEADERS_EMPTY":        "Please rename all the column headers before updating the list",
     "EMPTY_USER_PASS":		"Please fill in your Username and Password.",
     "EMPTY_FORM_FIELDS":	"Please fill in all the form fields correctly before submitting.",
     "NO_TEMPLATE_SELECTED":	"Please select a template.",

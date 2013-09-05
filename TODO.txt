@@ -15,6 +15,7 @@ Medium updates
 - Need some kind of error checking in the imported CSV file incase it is empty or nothing was imported
 - on importconfig.php the current column headers are assumed as temp_1, temp_2, etc, and just generated in a for loop. This needs to be actually fetched dynamicaly from the information schema for the propper manageing of lists
 - Upon uploading a list, auto remove all role based and misformed email addresses
+- proper error handling/validation on importconfig in terms of the user putting in column header which are not valid SQL syntax
 
 Large updates
 - Server side validation on all forms

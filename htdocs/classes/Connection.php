@@ -5,8 +5,6 @@
  * @author Kyle Vermeulen <kyle@source-lab.co.za> <kyle@fishgate.co.za>
  */
 
-//require_once(SITE_ROOT . '/classes/ErrorLog.php');
-
 class Connection {
     private $alerts;
     private $logs;
