@@ -8,6 +8,15 @@ function enableForm(loader, submitBtn, loaderClass){
     $(submitBtn).removeAttr('disabled');
 }
 
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 $(function(){
     //JSON alerts prep --------------------------------------------------------------------------------------------------------
     var alerts = {};
@@ -24,29 +33,38 @@ $(function(){
     //retina check --------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
-
+    
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
+        console.log(arr);
         disableForm('#importLoader', '#upload', 'invisible');
         
+        /*
         var valid_file = validate_file('#fileupload', ['.csv'], 2);
         
         if(!valid_file){
             $.growl.error({message: alerts.FILE_INVALID});
             return false;
         }
+        */
     }
     
     function exec_import(result){
         var res = result.trim();
-        res = JSON.parse(res);
         
-        if(res.result === 'success'){
-            window.location = 'importconfig.php?id=' + res.id;
+        // it only returns a json string on success, so we need to 
+        // check that we have it first before using JSON.parse();
+        if(IsJsonString(res)){
+            res = JSON.parse(res);
+            
+            if(res.result === 'success'){
+                window.location = 'importconfig.php?id=' + res.id;
+            }
         }else{
-            $.growl.error({message: result});
             enableForm('#importLoader', '#upload', 'invisible');
-        }        
+            $.growl.error({message: result});
+        }
+
     }
     
     $('#importlistform').ajaxForm({

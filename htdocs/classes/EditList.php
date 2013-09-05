@@ -19,6 +19,7 @@ class EditList {
     private $tableDataArray = array();    
     private $removeRows;
     private $renameColumns;
+    private $tableNameFromID;
     
     // booleans
     private $renamed = false;
@@ -74,13 +75,19 @@ class EditList {
      * @return String
      */
     public function getWorkingTable() {
-        $this->getTableName = $this->con->prepare("SELECT tbl_name FROM ".DB_LISTS_TBL." WHERE id=:id");
-        $this->getTableName->bindValue(":id", $this->tableRefID);
-        $this->getTableName->execute();
-        
-        if($this->getTableName->rowCount() > 0){
-            $this->workingTable = $this->getTableName->fetch(PDO::FETCH_ASSOC);
-            return $this->workingTable['tbl_name'];
+        try {            
+            $this->getTableName = $this->con->prepare("SELECT tbl_name FROM ".DB_LISTS_TBL." WHERE id=:id");
+            $this->getTableName->bindValue(":id", $this->tableRefID);
+            $this->getTableName->execute();
+
+            if($this->getTableName->rowCount() > 0){
+                $this->workingTable = $this->getTableName->fetch(PDO::FETCH_ASSOC);
+                return $this->workingTable['tbl_name'];
+            }else{
+                return false;
+            }
+        } catch (PDOException $ex) {
+            return false;
         }
     }
     
@@ -114,19 +121,24 @@ class EditList {
      */
     public function getTableData(){
         try {
-            $this->tableData = $this->con->prepare("SELECT * FROM ".$this->getWorkingTable().";" );
-            $this->tableData->execute();
+            $this->tableNameFromID = $this->getWorkingTable();
             
-            if($this->tableData->rowCount() > 0) {
-                while($this->tableDataRow = $this->tableData->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($this->tableDataArray, $this->tableDataRow);
-                }
-
-                return $this->tableDataArray;
+            if(!$this->tableNameFromID){
+                throw new Exception("couldnt find table");
             }else{
-                throw new Exception( $this->logs->output($this->alerts->EDIT_FETCH_TBL_EMPTY, $this->alerts->EDIT_FETCH_TBL_EMPTY) );
+                $this->tableData = $this->con->prepare("SELECT * FROM $this->tableNameFromID;" );
+                $this->tableData->execute();
+
+                if($this->tableData->rowCount() > 0) {
+                    while($this->tableDataRow = $this->tableData->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($this->tableDataArray, $this->tableDataRow);
+                    }
+
+                    return $this->tableDataArray;
+                }else{
+                    throw new Exception( $this->logs->output($this->alerts->EDIT_FETCH_TBL_EMPTY, $this->alerts->EDIT_FETCH_TBL_EMPTY) );
+                }
             }
-            
         } catch (PDOException $ex) {
             throw new Exception( $this->logs->output($ex->getMessage(), $this->alerts->EDIT_FETCH_TBL_ERR) );
         }

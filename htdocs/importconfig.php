@@ -6,6 +6,8 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
+$alerts = new Alerts();
+
 $id_set = false;
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
@@ -19,7 +21,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     } catch (Exception $ex) {
         echo $ex->getMessage();
     }
-    
 }
 
 ?>
@@ -102,75 +103,79 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                 <div class="left managelist_holder">
                     <h3>Configure List</h3>
                     
-                    <p><em>Here is your chance to rename the column header. Make sure it described the information appropriately because these names will be referenced later. If there are any rows you want to get rid of, just tick the check box to the left of the row before continuing and it will be deleted!</em></p>
-                    
-                    <form method="post" action="importconfig.exec.php">
-                        <input type="hidden" name="workingTable" value="<?php echo $editList->getWorkingTable(); ?>" />
-                        <div class="managelist_table">
-                            <?php if($id_set) { ?>
-                                <table border="1">
-                                    <tr>
-                                        <td>Delete</td>
-                                        <?php
-                                            $totalCols = count($tbl_data[0]) - 1;
+                    <?php if($id_set) { ?>
+                        <p><em><?php echo $alerts->IMPORT_CONF_INSTRUCTIONS; ?></em></p>
 
-                                            for($i=1; $i<=$totalCols; $i++){
-                                                echo "<td><input name=\"temp_$i\" type=\"text\"></td>";
-                                            }
-                                        ?>
-                                    </tr>
-                                        
-                                    <?php foreach ($tbl_data as $data) { ?>
+                        <form method="post" action="importconfig.exec.php">
+                            <input type="hidden" name="workingTable" value="<?php echo $editList->getWorkingTable(); ?>" />
+
+
+                                <div class="managelist_table">
+                                    <table border="1">
                                         <tr>
-                                            <?php foreach ($data as $key => $val) { ?>
-                                                <td>
-                                                    <?php
-                                                        if($key == "id"){
-                                                            echo "<input type=\"checkbox\" class=\"deleteRow\" name=\"delete[]\" value=\"$val\" />";
-                                                        }else{
-                                                            echo $val;
-                                                        }
-                                                    ?>
-                                                </td>
-                                            <?php } ?>
+                                            <td>Delete</td>
+                                            <?php
+                                                $totalCols = count($tbl_data[0]) - 1;
+
+                                                for($i=1; $i<=$totalCols; $i++){
+                                                    echo "<td><input name=\"temp_$i\" type=\"text\"></td>";
+                                                }
+                                            ?>
                                         </tr>
-                                    <?php } ?>
-                                </table>
-                            <?php }else{ ?>
-                                There is no table ID set.
-                            <?php } ?>
 
-                            <!-- 
-                            come back to this later (adding new entries into the table)
+                                        <?php foreach ($tbl_data as $data) { ?>
+                                            <tr>
+                                                <?php foreach ($data as $key => $val) { ?>
+                                                    <td>
+                                                        <?php
+                                                            if($key == "id"){
+                                                                echo "<input type=\"checkbox\" class=\"deleteRow\" name=\"delete[]\" value=\"$val\" />";
+                                                            }else{
+                                                                echo $val;
+                                                            }
+                                                        ?>
+                                                    </td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
 
-                            <div id="action_buttons" class="clearfix">
-                                <div class="left button add green_bg">Add entry</div>
-                                <div class="right button delete red_bg">Remove selected</div>
+                                <!-- 
+                                come back to this later (adding new entries into the table)
+
+                                <div id="action_buttons" class="clearfix">
+                                    <div class="left button add green_bg">Add entry</div>
+                                    <div class="right button delete red_bg">Remove selected</div>
+                                </div>
+
+
+                                <div id="add_holder" class="clearfix">
+                                    <table border="1" width="100%" cellpadding="5">
+                                    <tr>
+                                        <td class="recent_heads">Name</td>
+                                        <td class="recent_heads">Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="add_name" class="name" placeholder="Name*" list="add_name" /></td>
+                                        <td><input type="text" name="add_email" class="email" placeholder="Email address*" list="add_email" /></td>
+                                    </tr>
+                                    </table>
+                                    <div class="right button asphalt_bg ok">OK</div>
+                                    <div class="right button midnight_bg another">Add another</div>
+                                </div>
+                                -->
+
                             </div>
 
+                            <input type="submit" />
 
-                            <div id="add_holder" class="clearfix">
-                                <table border="1" width="100%" cellpadding="5">
-                                <tr>
-                                    <td class="recent_heads">Name</td>
-                                    <td class="recent_heads">Email</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" name="add_name" class="name" placeholder="Name*" list="add_name" /></td>
-                                    <td><input type="text" name="add_email" class="email" placeholder="Email address*" list="add_email" /></td>
-                                </tr>
-                                </table>
-                                <div class="right button asphalt_bg ok">OK</div>
-                                <div class="right button midnight_bg another">Add another</div>
-                            </div>
-                            -->
-
-                        </div>
-                        <!--<div class="right button blue_bg save">Done</div>-->
-                        <input type="submit" />
-                    </form>
+                            <img id="importLoader" class="right switch_loader" alt="loader" src="img/loader.gif" />
+                        </form>
+                    
+                    <?php }else{ ?>
+                        <p><em><?php echo $alerts->IMPORT_CONF_NO_TBL . $editList->tableRefID; ?></em></p>
+                    <?php } ?>
                 </div>
-                <!--  -->
             </div>
             </div>
             

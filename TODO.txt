@@ -8,12 +8,14 @@ Small updates
 - Put the end user strings from the import process into the alerts.json
 
 Medium updates
+- Error handling on importconfig.php is terrible
 - force errors on the file upload (import.exec.php) for testing
 - server side validation for import list (if list name is already in use)
 - error exception handling in the whole EditList class
 - Need some kind of error checking in the imported CSV file incase it is empty or nothing was imported
 - on importconfig.php the current column headers are assumed as temp_1, temp_2, etc, and just generated in a for loop. This needs to be actually fetched dynamicaly from the information schema for the propper manageing of lists
+- Upon uploading a list, auto remove all role based and misformed email addresses
 
 Large updates
 - Server side validation on all forms
-- Upon uploading a list, auto remove all role based and misformed email addresses
+- Do a massive clean up of the codebase in terms of error handling i.e. exceptions vs return codes

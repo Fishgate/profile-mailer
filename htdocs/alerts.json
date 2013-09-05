@@ -21,15 +21,19 @@
     "QUICKSEND_LOGS_EMPTY":     "Email logs are currently empty.",
     "UPLOAD_ERROR_GENERAL":     "There was an error uploading the file.",
     "UPLOAD_ERROR_1":           "The uploaded file exceeds the UPLOAD_MAX_FILESIZE directive in php.ini.",
-    "UPLOAD_ERROR_2":           "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.",
+    "UPLOAD_ERROR_2":           "The uploaded file exceeds the MAX_FILE_SIZE directive that was s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   pecified in the HTML form.",
     "UPLOAD_ERROR_3":           "The uploaded file was only partially uploaded.",
     "UPLOAD_ERROR_4":           "No file was uploaded.",
     "UPLOAD_ERROR_6":           "Missing a temporary folder.",
     "UPLOAD_ERROR_7":           "Failed to write file to disk.",
     "UPLOAD_ERROR_8":           "File upload stopped by extension.",
+    "UPLOAD_WARNING":           "Max file size 2MB. Supported file types include CSV and XLS.",
     "LOG_UPLOAD_ERR":           "Error creating database log",
     "CREATE_LIST_DB_ERR":       "Error creating database table.",
     "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed.",
     "EDIT_FETCH_TBL_ERR":       "There was an error retrieving the table information.",
-    "EDIT_FETCH_TBL_EMPTY":     "The selected list is empty."
+    "EDIT_FETCH_TBL_EMPTY":     "The selected list is empty.",
+    "SPAM_WARNING":             "In order to adhere to SPAM and Unsolicited Email policies, you need to state exactly how this list was acquired. Sending email to recipients without their knowledge or concent could lead to being blacklisted and your account with your ISP terminated.",
+    "IMPORT_CONF_INSTRUCTIONS": "Here is your chance to rename the column header. Make sure it described the information appropriately because these names will be referenced later. If there are any rows you want to get rid of, just tick the check box to the left of the row before continuing and it will be deleted!",
+    "IMPORT_CONF_NO_TBL":       "There was no table found matching the ID"
 }

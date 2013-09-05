@@ -6,6 +6,8 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
+$alerts = new Alerts();
+
 ?>
 
 <!DOCTYPE html>
@@ -62,33 +64,42 @@ $user->authUser();
             <div class="contents clearfix">
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
-                    <div id="stepsHolder" class="clearfix">
-                        <div class="left steps currentStep">
-                            <div class="stepsDecoration  currentStep_decoration"></div>
-                            <div class="stepsDecoration_mirror"></div>
-                            IMPORT
-                        </div>
-                        <div class="left steps">
-                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                            <div class="hidden stepsDecoration_mirror"></div>
-                            CONFIGURE
-                        </div>
-                        <div class="left steps">
-                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                            <div class="hidden stepsDecoration_mirror"></div>
-                            COMPLETED!
-                        </div>
+                <div id="stepsHolder" class="clearfix">
+                    <div class="left steps currentStep">
+                        <div class="stepsDecoration  currentStep_decoration"></div>
+                        <div class="stepsDecoration_mirror"></div>
+                        IMPORT
                     </div>
+                    <div class="left steps">
+                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                        <div class="hidden stepsDecoration_mirror"></div>
+                        CONFIGURE
+                    </div>
+                    <div class="left steps">
+                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                        <div class="hidden stepsDecoration_mirror"></div>
+                        COMPLETED!
+                    </div>
+                </div>
+                
                 <div id="importlist">                   
                     <form id="importlistform" enctype="multipart/form-data">
                         <h2>Import List</h2>
+                        
                         <input required="required" id="listname" name="listname" type="text" placeholder="List Name" />
                         <textarea id="list_acquired" name="list_acquired" required="required" placeholder="How was this list acquired?"></textarea>
-                        <p><em>In order to adhere to SPAM and Unsolicited Email policies, you need to state exactly how this list was acquired. Sending email to recipients without their knowledge or concent could lead to being blacklisted and your account with your ISP terminated.</em></p>
+                        
+                        <p><em><?php echo $alerts->SPAM_WARNING; ?></em></p>
+                        
                         <input name="file" id="fileupload" type="file" />
+                        
                         <input id="upload" type="submit" value="Upload" />
-                        <em>Max file size 2MB. Supported file types include CSV and XLS.</em>
-                        <br />
+                        
+                        <em><?php echo $alerts->UPLOAD_WARNING; ?></em>
+                        
+                        <br />                        
+                        
+                        <img id="importLoader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
                     </form>
                 </div>
             </div>
