@@ -157,7 +157,7 @@ class Mailer {
      */
     public function quickSend() {
         $this->phpmailer = new PHPMailer();
-     
+        
         $this->phpmailer->From = 'info@fishgate.co.za';
         $this->phpmailer->FromName = 'Fishgate';
         $this->phpmailer->AddReplyTo('info@fishgate.co.za', 'Fishgate');

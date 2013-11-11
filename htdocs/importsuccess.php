@@ -87,7 +87,7 @@ $user->authUser();
                         <p>Everything checked out, your list has been imported!<p>
                         <p>On the left you will find a Quick-Access Menu to <a href="#">View</a>, <a href="#">Manage</a> and <a href="#">Send</a> to your imported list.</p>
                     </div>
-<!--                    <a class="successLinks green_bg white right">Send</a>
+                    <!--<a class="successLinks green_bg white right">Send</a>
                     <a class="successLinks green_bg white right">Manage</a>
                     <a class="successLinks green_bg white right">View</a>-->
                 </div>
