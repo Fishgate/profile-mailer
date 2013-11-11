@@ -6,12 +6,21 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
+$alerts = new Alerts();
 
+$id_set = false;
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
-    $editList = new EditList();
-    $editList->refID = mysql_real_escape_string($_GET['id']);
+    $id_set = true;
     
+    $editList = new EditList();    
+    $editList->tableRefID = mysql_real_escape_string($_GET['id']);
+   
+    try {
+        $tbl_data = $editList->getTableData();
+    } catch (Exception $ex) {
+        echo $ex->getMessage();
+    }
 }
 
 ?>
@@ -92,37 +101,81 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
                     </div>
                 <!--  -->
                 <div class="left managelist_holder">
-                    <h3>Rename Headers</h3>
-                    <form method="post">
-                    <div class="managelist_table">
-                        
-                        <div id="action_buttons" class="clearfix">
-                            <div class="left button add green_bg">Add entry</div>
-                            <div class="right button delete red_bg">Remove selected</div>
-                        </div>
-                        
-                        <!-- come back to this later
-                        <div id="add_holder" class="clearfix">
-                            <table border="1" width="100%" cellpadding="5">
-                            <tr>
-                                <td class="recent_heads">Name</td>
-                                <td class="recent_heads">Email</td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="add_name" class="name" placeholder="Name*" list="add_name" /></td>
-                                <td><input type="text" name="add_email" class="email" placeholder="Email address*" list="add_email" /></td>
-                            </tr>
-                            </table>
-                            <div class="right button asphalt_bg ok">OK</div>
-                            <div class="right button midnight_bg another">Add another</div>
-                        </div>
-                        -->
-                        
-                    </div>
-                    <div class="right button blue_bg save">Save my changes</div>
-                    </form>
+                    <h3>Configure List</h3>
+                    
+                    <?php if($id_set) { ?>
+                        <p><em><?php echo $alerts->IMPORT_CONF_INSTRUCTIONS; ?></em></p>
+
+                        <form method="post" action="importconfig.exec.php" id="importconfigform">
+                            <input type="hidden" name="workingTable" value="<?php echo $editList->getWorkingTable(); ?>" />
+
+
+                                <div class="managelist_table">
+                                    <table border="1">
+                                        <tr>
+                                            <td>Delete</td>
+                                            <?php
+                                                $totalCols = count($tbl_data[0]) - 1;
+
+                                                for($i=1; $i<=$totalCols; $i++){
+                                                    echo "<td><input class=\"colNames\" name=\"temp_$i\" type=\"text\"></td>";
+                                                }
+                                            ?>
+                                        </tr>
+
+                                        <?php foreach ($tbl_data as $data) { ?>
+                                            <tr>
+                                                <?php foreach ($data as $key => $val) { ?>
+                                                    <td>
+                                                        <?php
+                                                            if($key == "id"){
+                                                                echo "<input type=\"checkbox\" class=\"deleteRow\" name=\"delete[]\" value=\"$val\" />";
+                                                            }else{
+                                                                echo $val;
+                                                            }
+                                                        ?>
+                                                    </td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+
+                                <!-- 
+                                come back to this later (adding new entries into the table)
+
+                                <div id="action_buttons" class="clearfix">
+                                    <div class="left button add green_bg">Add entry</div>
+                                    <div class="right button delete red_bg">Remove selected</div>
+                                </div>
+
+
+                                <div id="add_holder" class="clearfix">
+                                    <table border="1" width="100%" cellpadding="5">
+                                    <tr>
+                                        <td class="recent_heads">Name</td>
+                                        <td class="recent_heads">Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="add_name" class="name" placeholder="Name*" list="add_name" /></td>
+                                        <td><input type="text" name="add_email" class="email" placeholder="Email address*" list="add_email" /></td>
+                                    </tr>
+                                    </table>
+                                    <div class="right button asphalt_bg ok">OK</div>
+                                    <div class="right button midnight_bg another">Add another</div>
+                                </div>
+                                -->
+
+                            </div>
+
+                            <input id="update" type="submit" value="Update List" />
+
+                            <img id="importconfigLoader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
+                        </form>
+                    
+                    <?php }else{ ?>
+                        <p><em><?php echo $alerts->IMPORT_CONF_NO_TBL . $editList->tableRefID; ?></em></p>
+                    <?php } ?>
                 </div>
-                <!--  -->
             </div>
             </div>
             

@@ -8,6 +8,15 @@ function enableForm(loader, submitBtn, loaderClass){
     $(submitBtn).removeAttr('disabled');
 }
 
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 $(function(){
     //JSON alerts prep --------------------------------------------------------------------------------------------------------
     var alerts = {};
@@ -21,62 +30,99 @@ $(function(){
     	}
     });
     
-    //retina check --------------------------------------------------------------------------------------------------------------
+    //retina check -------------------------------------------------------------------------------------------------------------
     var retina = (window.retina || window.devicePixelRatio > 1);
     
-    //USE THIS IS YOU NEED TO STYLE ANYTHING FOR RETINA MACBOOK SPECIFICALLY
-//    if(retina){
-//      $('.decoration').css('top', '25px');
-//    }
-
-
-
-
-// Color Picker Colorizer --------------------------------------------------------------------------------------------------------------
-var color = $('#color').val();
-    hexcolor = $('.hex');
-    
-    hexcolor.css('background', color);
-    
-    $('#color').on('change', function(){
-        color = $('#color').val();
-       hexcolor.css('background', color);
-    });
-
-
-
     // import list form --------------------------------------------------------------------------------------------------------
     function validate_import(arr){
         disableForm('#importLoader', '#upload', 'invisible');
         
+        var valid_list_name = validate(arr[0]['value']);
+        var valid_list_acquired = validate(arr[1]['value']);
         var valid_file = validate_file('#fileupload', ['.csv'], 2);
         
-        if(!valid_file){
-            $.growl.error({message: alerts.FILE_INVALID});
+        if(valid_list_name && valid_list_acquired && valid_file){
+            return true;
+        }else{
+            $.growl.error({message: alerts.IMPORT_FORM_INVALID});
             return false;
         }
+       
+       return false;
     }
     
     function exec_import(result){
         var res = result.trim();
-        res = JSON.parse(res);
         
-        if(res.result === 'success'){
-            window.location = 'importconfig.php?id=' + res.id;
+        // it only returns a json string on success, so we need to check that we have it first before using JSON.parse();
+        if(IsJsonString(res)){
+            res = JSON.parse(res);
+            
+            if(res.result === 'success'){
+                window.location = 'importconfig.php?id=' + res.id;
+            }
+        // assume that it is an error because it did not return a json string
         }else{
-            $.growl.error({message: result});
             enableForm('#importLoader', '#upload', 'invisible');
+            $.growl.error({message: result});
         }
+
     }
     
     $('#importlistform').ajaxForm({
-        url:            'import.exec.php',
+        url:            'importlist.exec.php',
         type:           'post',
         beforeSubmit:   validate_import,
         success:        exec_import,
         resetForm:      true
     });
-
+    
+    // import config form -----------------------------------------------------------------------------------------------------
+    function validate_importconfig(arr){
+        disableForm('#importconfigLoader', '#update', 'invisible');
+        
+        var valid_column_names = true;
+        
+        $(".colNames").each(function(){
+            if(!validate($(this).val())){
+                valid_column_names = false;
+            }
+        });
+        
+        if(valid_column_names){
+            return true;
+        }else{
+            $.growl.error({message: alerts.COL_HEADERS_EMPTY});
+            return false;
+        }
+    }
+    
+    function exec_importconfig(result){
+        var res = result.trim();
+        
+        /*
+        if(IsJsonString(res)){
+            res = JSON.parse(res);
+            
+            if(res.result === 'success'){
+                window.location = 'importconfig.php?id=' + res.id;
+            }
+        }else{
+            enableForm('#importLoader', '#upload', 'invisible');
+            $.growl.error({message: result});
+        }
+        */
+    }
+    
+    $('#importconfigform').ajaxForm({
+        url:            'importconfig.exec.php',
+        type:           'post',
+        beforeSubmit:   validate_importconfig,
+        success:        exec_importconfig,
+        resetForm:      true
+    });
+    
+    
     // login form --------------------------------------------------------------------------------------------------------------
     function validate_login(arr){
         disableForm('#loader', '#login', 'invisible');
@@ -133,7 +179,6 @@ var color = $('#color').val();
         }else{
             $('#form_elements').html(alerts.EMPTY_TEMPLATE);
         }
-        
     });
    
     function validate_quickSend(arr){

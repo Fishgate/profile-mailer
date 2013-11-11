@@ -32,6 +32,12 @@ class ImportList {
     
     /**
      *
+     * @var String
+     */
+    public $acquired;
+    
+    /**
+     *
      * @var String The users desired name for the list, this is also send from the form
      */
     public $newName;
@@ -192,16 +198,17 @@ class ImportList {
         try {
             $this->logList = $this->con->prepare(
                 'INSERT INTO '.DB_LISTS_TBL.' 
-                (nice_name, file_name, tbl_name, date, unix)
+                (nice_name, file_name, tbl_name, list_acquired, date, unix)
                 VALUES 
-                (:nice, :file, :tbl, :date, :unix);'
+                (:nice, :file, :tbl, :list_acquired, :date, :unix);'
             );
             
-            $this->logList->bindValue(':nice',  $newName);
-            $this->logList->bindValue(':file',  $this->filterName($newName).$this->getFileExt());
-            $this->logList->bindValue(':tbl',   'mailinglist_'.$this->filterName($newName));
-            $this->logList->bindValue(':date',  date('d-m-Y'));
-            $this->logList->bindValue(':unix',  time());
+            $this->logList->bindValue(':nice',          $newName);
+            $this->logList->bindValue(':file',          $this->filterName($newName).$this->getFileExt());
+            $this->logList->bindValue(':tbl',           'mailinglist_'.$this->filterName($newName));
+            $this->logList->bindValue(':list_acquired',  $this->acquired);
+            $this->logList->bindValue(':date',          date('d-m-Y'));
+            $this->logList->bindValue(':unix',          time());
             
             if($this->logList->execute()){                
                 $this->readListLog = $this->con->prepare("SELECT id FROM ".DB_LISTS_TBL." WHERE tbl_name = :tbl_name");

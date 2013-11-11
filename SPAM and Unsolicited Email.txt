@@ -1,0 +1,22 @@
+1. SPAM and Unsolicited Email
+
+Last updated: January 2013.
+Sending unsolicited commercial communication (including, but not limited to email, instant messaging, SMS, chat rooms, discussion boards and newsgroups) is not permitted via Hetzner's network.
+
+Regardless of how the recipient's email address was acquired, if email communication was not explicitly requested or consented to by the recipient or if the recipient would not expect to receive it as a result of an existing relationship, the communication is considered unsolicited (this applies to communication sent to both personal email addresses and company email addresses e.g. sales@companyxyz.co.za). Email communication that does not clearly originate from a consensual sender or which appears to come from a 3rd party or affiliate is considered unsolicited.
+
+Examples of unsolicited communication:
+
+Purchased mailing lists, "safe lists" and harvesting of email addresses, where the users of those email addresses have not explicitly agreed to receive communication from a specified consensual sender is considered unsolicited.
+Sending emails where the recipient must opt-out of receiving further emails that they didn’t originally request is considered unsolicited.
+Sending a once-off invitation to receive further information, which was not explicitly requested or consented to by the recipient is considered unsolicited.
+Email communication to a mailing list including addresses of unwilling recipients or a recipient who has indicated that they wish to be removed from such list, yet continues to receive unwanted emails after a reasonable period, is considered unsolicited.
+1.1 Mailing list operators should maintain meaningful records of recipient requests and their consent to receive said email communications. There should also be an option for the recipient to unsubscribe from receiving further email communications. 
+1.2 When Hetzner receives a spam complaint, in order to establish if the communication was unsolicited, we may ask you to verify whether the recipient agreed to receive communications from you and if so, when and where you recorded their email address.
+1.3 Hetzner reserves the right to suspend or terminate the account of any user who sends out unsolicited email otherwise known as Spam with or without notice in accordance with its General Terms and Conditions.
+
+As a Hetzner customer, should you infringe this policy, you will be held liable for any costs incurred by Hetzner, both monetary and in reputation. Hetzner reserves the right to charge the customer of the account used to send any unsolicited email a clean-up fee or any charges incurred for blacklist removal. This cost of the clean-up fee is entirely at the discretion of Hetzner.
+
+The use of any other service for the purposes of sending SPAM with any reference to Hetzner services (including but not limited to mailboxes, autoresponders, and Web pages), will also be grounds for suspension/termination as described above. If your website was compromised and exploited for the purpose of sending unsolicited communications, Hetzner will be more lenient in resolving the issue. However, repeat exploitations of the same website and/or customer account would be grounds for suspension/termination.
+
+For further information, please read our FAQ on Spam Abuse

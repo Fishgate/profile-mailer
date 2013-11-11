@@ -29,15 +29,45 @@ $reports = new Reports();
         
         
         <!--==================================== NAVIGATION ===========-->
-            <nav class="centered">
+            <nav>
                 <div class="decoration"></div>
-                <div id="menu">menu</div>
+                <div id="menu" class="centered">menu</div>
                 <ul id="dash-nav">
-                    <li>New mass mail</li>
-                    <a  href="importlist.php"><li>Import list</li></a>
-                    <li id="selected">Manage lists</li>
-                    <a href="logs.php"><li>View full logs</li></a>
+                    <a href="dashboard.php">
+                        <li>
+                            <span class="icons menu_icons">F</span>
+                            Dashboard
+                        </li>
+                    </a>
+                    <a href="new_mass.php">
+                    <li>
+                        <span class="icons menu_icons">C</span>
+                        New mass mail
+                    </li>
+                    </a>
+                    <a href="importlist.php">
+                        <li>
+                            <span class="icons menu_icons">w</span>
+                            Import list
+                        </li>
+                    </a>
+                        <li id="selected">
+                            <span class="icons menu_icons selected_icon">n</span>
+                            Manage lists
+                        </li>
+                    <a href="logs.php">
+                        <li>
+                            <span class="icons menu_icons">g</span>
+                            View full logs
+                        </li>
+                    </a>
                 </ul>
+                
+                <div id="techs" class="clearfix">
+                    <span class="left icons">q</span>
+                    <span class="left icons">r</span>
+                    <span class="left icons">s</span>
+                </div>
             </nav>
         
         <div id="wrapper" class="clearfix">

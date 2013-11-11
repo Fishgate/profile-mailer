@@ -31,7 +31,7 @@ $mail = new Mailer();
                             Dashboard
                         </li>
                     </a>
-                    <a href="dashboard.php">
+                    <a href="new_mass.php">
                         <li>
                             <span class="icons menu_icons">C</span>
                             New mass mail

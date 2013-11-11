@@ -168,7 +168,7 @@ function validate_password(target){
     
     jQuery(target).focus(function(){
         jQuery(target + '_error').html('');
-    })
+    });
         
     if(!validate_length(jQuery(target).val(), 8) || !contains_letter(jQuery(target).val()) || !contains_num(jQuery(target).val())){
         jQuery(target + '_error').html(error);
@@ -187,11 +187,11 @@ function validate_email(target, default_val){
 
     jQuery(target).focus(function(){
         jQuery(target).removeAttr("style");
-    })
+    });
     
     jQuery(target).change(function(){
         jQuery(target).removeAttr("style");
-    })
+    });
 
     if(jQuery(target).val() == '' || jQuery(target).val() == default_val){
         jQuery(target).css('background', error);
