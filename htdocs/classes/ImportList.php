@@ -130,19 +130,16 @@ class ImportList {
     
     /**
      * Creates a new database table with temporary column headers based on the uploaded CSV file.
-     * 
-     * 
-     * @param type $tbl_name
-     * @param type $filename
+     *
      * @return type
      * @throws Exception
      */
-    private function importCSV($tbl_name, $filename){
+    public function importCSV(){
         try {
-            $this->create_tbl = $this->con->prepare("CREATE TABLE $tbl_name (id INT NOT NULL AUTO_INCREMENT,  PRIMARY KEY(id));");
+            $this->create_tbl = $this->con->prepare("CREATE TABLE mailinglist_".$this->filterName($this->newName)." (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id));");
             
             if($this->create_tbl->execute()){
-                $this->colCount = $this->csvGetColumnCount($filename);                       
+                $this->colCount = $this->csvGetColumnCount($this->filterName($this->newName).$this->getFileExt());                       
 
                 if($this->colCount > 0){
                     for($i=1; $i<=$this->colCount; $i++){
@@ -150,7 +147,7 @@ class ImportList {
                         array_push($this->colsToInsert, 'temp_'.$i);
 
                         // append the neccesary amount of columns onto the table we just created
-                        $this->addColumn = $this->con->prepare("ALTER TABLE $tbl_name ADD COLUMN temp_$i TEXT NOT NULL;");                    
+                        $this->addColumn = $this->con->prepare("ALTER TABLE mailinglist_".$this->filterName($this->newName)." ADD COLUMN temp_$i TEXT NOT NULL;");                    
 
                         if(!$this->addColumn->execute()){
                             $this->addColumn_success = false;
@@ -161,9 +158,9 @@ class ImportList {
                     }
 
                     if($this->addColumn_success){
-                        if($fh = fopen(UPLOAD_DIR.$filename, 'r')){
+                        if($fh = fopen(UPLOAD_DIR.$this->filterName($this->newName).$this->getFileExt(), 'r')){
                             while($row = fgetcsv($fh)) {
-                                $this->populate = $this->con->prepare("INSERT INTO $tbl_name (". implode(",", $this->colsToInsert) .") VALUES ('". implode("','", $row) ."');");
+                                $this->populate = $this->con->prepare("INSERT INTO mailinglist_".$this->filterName($this->newName)." (". implode(",", $this->colsToInsert) .") VALUES ('". implode("','", $row) ."');");
                                 
                                 if(!$this->populate->execute()){
                                     $this->populate_success = false;
@@ -174,7 +171,8 @@ class ImportList {
                             }
                             
                             if($this->populate_success){
-                                return $this->logUploads($this->newName);
+                                //return $this->logUploads($this->newName);
+                                return true;
                             }
                         }
                     }
@@ -194,7 +192,7 @@ class ImportList {
      * @return boolean returns a json object with the result of the final query and the data it retrieved
      * @throws Exception
      */
-    private function logUploads($newName){
+    public function logUploads(){
         try {
             $this->logList = $this->con->prepare(
                 'INSERT INTO '.DB_LISTS_TBL.' 
@@ -203,16 +201,16 @@ class ImportList {
                 (:nice, :file, :tbl, :list_acquired, :date, :unix);'
             );
             
-            $this->logList->bindValue(':nice',          $newName);
-            $this->logList->bindValue(':file',          $this->filterName($newName).$this->getFileExt());
-            $this->logList->bindValue(':tbl',           'mailinglist_'.$this->filterName($newName));
-            $this->logList->bindValue(':list_acquired',  $this->acquired);
+            $this->logList->bindValue(':nice',          $this->newName);
+            $this->logList->bindValue(':file',          $this->filterName($this->newName).$this->getFileExt());
+            $this->logList->bindValue(':tbl',           'mailinglist_'.$this->filterName($this->newName));
+            $this->logList->bindValue(':list_acquired', $this->acquired);
             $this->logList->bindValue(':date',          date('d-m-Y'));
             $this->logList->bindValue(':unix',          time());
             
             if($this->logList->execute()){                
                 $this->readListLog = $this->con->prepare("SELECT id FROM ".DB_LISTS_TBL." WHERE tbl_name = :tbl_name");
-                $this->readListLog->bindValue(':tbl_name', 'mailinglist_'.$this->filterName($newName));
+                $this->readListLog->bindValue(':tbl_name', 'mailinglist_'.$this->filterName($this->newName));
                 $this->readListLog->execute();
                 
                 if($this->readListLog->rowCount() > 0){
@@ -234,7 +232,8 @@ class ImportList {
     public function uploadFile(){
         if($this->errorCheck()){
             if ( @move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR.$this->filterName($this->newName).$this->getFileExt()) ){
-                return $this->importCSV('mailinglist_'.$this->filterName($this->newName), $this->filterName($this->newName).$this->getFileExt());
+                //return $this->importCSV('mailinglist_'.$this->filterName($this->newName), $this->filterName($this->newName).$this->getFileExt());
+                return true;
             }else{
                 throw new Exception( $this->logs->output($this->alerts->MOVE_UPLOADED_FILE_FAIL, $this->alerts->UPLOAD_ERROR_GENERAL) );
             }
@@ -242,8 +241,5 @@ class ImportList {
             throw new Exception( $this->logs->output($this->errorCheck(), $this->alerts->UPLOAD_ERROR_GENERAL) );
         }
     }
-    
-    
-    
     
 }

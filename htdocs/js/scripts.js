@@ -45,6 +45,7 @@ $(function(){
             return true;
         }else{
             $.growl.error({message: alerts.IMPORT_FORM_INVALID});
+            enableForm('#importLoader', '#upload', 'invisible');
             return false;
         }
        
@@ -54,6 +55,9 @@ $(function(){
     function exec_import(result){
         var res = result.trim();
         
+        console.log(res);
+        
+        /*
         // it only returns a json string on success, so we need to check that we have it first before using JSON.parse();
         if(IsJsonString(res)){
             res = JSON.parse(res);
@@ -66,7 +70,7 @@ $(function(){
             enableForm('#importLoader', '#upload', 'invisible');
             $.growl.error({message: result});
         }
-
+        */
     }
     
     $('#importlistform').ajaxForm({
@@ -93,6 +97,7 @@ $(function(){
             return true;
         }else{
             $.growl.error({message: alerts.COL_HEADERS_EMPTY});
+            enableForm('#importconfigLoader', '#update', 'invisible');
             return false;
         }
     }
@@ -100,19 +105,11 @@ $(function(){
     function exec_importconfig(result){
         var res = result.trim();
         
-        console.log(res);
-        /*
-        if(IsJsonString(res)){
-            res = JSON.parse(res);
-            
-            if(res.result === 'success'){
-                window.location = 'importconfig.php?id=' + res.id;
-            }
+        if(res === 'success'){
+            window.location = 'importsuccess.php';
         }else{
-            enableForm('#importLoader', '#upload', 'invisible');
-            $.growl.error({message: result});
+            //
         }
-        */
     }
     
     $('#importconfigform').ajaxForm({
@@ -170,7 +167,7 @@ $(function(){
                 data: { 'template': $(this).val() },
                 success: function(e){
                     $('#templateSelectLoader').addClass('hidden');
-                    $('#form_elements').html(e);                                     
+                    $('#form_elements').html(e);
                 },
                 error: function(e){
                     $('#templateSelectLoader').addClass('hidden');

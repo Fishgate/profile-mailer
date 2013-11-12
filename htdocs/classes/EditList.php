@@ -22,7 +22,7 @@ class EditList {
     private $tableNameFromID;
     
     // booleans
-    private $renamed = false;
+    private $renamed = true;
     private $removedRows = true;
     
     /**
@@ -184,9 +184,10 @@ class EditList {
                 if(!$this->renameColumns->execute()){
                     $this->renamed = false;
                 }
-                
-                if($this->renamed) return true;
             }
+            
+            if($this->renamed) return true;
+            
         } catch (PDOException $ex) {
             throw new Exception($ex->getMessage());
         }

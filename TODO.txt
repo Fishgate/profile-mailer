@@ -1,13 +1,10 @@
 Small updates
-- impliment phpmailer into the error log system to notify us about errors
-- get rid of the neccecity for <p> tags in the template alerts of alerts.json
 - Add "Chrome frame" to rectify HTML5 elements rendering and better browsing for end user.
-- Add validation to list_acquired textarea on importlist.php
 - Put user authentication on the script execute pages too and not just the front end interface ones
-- Need a progress GIF on the importlist.php page when uploading a lit
-- Put the end user strings from the import process into the alerts.json
 
 Medium updates
+- impliment and test phpmailer in the error log system to notify us about errors
+- Complete validation on #importconfigform
 - Error handling on importconfig.php is terrible
 - force errors on the file upload (import.exec.php) for testing
 - server side validation for import list (if list name is already in use)
@@ -20,3 +17,4 @@ Medium updates
 Large updates
 - Server side validation on all forms
 - Do a massive clean up of the codebase in terms of error handling i.e. exceptions vs return codes
+- find a more robust way of dealing with the validation and processing of forms. The Javascript file is getting painfully large.    

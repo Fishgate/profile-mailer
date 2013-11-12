@@ -6,6 +6,8 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
+$alerts = new Alerts();
+
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +66,10 @@ $user->authUser();
             
             <!--==================================== CONTENTS ===========-->
             <div class="contents clearfix">
-                <div id="importlist" class="left">                   
-                    <form id="quickaccess_import">
+                <!--<div id="importlist" class="left">                   
+                    form id="quickaccess_import">
                         <h2>Quick-Access Menu</h2>
+                        
                         <div id="logs_menu">
                             <form method="post" action="">
                                 <select>
@@ -79,15 +82,16 @@ $user->authUser();
                                 <input type="button" value="GO!">
                             </form>
                         </div>
+                        
                     </form>
-                </div>
+                </div>-->
+                
                 <!--=========== STEPS INDICATOR ============-->
                 <div id="success_import" class="left clearfix">
                     <span class="icons green success_icon">m</span>
                     <h2 class="success">Success!</h2>
                     <div class="noticeDiv">
-                        <p>Everything checked out, your list has been imported!<p>
-                        <p>On the left you will find a Quick-Access Menu to <a href="#">View</a>, <a href="#">Manage</a> and <a href="#">Send</a> to your imported list.</p>
+                        <p><?php echo $alerts->IMPORT_SUCCESS; ?><p>
                     </div>
                     <!--<a class="successLinks green_bg white right">Send</a>
                     <a class="successLinks green_bg white right">Manage</a>
