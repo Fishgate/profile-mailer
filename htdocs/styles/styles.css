@@ -200,6 +200,26 @@ input, select, textArea{
     
     width: 100%;
 }
+select{
+    margin-bottom: 0!important;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+}
+.selecter{
+    position: relative;
+}
+.dropdown{
+    position: absolute;
+    right: 10px;
+    text-align: right;
+    pointer-events: none;
+    width: 100%;
+}
+.dropdown:hover{
+    color: #2ECC71;
+}
 textArea{
     resize: vertical;
     min-height: 150px;
@@ -207,12 +227,12 @@ textArea{
 input[type=submit]{
     background: #FC0;
     border: 0;
-    color: #000;
+    color: #222;
 }
 input[type=button]{
     background: yellowgreen;
     border: 0;
-    color: #000;
+    color: #222;
 }
 
 input[type=button]:hover, input[type=submit]:hover{
@@ -454,6 +474,21 @@ nav{
     width: 435px;
     margin: 0 0 0 25px;
 }
+.shortcode{
+    font-family: monospace;
+    text-align: center;
+    color: #16a085;
+    background: #2c3e50;
+    display: block;
+    padding: 6px 0;
+    margin: 0 0 5px 0;
+}
+#match_shortcodes{
+    margin-bottom: 20px;
+}
+#match_shortcodes td{
+    vertical-align: top;
+}
 
 /*==============================================
                  IMPORTLIST
@@ -524,6 +559,11 @@ nav{
 .currentStep{
     background: #2ecc71;
     color: #fff;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
 }
 .currentStep_decoration{
     border-left: 28px solid #2ecc71;
@@ -548,7 +588,7 @@ nav{
     background: #fc0;
 }
 .icons{
-    font-family: 'icons', Arial;
+    font-family: 'icons';
     font-size: 20px;
 }
 .menu_icons{
@@ -657,6 +697,10 @@ nav{
 }
 .another{
     margin: 10px 10px 0 0;
+}
+
+#prev, #next, #new_mass_finish{
+    width: 60px
 }
 
 

@@ -138,7 +138,9 @@ $alerts = new Alerts();
                         <br />                        
                         
                         <img id="importLoader" class="invisible right switch_loader" alt="loader" src="img/loader.gif" />
+                        <br clear="all" />
                         
+                        <input class="left" type="button" id="prev" value="Back" />
                         <input class="right" type="button" id="next" value="Next" />                        
                         <img id="quickSendLoader" class="invisible right" alt="loader" src="img/loader.gif" />
                     </form>
