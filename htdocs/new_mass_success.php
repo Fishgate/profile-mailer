@@ -96,10 +96,45 @@ $mail = new Mailer();
                     </div>
                 </div>
                 
-                <div id="new_mass_holder">
-                        <h2>SUCCESS!</h2>
+                <div id="new_mass_validation_holder" class="clearfix">
+                    <h2>SUCCESS!</h2>
+                        <div class="recents">
+                            <table border="1" width="100%" cellpadding="5">
+                                <tr id="quicksendLogHeaders">
+                                    <td class="recent_heads">Template</td>
+                                    <td class="recent_heads">Mailing List</td>
+                                    <td class="recent_heads">Short-codes</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="icons green">h</span>
+                                        <p>Template_name_here</p>
+                                    </td>
+                                    <td>
+                                        <span class="icons green">h</span>
+                                        <p>Mailing list name</p>
+                                        <p>Containing 512 recipients</p>
+                                    </td>
+                                    <td>
+                                        <span class="icons green">h</span>
+                                        <p>4 short-codes found</p>
+                                        <p>
+                                           4 assigned:
+                                           <br />[name] => Name
+                                           <br />[lastname] => Last_Name
+                                           <br />[email] => Email
+                                           <br />[message] => Message
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    <br />
+                    <a href="#">
+                        <div class="btn right">Send Campaign</div>
+                    </a>
                 </div>
-          
+                
                 
             </div><!--.content close-->
             
