@@ -100,6 +100,7 @@ $(function(){
     function exec_importconfig(result){
         var res = result.trim();
         
+        console.log(res);
         /*
         if(IsJsonString(res)){
             res = JSON.parse(res);

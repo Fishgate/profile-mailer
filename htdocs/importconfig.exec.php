@@ -20,12 +20,23 @@ try {
     if(isset($_POST['delete']) && !empty($_POST['delete'])) {
         $editList->removeRowsArray = $_POST['delete'];
         unset($_POST['delete']); //done with this variable
-
-        if($editList->removeRows()){
-            $editList->columnNamesArray = $_POST;
-            if($editList->renameColumns()){
-                echo 'success';
-            }
+        
+        //delete selected table rows
+        $editList->removeRows();
+        
+        //proceed with renaming of the form
+        $editList->columnNamesArray = $_POST;
+        if($editList->renameColumns()){
+            echo 'success';
+        }
+        
+    }else{
+        unset($_POST['delete']); //done with this variable
+        
+        //proceed with renaming of the form
+        $editList->columnNamesArray = $_POST;
+        if($editList->renameColumns()){
+            echo 'success';
         }
     }
 } catch (Exception $ex) {

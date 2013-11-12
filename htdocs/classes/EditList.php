@@ -23,7 +23,7 @@ class EditList {
     
     // booleans
     private $renamed = false;
-    private $removedRows = false;
+    private $removedRows = true;
     
     /**
      *
