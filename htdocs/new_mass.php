@@ -72,21 +72,25 @@ $mail = new Mailer();
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
                 <div id="stepsHolder" class="clearfix">
-                    <div class="left steps currentStep">
-                        <div class="stepsDecoration  currentStep_decoration"></div>
-                        <div class="stepsDecoration_mirror"></div>
-                        TEMPLATE
-                    </div>
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        MAILING LIST
-                    </div>
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        MATCH SHORT-CODES
-                    </div>
+                    <as>
+                        <div class="left steps currentStep">
+                            <div class="stepsDecoration  currentStep_decoration"></div>
+                            <div class="stepsDecoration_mirror"></div>
+                            TEMPLATE
+                        </div>
+                    </a>
+                    <a href="new_mass_list.php">
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            MAILING LIST
+                        </div>
+                    </a>
+                    <a href="new_mass_match.php">
+                        <div class="left steps">
+                            MATCH SHORT-CODES
+                        </div>
+                    </a>
                 </div>
                 
                 <div id="new_mass_holder">                   
