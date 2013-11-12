@@ -72,9 +72,9 @@ $mail = new Mailer();
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
                 <div id="stepsHolder" class="clearfix">
-                    <div class="left steps currentStep">
-                        <div class="stepsDecoration  currentStep_decoration"></div>
-                        <div class="stepsDecoration_mirror"></div>
+                    <div class="left steps">
+                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                        <div class="hidden stepsDecoration_mirror"></div>
                         TEMPLATE
                     </div>
                     <div class="left steps">
@@ -82,43 +82,51 @@ $mail = new Mailer();
                         <div class="hidden stepsDecoration_mirror"></div>
                         MAILING LIST
                     </div>
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
+                    <div class="left steps currentStep">
                         MATCH SHORT-CODES
                     </div>
                 </div>
                 
                 <div id="new_mass_holder">                   
                     <form id="new_mass_template"><!-- enctype="multipart/form-data" -->
-                        <h2>Select Template</h2>
+                        <h2>Match Short-Codes</h2>
                         
-                        <select name="template" id="template">
-                            <option value="0">--Select Template--</option>
-                            
-                            <?php
-
-                            $mail_templates = $mail->getTemplates();
-
-                            foreach($mail_templates as $file){
-                                $filename = $file->getFileName();
-
-                                if($filename != '.' && $filename != '..'){
-                                    ?>
-                                    <option value="<?php echo $filename; ?>"><?php echo $filename; ?></option>
-                                    <?php
-                                }
-                            }
-
-                            ?>
-                        </select>
+                        <table id="match_shortcodes" width="100%" cellspacing="5">
+                            <tr>
+                                <th>Short-Code</th>
+                                <th>Assignment</th>
+                            </tr>
+                            <tr>
+                                <td><span class="shortcode">[name]</span></td>
+                                <td class="selecter">
+                                    <div class="icons dropdown">5</div>
+                                    <select>
+                                        <option>-- Choose one --</option>
+                                        <option>Name</option>
+                                        <option>Last Name</option>
+                                        <option>Email</option>
+                                        <option>Message</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <!-- short code -->
+                            <tr>
+                                <td><span class="shortcode">[email]</span></td>
+                                <td class="selecter">
+                                    <div class="icons dropdown">5</div>
+                                    <select>
+                                        <option>-- Choose one --</option>
+                                        <option>Name</option>
+                                        <option>Last Name</option>
+                                        <option>Email</option>
+                                        <option>Message</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                         
-                        <img id="templateSelectLoader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
-                        
-                        <div id="form_elements"><p>No template currently selected.</p></div>
-                        
-                        <input class="right" type="button" id="next" value="Next &rang;" />                        
-                        <img id="quickSendLoader" class="invisible right" alt="loader" src="img/loader.gif" />
+                        <input class="left" type="button" id="prev" value="Back" />
+                        <input class="right" type="submit" id="new_mass_finish" value="Finish" />
                     </form>
                 </div>
           
