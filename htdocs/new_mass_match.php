@@ -72,16 +72,20 @@ $mail = new Mailer();
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
                 <div id="stepsHolder" class="clearfix">
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        TEMPLATE
-                    </div>
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        MAILING LIST
-                    </div>
+                    <a href="new_mass.php">
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            TEMPLATE
+                        </div>
+                    </a>
+                    <a href="new_mass_list.php">
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            MAILING LIST
+                        </div>
+                    </a>
                     <div class="left steps currentStep">
                         MATCH SHORT-CODES
                     </div>

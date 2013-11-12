@@ -72,62 +72,32 @@ $mail = new Mailer();
                 <!--=========== STEPS INDICATOR ============-->
                 <!--<h2>Progress</h2>-->
                 <div id="stepsHolder" class="clearfix">
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        TEMPLATE
-                    </div>
-                    <div class="left steps">
-                        <div class="hidden stepsDecoration  currentStep_decoration"></div>
-                        <div class="hidden stepsDecoration_mirror"></div>
-                        MAILING LIST
-                    </div>
+                    <a href="new_mass.php">
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            TEMPLATE
+                        </div>
+                    </a>
+                    <a href="new_mass_list.php">
+                        <div class="left steps">
+                            <div class="hidden stepsDecoration  currentStep_decoration"></div>
+                            <div class="hidden stepsDecoration_mirror"></div>
+                            MAILING LIST
+                        </div>
+                    </a>
+                    <a href="new_mass_match.php">
+                        <div class="left steps">
+                            MATCH SHORT-CODES
+                        </div>
+                    </a>
                     <div class="left steps currentStep">
-                        MATCH SHORT-CODES
+                        VALIDATION
                     </div>
                 </div>
                 
-                <div id="new_mass_holder">                   
-                    <form id="new_mass_template"><!-- enctype="multipart/form-data" -->
-                        <h2>Match Short-Codes</h2>
-                        
-                        <table id="match_shortcodes" width="100%" cellspacing="5">
-                            <tr>
-                                <th>Short-Code</th>
-                                <th>Assignment</th>
-                            </tr>
-                            <tr>
-                                <td><span class="shortcode">[name]</span></td>
-                                <td class="selecter">
-                                    <div class="icons dropdown">5</div>
-                                    <select>
-                                        <option>-- Choose one --</option>
-                                        <option>Name</option>
-                                        <option>Last Name</option>
-                                        <option>Email</option>
-                                        <option>Message</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <!-- short code -->
-                            <tr>
-                                <td><span class="shortcode">[email]</span></td>
-                                <td class="selecter">
-                                    <div class="icons dropdown">5</div>
-                                    <select>
-                                        <option>-- Choose one --</option>
-                                        <option>Name</option>
-                                        <option>Last Name</option>
-                                        <option>Email</option>
-                                        <option>Message</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <input class="left" type="button" id="prev" value="Back" />
-                        <input class="right" type="submit" id="new_mass_finish" value="Finish" />
-                    </form>
+                <div id="new_mass_holder">
+                        <h2>SUCCESS!</h2>
                 </div>
           
                 

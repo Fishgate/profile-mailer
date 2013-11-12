@@ -489,7 +489,12 @@ nav{
 #match_shortcodes td{
     vertical-align: top;
 }
-
+#stepsHolder a{
+    color: #34495E;
+}
+#stepsHolder a:hover{
+    color: #34495E;
+}
 /*==============================================
                  IMPORTLIST
 ===============================================*/
