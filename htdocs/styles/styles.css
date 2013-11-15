@@ -101,7 +101,9 @@ img{
     right: 10px;
     z-index: 999;
 }
-
+td{
+    vertical-align: top;
+}
 /*==============================================
                   BRANDING BAR
 ===============================================*/
@@ -474,6 +476,10 @@ nav{
     width: 435px;
     margin: 0 0 0 25px;
 }
+#new_mass_validation_holder{
+    width: 660px;
+    margin: 0 0 0 25px;
+}
 .shortcode{
     font-family: monospace;
     text-align: center;
@@ -703,8 +709,18 @@ nav{
 .another{
     margin: 10px 10px 0 0;
 }
-
-#prev, #next, #new_mass_finish{
+.btn{
+    display: inline-block;
+    background: #fc0;
+    color: #34495E;
+    padding: 5px;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+#prev, #next{
     width: 60px
 }
 

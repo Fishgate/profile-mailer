@@ -130,7 +130,7 @@ $mail = new Mailer();
                         </table>
                         
                         <input class="left" type="button" id="prev" value="Back" />
-                        <input class="right" type="submit" id="new_mass_finish" value="Finish" />
+                        <input class="right" type="submit" id="new_mass_finish" value="Send my campaign" />
                     </form>
                 </div>
           
