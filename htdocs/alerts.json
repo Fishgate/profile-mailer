@@ -29,7 +29,7 @@
     "UPLOAD_ERROR_6":           "Missing a temporary folder.",
     "UPLOAD_ERROR_7":           "Failed to write file to disk.",
     "UPLOAD_ERROR_8":           "File upload stopped by extension.",
-    "UPLOAD_WARNING":           "Max file size 2MB. Supported file types include CSV and XLS.",
+    "UPLOAD_WARNING":           "Max file size 2MB. Supported file types include CSV.",
     "LOG_UPLOAD_ERR":           "Error creating database log",
     "CREATE_LIST_DB_ERR":       "Error creating database table.",
     "MOVE_UPLOADED_FILE_FAIL":  "MOVE_UPLOADED_FILE has failed.",
@@ -37,5 +37,6 @@
     "EDIT_FETCH_TBL_EMPTY":     "The selected list is empty.",
     "SPAM_WARNING":             "In order to adhere to SPAM and Unsolicited Email policies, you need to state exactly how this list was acquired. Sending email to recipients without their knowledge or concent could lead to being blacklisted and your account with your ISP terminated.",
     "IMPORT_CONF_INSTRUCTIONS": "Here is your chance to rename the column header. Make sure it described the information appropriately because these names will be referenced later. If there are any rows you want to get rid of, just tick the check box to the left of the row before continuing and it will be deleted!",
-    "IMPORT_CONF_NO_TBL":       "There was no table found matching the ID"
+    "IMPORT_CONF_NO_TBL":       "There was no table found matching the ID",
+    "IMPORT_SUCCESS":           "Everything checked out, your list has been imported!"
 }

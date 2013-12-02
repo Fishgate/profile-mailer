@@ -6,11 +6,6 @@ $user = new User();
 $user->sessionBool = $_SESSION['user_auth'];
 $user->authUser();
 
-$reports = new Reports();
-$quicksend_total = $reports->get_quicksend_total();
-$quicksend_opened = $reports->get_quicksend_opened();
-$quicksend_unopened = $reports->get_quicksend_unopened();
-
 $mail = new Mailer();
 
 ?>
@@ -94,10 +89,10 @@ $mail = new Mailer();
                 </div>
                 
                 <div id="new_mass_holder">                   
-                    <form id="new_mass_template"><!-- enctype="multipart/form-data" -->
+                    <form id="new_mass_template">`
                         <h2>Select Template</h2>
                         
-                        <select name="template" id="template">
+                        <select name="mass_template" id="mass_template">
                             <option value="0">--Select Template--</option>
                             
                             <?php
@@ -119,9 +114,8 @@ $mail = new Mailer();
                         
                         <img id="templateSelectLoader" class="hidden right switch_loader" alt="loader" src="img/loader.gif" />
                         
-                        <div id="form_elements"><p>No template currently selected.</p></div>
+                        <input class="right" type="button" id="next" value="Next &rang;" />
                         
-                        <input class="right" type="button" id="next" value="Next &rang;" />                        
                         <img id="quickSendLoader" class="invisible right" alt="loader" src="img/loader.gif" />
                     </form>
                 </div>

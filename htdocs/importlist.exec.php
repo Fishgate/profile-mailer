@@ -13,13 +13,18 @@ $import->acquired = $_POST['list_acquired'];
 $import->newName = $_POST['listname'];
 
 try {
-    $importFile = $import->uploadFile();
+    if($import->uploadFile()) {
+        if($import->importCSV()){
+            $imp = $import->logUploads();
+            
+            $impResult = json_decode($imp, true);
     
-    $result = json_decode( $importFile, true);
-    
-    if($result['result'] == 'success'){
-        echo $importFile;
+            if($result['result'] == 'success'){
+                echo $imp;
+            }
+        }
     }
+    
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
